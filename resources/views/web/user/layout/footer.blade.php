@@ -1,5 +1,5 @@
-<footer class="text-center lg:text-left bg-gray-100 text-gray-600">
-    <div class="mx-10 py-10 text-center md:text-left">
+<footer class="text-left bg-gray-100 text-gray-600">
+    <div class="mx-10 py-10 text-left">
         <div class="grid grid-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="">
                 <h6
@@ -9,8 +9,7 @@
               mb-0
               flex
               items-center
-              justify-center
-              md:justify-start
+              justify-start
             ">
                     Shop
                 </h6>
@@ -28,7 +27,7 @@
                 </p>
             </div>
             <div class="">
-                <h6 class="text-xl font-bold mb-0 flex justify-center md:justify-start">
+                <h6 class="text-xl font-bold mb-0 flex justify-start">
                     Layanan
                 </h6>
                 <p class="mb-0 text-sm">
@@ -39,7 +38,7 @@
                 </p>
             </div>
             <div class="">
-                <h6 class="font-bold text-xl mb-0 flex justify-center md:justify-start">
+                <h6 class="font-bold text-xl mb-0 flex justify-start">
                     Business
                 </h6>
                 <p class="mb-0 text-sm">
@@ -47,7 +46,7 @@
                 </p>
             </div>
             <div class="">
-                <h6 class="text-xl font-bold mb-0 flex justify-center md:justify-start">
+                <h6 class="text-xl font-bold mb-0 flex justify-start">
                     Blog
                 </h6>
                 <p class="mb-0">
@@ -65,7 +64,7 @@
             </div>
         </div>
     </div>
-    <div class="mx-10 py-10 text-center md:text-left">
+    <div class="mx-10 py-10 text-left">
         <div class="grid grid-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="">
                 <h6
@@ -73,8 +72,7 @@
               mb-0
               flex
               items-center
-              justify-center
-              md:justify-start
+              justify-start
             ">
                     Accounts
                 </h6>
@@ -95,7 +93,7 @@
                 </p>
             </div>
             <div class="">
-                <h6 class="text-xl font-bold mb-0 flex justify-center md:justify-start">
+                <h6 class="text-xl font-bold mb-0 flex justify-start">
                     Tools
                 </h6>
                 <p class="mb-0 text-sm">
@@ -109,7 +107,7 @@
                 </p>
             </div>
             <div class="">
-                <h6 class="text-xl font-bold mb-0 text-sm flex justify-center md:justify-start">
+                <h6 class="text-xl font-bold mb-0 text-sm flex justify-start">
                     Garansi
                 </h6>
                 <p class="mb-0 text-sm">
@@ -121,26 +119,26 @@
     <div class="flex justify-center items-center lg:justify-between px-12 py-6">
         <div class="flex justify-center ml-auto">
             <a href="#!" class="mr-2">
-                <i class="fab fa-facebook"></i>
+                <i class="fab fa-facebook fa-lg"></i>
             </a>
             <a href="#!" class="mr-2">
-                <i class="fab fa-instagram"></i>
+                <i class="fab fa-instagram fa-lg"></i>
             </a>
             <a href="#!" class="mr-2">
-                <i class="fab fa-twitter"></i>
+                <i class="fab fa-twitter fa-lg"></i>
             </a>
             <a href="#!" class="mr-2">
-                <i class="fab fa-youtube"></i>
+                <i class="fab fa-youtube fa-lg"></i>
             </a>
             <a href="#!" class="mr-2">
-                <i class="fab fa-whatsapp"></i>
+                <i class="fab fa-whatsapp fa-lg"></i>
             </a>
         </div>
     </div>
-    <div class="px-24">
+    <div class="px-10 md:px-24">
         <hr>
     </div>
-    <div class="text-left font-bold px-24 py-2">
+    <div class="text-left font-bold px-24 py-2 pb-10 text-sm">
         <span>Copyright © 2022 CHAMELEON CLOTH. All rights reserved.</span>
     </div>
 </footer>
