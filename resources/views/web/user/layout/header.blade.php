@@ -1,7 +1,7 @@
 <nav class="bg-black py-2 md:py-4 px-4">
     <div class="px-4 md:flex md:items-center">
         <div class="flex justify-between items-center">
-            <a href="#" class="font-bold text-xl text-white">
+            <a href="{{ route('user.home') }}" class="font-bold text-xl text-white">
                 <img src="{{ asset('images/logo.jpg') }}">
             </a>
             <button

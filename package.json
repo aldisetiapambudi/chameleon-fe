@@ -21,6 +21,7 @@
         "vue-template-compiler": "^2.6.14"
     },
     "dependencies": {
+        "fast-glob": "^2.2.7",
         "tw-elements": "*"
     }
 }

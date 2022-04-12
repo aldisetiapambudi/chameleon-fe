@@ -15,4 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('web.user.sections.home');
-});
+})->name('user.home');
+
+Route::get('/product/{slug}', function() {
+    return view('web.user.sections.detail-product');
+})->name('user.product.show');
