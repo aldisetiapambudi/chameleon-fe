@@ -138,7 +138,7 @@
     <div class="px-10 md:px-24">
         <hr>
     </div>
-    <div class="text-left font-bold px-24 py-2 pb-10 text-sm">
+    <div class="text-center md:text-left font-bold px-24 py-2 pb-10 text-sm">
         <span>Copyright © 2022 CHAMELEON CLOTH. All rights reserved.</span>
     </div>
 </footer>
