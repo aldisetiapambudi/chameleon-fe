@@ -44,13 +44,13 @@
                     <div class="text-left md:text-right">
                         <p class="text-gray text-sm mr-1">7 Colors</p>
                         <div class="flex float-right">
-                            <div class="p-2 mx-1 shadow-sm bg-yellow-900 w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-blue-900 w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-gray-900 w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-gray-500 w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-blue-400 w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-black w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-red-900 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-yellow-900 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-blue-900 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-gray-900 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-gray-500 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-blue-400 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-black w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-red-900 w-2 h-2 rounded-full"></div>
                         </div>
                     </div>
                 </div>
@@ -68,13 +68,13 @@
                     <div class="text-left md:text-right">
                         <p class="text-gray text-sm mr-1">7 Colors</p>
                         <div class="flex float-right">
-                            <div class="p-2 mx-1 shadow-sm bg-yellow-900 w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-blue-900 w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-gray-900 w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-gray-500 w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-blue-400 w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-black w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-red-900 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-yellow-900 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-blue-900 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-gray-900 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-gray-500 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-blue-400 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-black w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-red-900 w-2 h-2 rounded-full"></div>
                         </div>
                     </div>
                 </div>
@@ -92,13 +92,13 @@
                     <div class="text-left md:text-right">
                         <p class="text-gray text-sm mr-1">7 Colors</p>
                         <div class="flex float-right">
-                            <div class="p-2 mx-1 shadow-sm bg-yellow-900 w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-blue-900 w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-gray-900 w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-gray-500 w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-blue-400 w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-black w-2 h-2 rounded-full"></div>
-                            <div class="p-2 mx-1 shadow-sm bg-red-900 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-yellow-900 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-blue-900 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-gray-900 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-gray-500 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-blue-400 w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-black w-2 h-2 rounded-full"></div>
+                            <div class="p-2 mr-1 shadow-sm bg-red-900 w-2 h-2 rounded-full"></div>
                         </div>
                     </div>
                 </div>
