@@ -28,10 +28,12 @@
     <script type="text/javascript">
         let toggleBtn = document.querySelector("#navbar-toggle");
         let collapse = document.querySelector("#navbar-collapse");
+        let collapseSearch = document.querySelector("#navbar-collapse-search");
 
         toggleBtn.onclick = () => {
             collapse.classList.toggle("hidden");
             collapse.classList.toggle("flex");
+            collapseSearch.classList.toggle("hidden");
         };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>

@@ -1,19 +1,32 @@
 <nav class="bg-black py-2 md:py-4 px-4">
     <div class="px-4 md:flex md:items-center">
         <div class="flex justify-between items-center">
-            <a href="{{ route('user.home') }}" class="font-bold text-xl text-white">
-                <img src="{{ asset('images/logo.jpg') }}">
-            </a>
             <button
                 class="border border-solid border-white px-3 py-1 rounded text-white opacity-50 hover:opacity-75 md:hidden"
                 id="navbar-toggle">
                 <i class="fas fa-bars"></i>
             </button>
+            <a href="{{ route('user.home') }}" class="font-bold text-xl text-white">
+                <img src="{{ asset('images/logo.jpg') }}">
+            </a>
+            <a href="#"
+                class="md:hidden p-2 lg:px-4 md:mx-2 text-white text-center border border-transparent rounded hover:bg-gray-400 hover:text-white transition-colors duration-300  md:mt-0 mt-2 md:ml-1"><i
+                    class="fas fa-bag-shopping"></i></a>
         </div>
 
         <div class="hidden md:flex flex-row md:flex-row mt-3 md:mt-0 md:ml-auto" id="navbar-collapse">
-            <div class="flex flex-col md:flex-row md:ml-auto">
-                <a href="#" class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Jas</a>
+            <div class="flex flex-col md:flex-row md:ml-auto w-full">
+                <div class="hidden md:hidden pt-2 relative mx-auto text-gray-300 w-full" id="navbar-collapse-search">
+                    <div class="relative w-full bg-gray-900">
+                        <div class="absolute top-2 left-3"> <button type="submit"> <i
+                                    class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i> </button> </div>
+                        <input type="text"
+                            class="h-10 w-full pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none bg-transparent"
+                            placeholder="Search">
+                    </div>
+                </div>
+                <a href="#"
+                    class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Jas</a>
                 <a href="#"
                     class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Celana</a>
                 <a href="#"
@@ -23,7 +36,7 @@
             </div>
         </div>
 
-        <div class="flex flex-col md:flex-row mt-3 md:mt-0 md:ml-auto">
+        <div class="hidden md:flex flex-col md:flex-row mt-3 md:mt-0 md:ml-auto">
             <a href="#"
                 class="p-2 lg:px-4 md:mx-2 text-white text-center border border-transparent rounded hover:bg-gray-400 hover:text-white transition-colors duration-300 md:mt-0 mt-2"><i
                     class="fas fa-search"></i></a>
@@ -31,10 +44,13 @@
                 class="p-2 lg:px-4 md:mx-2 text-white text-center border border-transparent rounded hover:bg-gray-400 hover:text-white transition-colors duration-300  md:mt-0 mt-2 md:ml-1"><i
                     class="fas fa-bag-shopping"></i></a>
         </div>
+
+
     </div>
 </nav>
 <div class="bg-red-400 py-2 md:py-2 px-4">
     <div class="mx-auto px-4 text-center">
-        <p class="text-white text-sm md:text-lg">Get <span class="font-bold">Discount 50.000</span> with voucher code <span class="font-bold">FREE50</span></p>
+        <p class="text-white text-sm md:text-lg">Get <span class="font-bold">Discount 50.000</span> with voucher
+            code <span class="font-bold">FREE50</span></p>
     </div>
 </div>
