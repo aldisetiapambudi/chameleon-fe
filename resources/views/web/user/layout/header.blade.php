@@ -25,13 +25,13 @@
                             placeholder="Search">
                     </div>
                 </div>
-                <a href="#"
+                <a href="{{ route('user.products') }}"
                     class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Jas</a>
-                <a href="#"
+                <a href="{{ route('user.products') }}"
                     class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Celana</a>
-                <a href="#"
+                <a href="{{ route('user.products') }}"
                     class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Rompi</a>
-                <a href="#"
+                <a href="{{ route('user.products') }}"
                     class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Kemeja</a>
             </div>
         </div>

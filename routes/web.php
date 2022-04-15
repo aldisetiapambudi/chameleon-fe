@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/product/{slug}', function() {
     return view('web.user.sections.detail-product');
 })->name('user.product.show');
+
+Route::get('/products', function() {
+    return view('web.user.sections.products');
+})->name('user.products');

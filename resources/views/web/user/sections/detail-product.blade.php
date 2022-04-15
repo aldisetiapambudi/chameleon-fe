@@ -1,6 +1,6 @@
 @extends('web.user.app')
 @section('section')
-    <div class="m-4">
+    <div class="container mx-auto mt-4">
         <div class="grid md:grid-cols-2 grid-cols-1 gap-2">
             <div class="px-2">
                 <img class="mx-auto w-full" src="{{ asset('images/product_2.jpeg') }}">
