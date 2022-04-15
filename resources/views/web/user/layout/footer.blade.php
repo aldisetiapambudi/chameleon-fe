@@ -49,16 +49,16 @@
                 <h6 class="text-xl font-bold mb-0 flex justify-start">
                     Blog
                 </h6>
-                <p class="mb-0">
+                <p class="mb-0 text-sm">
                     <a href="#!" class="text-gray-600">Cara Pakai jas</a>
                 </p>
-                <p class="mb-0">
+                <p class="mb-0 text-sm">
                     <a href="#!" class="text-gray-600">Menentukan ukuran yang pas untukmu</a>
                 </p>
-                <p class="mb-0">
+                <p class="mb-0 text-sm">
                     <a href="#!" class="text-gray-600">Paduan yang cocok dengan jas</a>
                 </p>
-                <p class="mb-0">
+                <p class="mb-0 text-sm">
                     <a href="#!" class="text-gray-600">Tips memakai dasi</a>
                 </p>
             </div>
@@ -107,7 +107,7 @@
                 </p>
             </div>
             <div class="">
-                <h6 class="text-xl font-bold mb-0 text-sm flex justify-start">
+                <h6 class="text-xl font-bold mb-0 flex justify-start">
                     Garansi
                 </h6>
                 <p class="mb-0 text-sm">
