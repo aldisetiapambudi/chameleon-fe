@@ -24,7 +24,7 @@
                 </p>
                 <label class="font-bold text-lg">COLORS : </label><span class="text-lg"> Navy </span>
                 <ul class="flex mt-2 mb-10">
-                    <li class="relative flex-1 mr-1">
+                    <li class="relative mr-1">
                         <input class="sr-only peer" type="radio" value="yes" name="color" id="color_1">
                         <label
                             class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
@@ -32,7 +32,7 @@
                             <div class="p-2 mx-1 shadow-sm bg-yellow-900 w-2 h-2 rounded-full"></div>
                         </label>
                     </li>
-                    <li class="relative flex-1 mr-1">
+                    <li class="relative mr-1">
                         <input class="sr-only peer" type="radio" value="yes" name="color" id="color_2">
                         <label
                             class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
@@ -41,7 +41,7 @@
                         </label>
                     </li>
 
-                    <li class="relative flex-1 mr-1">
+                    <li class="relative mr-1">
                         <input class="sr-only peer" type="radio" value="maybe" name="color" id="color_3">
                         <label
                             class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
@@ -49,7 +49,7 @@
                             <div class="p-2 mx-1 shadow-sm bg-gray-900 w-2 h-2 rounded-full"></div>
                         </label>
                     </li>
-                    <li class="relative flex-1 mr-1">
+                    <li class="relative mr-1">
                         <input class="sr-only peer" type="radio" value="yes" name="color" id="color_4">
                         <label
                             class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
@@ -58,7 +58,7 @@
                         </label>
                     </li>
 
-                    <li class="relative flex-1 mr-1">
+                    <li class="relative mr-1">
                         <input class="sr-only peer" type="radio" value="no" name="color" id="color_5">
                         <label
                             class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
@@ -68,7 +68,7 @@
                         </label>
                     </li>
 
-                    <li class="relative flex-1 mr-1">
+                    <li class="relative mr-1">
                         <input class="sr-only peer" type="radio" value="maybe" name="color" id="color_6">
                         <label
                             class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
@@ -76,7 +76,7 @@
                             <div class="p-2 mx-1 shadow-sm bg-black w-2 h-2 rounded-full"></div>
                         </label>
                     </li>
-                    <li class="relative flex-1 mr-1">
+                    <li class="relative mr-1">
                         <input class="sr-only peer" type="radio" value="maybe" name="color" id="color_7">
                         <label
                             class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
@@ -88,7 +88,7 @@
                 <label class="font-bold text-lg mt-5">PREMIUM COLORS : </label><span class="text-lg"> Blue Ice
                 </span>
                 <ul class="flex mt-2 mb-10">
-                    <li class="relative flex-1 mr-1">
+                    <li class="relative mr-1">
                         <input class="sr-only peer" type="radio" value="yes" name="color_premium" id="color_premium_1">
                         <label
                             class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
@@ -96,7 +96,7 @@
                             <div class="p-2 mx-1 shadow-sm bg-yellow-900 w-2 h-2 rounded-full"></div>
                         </label>
                     </li>
-                    <li class="relative flex-1 mr-1">
+                    <li class="relative mr-1">
                         <input class="sr-only peer" type="radio" value="yes" name="color_premium" id="color_premium_2">
                         <label
                             class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"

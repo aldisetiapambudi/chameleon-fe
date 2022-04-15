@@ -3822,9 +3822,6 @@ textarea.form-control.is-invalid {
 .w-2 {
 	width: 0.5rem;
 }
-.flex-1 {
-	flex: 1 1 0%;
-}
 .transform {
 	transform: var(--tw-transform);
 }
@@ -4071,15 +4068,16 @@ textarea.form-control.is-invalid {
 	font-size: 1.125rem;
 	line-height: 1.75rem;
 }
+.text-2xl {
+	font-size: 1.5rem;
+	line-height: 2rem;
+}
 .text-3xl {
 	font-size: 1.875rem;
 	line-height: 2.25rem;
 }
 .font-bold {
 	font-weight: 700;
-}
-.font-medium {
-	font-weight: 500;
 }
 .uppercase {
 	text-transform: uppercase;
@@ -4101,10 +4099,6 @@ textarea.form-control.is-invalid {
 .text-gray-400 {
 	--tw-text-opacity: 1;
 	color: rgba(156, 163, 175, var(--tw-text-opacity));
-}
-.text-black {
-	--tw-text-opacity: 1;
-	color: rgba(0, 0, 0, var(--tw-text-opacity));
 }
 .opacity-50 {
 	opacity: 0.5;
