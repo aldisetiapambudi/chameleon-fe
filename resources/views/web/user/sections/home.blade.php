@@ -27,7 +27,7 @@
     {{-- end-banner-image --}}
 
     {{-- the-best-seller --}}
-    <div class="container mx-auto">
+    <div class="container max-w-6xl px-4 mx-auto">
         <div class="py-10 text-center">
             <h3 class="text-3xl font-bold">The Best Seller</h3>
             <p class="text-lg">on this year</p>
