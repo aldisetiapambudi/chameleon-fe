@@ -36,7 +36,8 @@
                 </div>
                 <div class="row mt-32 text-center">
                     <p>
-                        Perlu bantuan? <a href="wa.me/6283116200500" class="text-blue-600">Chat sekarang</a> dengan
+                        Perlu bantuan? <a href="https://wa.me/6283116200500" class="text-blue-600" target="_blank">Chat
+                            sekarang</a> dengan
                         customer service kami di
                         WhatsApp 083116200500
 
