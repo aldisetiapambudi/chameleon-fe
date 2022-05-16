@@ -3824,8 +3824,8 @@ textarea.form-control.is-invalid {
 .mb-6 {
   margin-bottom: 1.5rem;
 }
-.mt-60 {
-  margin-top: 15rem;
+.mt-32 {
+  margin-top: 8rem;
 }
 .mt-2\.5 {
   margin-top: 0.625rem;
@@ -3836,14 +3836,20 @@ textarea.form-control.is-invalid {
 .ml-3 {
   margin-left: 0.75rem;
 }
-.mt-32 {
-  margin-top: 8rem;
+.ml-2 {
+  margin-left: 0.5rem;
+}
+.mt-14 {
+  margin-top: 3.5rem;
 }
 .block {
   display: block;
 }
 .inline-block {
   display: inline-block;
+}
+.inline {
+  display: inline;
 }
 .flex {
   display: flex;
@@ -3886,6 +3892,9 @@ textarea.form-control.is-invalid {
 }
 .w-5 {
   width: 1.25rem;
+}
+.w-1\/2 {
+  width: 50%;
 }
 .max-w-6xl {
   max-width: 72rem;
@@ -4066,6 +4075,10 @@ textarea.form-control.is-invalid {
 .bg-blue-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}
+.bg-blue-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
 .bg-clip-padding {
   background-clip: padding-box;
