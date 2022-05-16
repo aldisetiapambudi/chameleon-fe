@@ -29,3 +29,7 @@ Route::get('/products', function () {
 Route::get('/login', function () {
     return view('web.user.sections.login');
 })->name('user.login');
+
+Route::get('/daftar', function () {
+    return view('web.user.sections.daftar');
+})->name('user.daftar');
