@@ -33,3 +33,7 @@ Route::get('/login', function () {
 Route::get('/daftar', function () {
     return view('web.user.sections.daftar');
 })->name('user.daftar');
+
+Route::get('/account', function () {
+    return view('web.user.sections.account');
+});
