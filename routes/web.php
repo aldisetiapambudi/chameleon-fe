@@ -17,10 +17,15 @@ Route::get('/', function () {
     return view('web.user.sections.home');
 })->name('user.home');
 
-Route::get('/product/{slug}', function() {
+Route::get('/product/{slug}', function () {
     return view('web.user.sections.detail-product');
 })->name('user.product.show');
 
-Route::get('/products', function() {
+Route::get('/products', function () {
     return view('web.user.sections.products');
 })->name('user.products');
+
+// dev
+Route::get('/login', function () {
+    return view('web.user.sections.login');
+})->name('user.login');
