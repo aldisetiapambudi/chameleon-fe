@@ -8,7 +8,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- only on dev -->
     <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
-    <!-- only on dev -->
+    <!-- only on dev end -->
     <title>CHAMELEON CLOTH</title>
     @stack('css')
     <!-- JS -->
