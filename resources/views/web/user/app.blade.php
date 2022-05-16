@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- only on dev -->
+    <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
+    <!-- only on dev -->
     <title>CHAMELEON CLOTH</title>
     @stack('css')
     <!-- JS -->
+    
     <script src="https://kit.fontawesome.com/26c87d64a2.js" crossorigin="anonymous"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </head>
