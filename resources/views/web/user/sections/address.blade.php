@@ -1,6 +1,6 @@
 @extends('web.user.app')
 @section('section')
-    <div class="container mx-auto">
+    <div class="container max-w-6xl w px-4 mx-auto">
         <div class="row ml-2 mt-4 mb-2 flex">
             <div class="col w-1/2">
                 <h3 class="text-base md:text-2xl font-semibold ml-4">Chameleon Cloth Account</h3>

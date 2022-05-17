@@ -37,8 +37,12 @@ Route::get('/daftar', function () {
 
 Route::get('/account', function () {
     return view('web.user.sections.account');
-});
+})->name('user.account');
 
 Route::get('/address', function () {
     return view('web.user.sections.address');
-});
+})->name('user.address');
+
+Route::get('/orders', function () {
+    return view('web.user.sections.orders');
+})->name('user.orders');

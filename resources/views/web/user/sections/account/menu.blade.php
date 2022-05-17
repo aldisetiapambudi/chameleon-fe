@@ -17,8 +17,8 @@
                     class="text-base md:text-lg hover:text-sky-700 active:text-sky-600 active:font-semibold {{ Request::is('address*') ? 'font-bold text-blue-600' : ' ' }}">Address</a>
             </li>
             <li class="mt-3">
-                <a href="#"
-                    class="text-base md:text-lg hover:text-sky-700 active:text-sky-600 active:font-semibold">Orders</a>
+                <a href="/orders"
+                    class="text-base md:text-lg hover:text-sky-700 active:text-sky-600 active:font-semibold {{ Request::is('orders*') ? 'font-bold text-blue-600' : ' ' }}">Orders</a>
             </li>
         </ul>
     </nav>
