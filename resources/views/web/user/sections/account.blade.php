@@ -26,7 +26,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col w-10/12 lg:w-full md:mt-3 max-w-full bg-slate-100 ml-3 hover:bg-slate-200 rounded-xl ">
+                    <div class="col w-10/12 lg:w-full md:mt-3 lg:mt-0 max-w-full bg-slate-100 ml-3 hover:bg-slate-200 rounded-xl ">
                         <a href="" class="">
                             <div class="card w-full max-w-2xl p-3 md:p-7 mt-3 md:mt-0 ">
                                 <h1 class="text-base md:text-xl font-bold">Password</h1>
