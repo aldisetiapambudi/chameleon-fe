@@ -40,6 +40,15 @@
             collapseSearch.classList.toggle("hidden");
         };
     </script>
+    <script type="text/javascript">
+        let toggleBtnCart = document.querySelector("#bag");
+        let collapse2 = document.querySelector("#user_cart");
+        toggleBtnCart.onclick = () => {
+            collapse2.classList.toggle("visible");
+            collapse2.classList.toggle("invisible");
+        };
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
     @stack('javascript')
 </body>
