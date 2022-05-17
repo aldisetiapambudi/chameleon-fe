@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,4 +37,8 @@ Route::get('/daftar', function () {
 
 Route::get('/account', function () {
     return view('web.user.sections.account');
+});
+
+Route::get('/address', function () {
+    return view('web.user.sections.address');
 });
