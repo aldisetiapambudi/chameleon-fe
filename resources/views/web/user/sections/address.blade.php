@@ -13,11 +13,9 @@
             </div>
         </div>
         <hr class="w-full h-4 mx-auto">
-        <div class="row mb-96 flex">
-            <div class="col w-1/2 max-w-xs block ">
-                @include('web.user.sections.account.menu')
-            </div>
-            <div class="col w-full justify-start  ">
+        <div class="row mb-24 lg:flex">
+            
+            <div class="col w-full justify-start  lg:order-2">
                 <h1 class="text-lg md:text-2xl pl-4 font-semibold mt-4">Address</h1>
                 <div class="row lg:flex  ml-2 mt-2 md:mt-4">
                     <div class="col max-w-full hover:bg-slate-100 ml-3 border-2 border-blue-800 rounded-xl ">
@@ -30,7 +28,7 @@
                             <div
                                 class="card w-48 md:w-96 max-w-2xl p-3 md:p-2 mt-1 md:mt-0 ">
                                 <h1 class="text-base md:text-xl font-semibold">CHAMELEON CLOTH</h1>
-                                <p class="text-xs md:text-sm mt-4 ">
+                                <p class="text-xs md:text-sm mt-4 w-full">
                                     Jl. Patimuan - Kedungreja, Cinyawang, Patimuan, Cilacap 53264083116200500
                                 </p>
                             </div>
@@ -49,6 +47,9 @@
                         </a>
                     </div>
                 </div>
+            </div>
+            <div class="col w-1/2 max-w-xs lg:order-1 mt-5 ">
+                @include('web.user.sections.account.menu')
             </div>
         </div>
     </div>

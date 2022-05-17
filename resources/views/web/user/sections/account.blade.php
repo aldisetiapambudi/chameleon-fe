@@ -14,7 +14,7 @@
             </div>
         </div>
         <hr class="w-full h-4 mx-auto">
-        <div class="row mb-96 lg:flex">
+        <div class="row mb-24 lg:flex">
             <div class="col w-full justify-start lg:order-2">
                 <h1 class="text-lg md:text-2xl pl-4 font-semibold mt-4">Account</h1>
                 <div class="row lg:flex  ml-2 mt-2 md:mt-4">
