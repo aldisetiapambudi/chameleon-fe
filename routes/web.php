@@ -46,3 +46,7 @@ Route::get('/address', function () {
 Route::get('/orders', function () {
     return view('web.user.sections.orders');
 })->name('user.orders');
+
+Route::get('/cart', function () {
+    return view('web.user.sections.cart_detail');
+})->name('user.cart_detail');
