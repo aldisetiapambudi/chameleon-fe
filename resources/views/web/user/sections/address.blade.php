@@ -20,10 +20,15 @@
             <div class="col w-full justify-start  ">
                 <h1 class="text-lg md:text-2xl pl-4 font-semibold mt-4">Address</h1>
                 <div class="row lg:flex  ml-2 mt-2 md:mt-4">
-                    <div class="col max-w-full hover:bg-slate-100 ml-3 border-2 border-blue-800 rounded-xl">
+                    <div class="col max-w-full hover:bg-slate-100 ml-3 border-2 border-blue-800 rounded-xl relative">
+                       <div class="translate-x-[360px] translate-y-3 absolute ">
+                           <form action="#">
+                               <button type="submit" class="button group"><i class="fas fa-trash group-hover:text-red-600"></i></button>
+                            </form>
+                        </div>
                         <a href="#" class="group">
                             <div
-                                class="card  w-48 md:w-96 max-w-2xl p-3 md:p-7 mt-3 md:mt-0 ">
+                                class="card w-48 md:w-96 max-w-2xl p-3 md:p-7 mt-3 md:mt-0 ">
                                 <h1 class="text-base md:text-xl font-semibold">CHAMELEON CLOTH</h1>
                                 <p class="text-xs md:text-sm mt-4">
                                     Jl. Patimuan - Kedungreja, Cinyawang, Patimuan, Cilacap 53264083116200500
@@ -32,14 +37,13 @@
                         </a>
                     </div>
                     <div class="col max-w-full hover:bg-slate-100 border-2 border-blue-200 ml-3 mt-4 lg:mt-0  rounded-xl">
-                        
-                        <a href="#" class="">
+                        <a href="#" class="group">
                             <div
                                 class="card w-48 md:w-96 max-w-2xl p-3 md:p-7 mt-3 md:mt-0 ">
                                 <h1 class="text-base md:text-xl font-bold text-center my-4">
-                                    <i class="fas fa-plus-circle"></i>
+                                    <i class="fas fa-plus-circle group-hover:text-blue-600"></i>
                                 </h1>
-                                <p class="text-xs md:text-base text-center">Tambah alamat lainnya</p>
+                                <p class="text-xs md:text-base text-center group-hover:text-blue-600">Tambah alamat lainnya</p>
                             </div>
                         </a>
                     </div>
