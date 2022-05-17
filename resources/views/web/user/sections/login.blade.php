@@ -28,7 +28,7 @@
                     <div class="row text-center">
                         <a href="#" class="text-blue-600">Lupa Password?</a>
                         <p>Tidak punya akun Chameleon Cloth?,
-                            <a href="#" class="text-blue-600">Daftar</a>
+                            <a href="/daftar" class="text-blue-600">Daftar</a>
                         </p>
                     </div>
 
