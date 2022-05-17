@@ -14,11 +14,32 @@
         </div>
         <hr class="w-full h-4 mx-auto">
         <div class="row mb-96 flex">
-            <div class="col w-1/2 max-w-xs block border-2">
+            <div class="col w-1/2 max-w-xs block ">
                 @include('web.user.sections.account.menu')
             </div>
-            <div class="col w-full justify-start border-2 ">
-                <h1>Account</h1>
+            <div class="col w-full justify-start  ">
+                <h1 class="text-lg md:text-2xl pl-2 font-semibold mt-4">Account</h1>
+                <div class="row md:flex  ml-2 mt-2 md:mt-4">
+                    <div class="col w-1/2">
+                        <a href="" class="group">
+                            <div
+                                class="card bg-slate-100 w-48 md:w-96 max-w-2xl p-3 md:p-7 mt-3 md:mt-0 hover:bg-slate-200">
+                                <h1 class="text-base md:text-xl font-bold">Email</h1>
+                                <h6 class="text-xs md:text-base">chameleoncloth@gmail.com</h6>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col w-1/2">
+                        <a href="" class="group">
+                            <div
+                                class="card bg-slate-100 w-48 md:w-96 max-w-2xl p-3 md:p-7 mt-3 md:mt-0 hover:bg-slate-200">
+                                <h1 class="text-base md:text-xl font-bold">Password</h1>
+                                <p class="text-xs md:text-base">Terakhir di perbarui 01 Jumadil Awwal 1444 atau 24 November
+                                    2022</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
