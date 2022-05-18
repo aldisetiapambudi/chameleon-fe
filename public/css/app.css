@@ -4810,6 +4810,14 @@ textarea.form-control.is-invalid {
     margin-right: 5rem;
   }
 
+  .md\:mt-2 {
+    margin-top: 0.5rem;
+  }
+
+  .md\:block {
+    display: block;
+  }
+
   .md\:inline-block {
     display: inline-block;
   }
@@ -4967,6 +4975,11 @@ textarea.form-control.is-invalid {
   .lg\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .lg\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 }
 @media (min-width: 1280px) {

@@ -6,19 +6,21 @@
         <div class="row mb-96 block md:flex">
             <div class="col">
                 <div class="row mt-3">
-                    <div class="card flex shadow-lg border-2 p-1">
-                        <div class="col">
+                    <div class="card flex md:block lg:flex shadow-lg border-2 p-1">
+                        <div class="col flex justify-center">
                             <img src="{{ asset('images/product_3.jpeg') }}" alt="product image" class="w-40">
                         </div>
                         <div class="col p-4">
-                            <div class="row block md:flex">
+                            <div class="row block lg:flex">
                                 <div class="col">
                                     <h3 class="text-base md:text-xl font-semibold">Basic Plaid Suit - Notch</h3>
-                                    <h4 class="font-semibold text-sm md:text-base">
-                                        Rp. 589.000
+                                    <h4 class="font-semibold text-sm md:text-base flex">
+                                        Rp.
+                                        <input type="text" id="harga" readonly value="10"
+                                            class="font-semibold text-sm md:text-base">
                                     </h4>
                                 </div>
-                                <div class="col md:ml-10 mt-4 md:mt-0">
+                                <div class="col md:ml-10 mt-4 md:mt-2">
                                     <div class="row">
                                         <div class="col">
                                             <form action="">
@@ -27,20 +29,21 @@
                                             </form>
                                         </div>
                                         <div class="col mt-2">
-                                            <div class="row flex">
+                                            <div class="row flex justify-center">
                                                 <div class="col">
-                                                    <button
+                                                    <button id="prodc_min"
                                                         class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white">
                                                         <i class="fa fa-minus" aria-hidden="true"></i>
                                                     </button>
                                                 </div>
                                                 <div class="col">
-                                                    <input type="text"
+                                                    <input type="hidden" value="10" id="harga_satuan">
+                                                    <input type="text" id="prodc_qty" name="prodc_qty"
                                                         class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg"
                                                         value="1">
                                                 </div>
                                                 <div class="col">
-                                                    <button
+                                                    <button id="prodc_add"
                                                         class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white">
                                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                                     </button>
@@ -54,19 +57,19 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="card flex shadow-lg border-2 p-1">
-                        <div class="col">
+                    <div class="card flex md:block lg:flex shadow-lg border-2 p-1">
+                        <div class="col flex justify-center">
                             <img src="{{ asset('images/product_3.jpeg') }}" alt="product image" class="w-40">
                         </div>
                         <div class="col p-4">
-                            <div class="row block md:flex">
+                            <div class="row block lg:flex">
                                 <div class="col">
                                     <h3 class="text-base md:text-xl font-semibold">Basic Plaid Suit - Notch</h3>
                                     <h4 class="font-semibold text-sm md:text-base">
-                                        Rp. 589.000
+                                        Rp.589.000
                                     </h4>
                                 </div>
-                                <div class="col md:ml-10 mt-4 md:mt-0">
+                                <div class="col md:ml-10 mt-4 md:mt-2">
                                     <div class="row">
                                         <div class="col">
                                             <form action="">
@@ -75,20 +78,20 @@
                                             </form>
                                         </div>
                                         <div class="col mt-2">
-                                            <div class="row flex">
+                                            <div class="row flex justify-center">
                                                 <div class="col">
-                                                    <button
+                                                    <button id="prodc_min2"
                                                         class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white">
                                                         <i class="fa fa-minus" aria-hidden="true"></i>
                                                     </button>
                                                 </div>
                                                 <div class="col">
-                                                    <input type="text"
+                                                    <input type="text" id="prodc_qty2" name="prodc_qty2"
                                                         class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg"
                                                         value="1">
                                                 </div>
                                                 <div class="col">
-                                                    <button
+                                                    <button id="prodc_add2"
                                                         class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white">
                                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                                     </button>
@@ -112,15 +115,14 @@
                         </p>
                     </div>
                     <div class="card border-2 border-slate-400 p-4 rounded-2xl mt-3 bg-slate-50">
-                        <a href="#">
-                            <p class="font-semibold text-base md:text-lg  text-center">
+                        <button type="" class="flex mx-auto">
+                            <p class="font-semibold text-base md:text-lg">
                                 Pilih alamat lainnya <i class="fas fa-plus-circle" aria-hidden="true"></i>
                             </p>
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="row mt-10">
-                    {{-- dev --}}
                     <h3 class="text-lg md:text-2xl font-bold">Shipping</h3>
                     </span>
                     <ul class="flex mt-2 mb-10">
@@ -134,12 +136,12 @@
                                     <div class="row flex gap-2 mt-2">
                                         <div class="mx-auto flex">
                                             <div class="col mr-4  text-left">
-                                                <p class="text-sm">
+                                                <p class="text-xs md:text-sm">
                                                     Rp.9.000,-
                                                 </p>
                                             </div>
                                             <div class="col  w-full">
-                                                <p class="text-sm">
+                                                <p class="text-xs md:text-sm">
                                                     3-4 Hari
                                                 </p>
                                             </div>
@@ -158,12 +160,12 @@
                                     <div class="row flex gap-2  mt-2">
                                         <div class="mx-auto flex">
                                             <div class="col mr-4  text-left">
-                                                <p class="text-sm">
+                                                <p class="text-xs md:text-sm">
                                                     Rp.9.000,-
                                                 </p>
                                             </div>
                                             <div class="col w-full">
-                                                <p class="text-sm">
+                                                <p class="text-xs md:text-sm">
                                                     3-4 Hari
                                                 </p>
                                             </div>
