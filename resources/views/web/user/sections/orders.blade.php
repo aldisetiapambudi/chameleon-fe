@@ -40,18 +40,13 @@
                                         </h2>
                                     </div>
                                 </div>
-                                <div class="col w-full mt-5 lg:mt-3 mb-3 flex ">
-                                    <div class="row my-auto mx-auto">
-                                        <div class="mt-0 text-center">
-                                            <a href="#"
-                                                class="bg-green-500 text-white py-2 px-10 w-full rounded-xl text-end hover:bg-green-600 text-sm md:text-xs xl:text-base">Lihat
-                                                Pesanan</a>
-                                        </div>
-                                        <div class="pt-4 md:pt-4 text-center">
-                                            <a href="#"
-                                                class="bg-blue-500 text-white py-2 px-5 w-full rounded-xl text-end hover:bg-blue-600 text-sm md:text-xs xl:text-base">Konfirmasi
-                                                pembayaran</a>
-                                        </div>
+                                <div class="col w-full mt-5 lg:mt-3 mb-3 block px-4 ">
+                                    <div class="mt-3">
+                                        <a href="#"
+                                        class="bg-green-500 hover:bg-green-600 text-white  w-full py-2 text-center px-auto rounded-xl text-end  text-sm  xl:text-base block mb-3">Lihat
+                                        Pesanan</a>
+                                        <a href="#"
+                                        class="bg-blue-500 hover:bg-blue-600 text-white  w-full py-2 text-center px-2 rounded-xl text-end  text-sm  xl:text-base block mb-3">Konfirmasi Pesanan</a>
                                     </div>
                                 </div>
                             </div>
@@ -79,18 +74,13 @@
                                         </h2>
                                     </div>
                                 </div>
-                                <div class="col w-full mt-5 lg:mt-3 mb-3 flex ">
-                                    <div class="row my-auto mx-auto">
-                                        <div class="mt-0 text-center">
-                                            <a href="#"
-                                                class="bg-green-500 text-white py-2 px-10 w-full rounded-xl text-end hover:bg-green-600 text-sm md:text-xs xl:text-base">Lihat
-                                                Pesanan</a>
-                                        </div>
-                                        <div class="pt-4 md:pt-4 text-center">
-                                            <a href="#"
-                                                class="bg-black text-white py-2 px-10 w-full rounded-xl text-end hover:ring-2 text-sm md:text-xs xl:text-base">Lacak
-                                                Pesanan</a>
-                                        </div>
+                                <div class="col w-full mt-5 lg:mt-3 mb-3 block px-4 ">
+                                    <div class="mt-3">
+                                        <a href="#"
+                                        class="bg-green-500 hover:bg-green-600 text-white  w-full py-2 text-center px-auto rounded-xl text-end  text-sm  xl:text-base block mb-3">Lihat
+                                        Pesanan</a>
+                                        <a href="#"
+                                        class="bg-black hover:ring-2 hover:ring-offset-2 text-white  w-full py-2 text-center px-auto rounded-xl text-end  text-sm  xl:text-base block mb-3">Lacak Pesanan</a>
                                     </div>
                                 </div>
                             </div>

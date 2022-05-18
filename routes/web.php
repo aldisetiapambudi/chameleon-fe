@@ -50,3 +50,7 @@ Route::get('/orders', function () {
 Route::get('/cart', function () {
     return view('web.user.sections.cart_detail');
 })->name('user.cart_detail');
+
+Route::get('/order-details', function () {
+    return view('web.user.sections.order_details');
+})->name('user.order_details');

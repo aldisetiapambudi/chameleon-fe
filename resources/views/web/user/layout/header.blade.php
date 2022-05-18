@@ -9,7 +9,7 @@
             <a href="{{ route('user.home') }}" class="font-bold text-xl text-white">
                 <img src="{{ asset('images/logo.jpg') }}">
             </a>
-            <a href="#"
+            <a href="#" name="bag_mobile" id="bag_mobile"
                 class="md:hidden p-2 lg:px-4 md:mx-2 text-white text-center border border-transparent rounded hover:bg-gray-400 hover:text-white transition-colors duration-300  md:mt-0 mt-2 md:ml-1"><i
                     class="fas fa-bag-shopping"></i></a>
         </div>
@@ -44,7 +44,7 @@
                 class="p-2 lg:px-4 md:mx-2 text-white text-center border border-transparent rounded hover:bg-gray-400 hover:text-white transition-colors duration-300  md:mt-0 mt-2 md:ml-1"><i
                     class="fas fa-bag-shopping"></i></a>
             <!-- cart user -->
-            <section id="user_cart" class="invisible">
+            <section id="user_cart" class="invisible z-50">
                 <div class="ml-3 mr-4 mt-10 relative ">
                     <div class="origin-top-right absolute right-0 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                         role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
