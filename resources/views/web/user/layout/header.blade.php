@@ -40,9 +40,33 @@
             <a href="#"
                 class="p-2 lg:px-4 md:mx-2 text-white text-center border border-transparent rounded hover:bg-gray-400 hover:text-white transition-colors duration-300 md:mt-0 mt-2"><i
                     class="fas fa-search"></i></a>
-            <a href="#"
+            <a href="#" id="bag" name="bag"
                 class="p-2 lg:px-4 md:mx-2 text-white text-center border border-transparent rounded hover:bg-gray-400 hover:text-white transition-colors duration-300  md:mt-0 mt-2 md:ml-1"><i
                     class="fas fa-bag-shopping"></i></a>
+            <!-- cart user -->
+            <section id="user_cart" class="invisible">
+                <div class="ml-3 mr-4 mt-10 relative ">
+                    <div class="origin-top-right absolute right-0 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                        role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                        <div class="container mt-2">
+                            <hr class="w-full h-0.5 bg-slate-400">
+                            <div class="ml-3 p-4">
+                                <h3 class="text-slate-300 my-4">Your Bag is empty</h3>
+                            </div>
+                            <hr class="w-full h-0.5 bg-slate-400">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                                id="user-menu-item-0">
+                                <i class="fas fa-shopping-bag"></i> Bag
+                            </a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                                id="user-menu-item-1">Settings</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                                id="user-menu-item-2">Sign out</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- end cart -->
         </div>
 
 
