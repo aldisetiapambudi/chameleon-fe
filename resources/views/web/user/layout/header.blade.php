@@ -37,9 +37,19 @@
         </div>
 
         <div class="hidden md:flex flex-col md:flex-row mt-3 md:mt-0 md:ml-auto">
-            <a href="#"
-                class="p-2 lg:px-4 md:mx-2 text-white text-center border border-transparent rounded hover:bg-gray-400 hover:text-white transition-colors duration-300 md:mt-0 mt-2"><i
-                    class="fas fa-search"></i></a>
+
+            <div class="group flex hover:duration-500 transition-all transform">
+                <form action="" class="flex">
+                    <input type="text" id="box_cari" name="search"
+                        class="h-10 w-full pl-2 shadow-lg focus:outline-none bg-transparent translate-x-5 border-b-2 border-blue-400 text-white hidden group-hover:flex "
+                        placeholder="Search" autofocus value="tes lg">
+
+                    <button href="" id="cari_lg"
+                        class="p-2 lg:px-4 md:mx-2 text-white text-center border border-transparent rounded hover:bg-gray-400 hover:text-white transition-colors duration-300 md:mt-0 mt-2 "><i
+                            class="fas fa-search"></i>
+                </form>
+                </button>
+            </div>
             <a href="#" id="bag" name="bag"
                 class="p-2 lg:px-4 md:mx-2 text-white text-center border border-transparent rounded hover:bg-gray-400 hover:text-white transition-colors duration-300  md:mt-0 mt-2 md:ml-1"><i
                     class="fas fa-bag-shopping"></i></a>
@@ -48,12 +58,12 @@
         <!-- menu cart -->
         <section id="user_cart" class="invisible z-50 -translate-y-8 md:translate-y-3 translate-x-6 mb:translate-x-0">
             <div class="ml-3 mr-4 mt-10 relative ">
-                <div class="origin-top-right absolute right-0 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                <div class="origin-top-right absolute right-0 w-64 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                     role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                     <div class="container mt-2">
                         <hr class="w-full h-0.5 bg-slate-400">
                         <div class="ml-3 p-4">
-                            <h3 class="text-slate-300 my-4">Your Bag is empty</h3>
+                            <h3 class="text-slate-300 my-4 text-center">Your Bag is empty</h3>
                         </div>
                         <hr class="w-full h-0.5 bg-slate-400">
                         <a href="#"

@@ -55,6 +55,7 @@
             menu_cart.classList.toggle("invisible");
         };
     </script>
+    
     <script type="text/javascript">
         // ==== # sample 1 shopping cart ====
         let addProdc = document.querySelector("#prodc_add");
