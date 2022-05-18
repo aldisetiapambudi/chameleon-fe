@@ -15,7 +15,7 @@
         </div>
 
         <div class="hidden md:flex flex-row md:flex-row mt-3 md:mt-0 md:ml-auto" id="navbar-collapse">
-            <div class="flex flex-col md:flex-row md:ml-auto w-full">
+            <div id="halaman" class="flex flex-col md:flex-row md:ml-auto w-full">
                 <div class="hidden md:hidden pt-2 relative mx-auto text-gray-300 w-full" id="navbar-collapse-search">
                     <div class="relative w-full bg-gray-900">
                         <div class="absolute top-2 left-3"> <button type="submit"> <i
@@ -25,6 +25,7 @@
                             placeholder="Search">
                     </div>
                 </div>
+
                 <a href="{{ route('user.products') }}"
                     class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Jas</a>
                 <a href="{{ route('user.products') }}"
@@ -33,42 +34,72 @@
                     class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Rompi</a>
                 <a href="{{ route('user.products') }}"
                     class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Kemeja</a>
+
             </div>
         </div>
 
-        <div class="hidden md:flex flex-col md:flex-row mt-3 md:mt-0 md:ml-auto">
-            <a href="#"
-                class="p-2 lg:px-4 md:mx-2 text-white text-center border border-transparent rounded hover:bg-gray-400 hover:text-white transition-colors duration-300 md:mt-0 mt-2"><i
-                    class="fas fa-search"></i></a>
+        <div id="navSearch" class="hidden md:flex flex-col md:flex-row mt-3 md:mt-0 md:ml-auto">
+
+            <div class="w-10/12 mx-auto flex">
+                <form action="" class="flex w-full">
+                    <button id="cariBtn" class="text-white p-2 hidden">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <input type="text" id="box_cari" name="search"
+                        class="h-10 w-full  shadow-lg focus:outline-none bg-transparent translate-x-5 border-b-2 border-blue-400 text-white text-center mx-auto hidden "
+                        placeholder="Search" value="">
+                </form>
+                <button id="close_cari" class="text-white p-2  hidden">
+                    ❌
+                </button>
+            </div>
+
+            <button href="" id="cari_lg" name="cari_lg"
+                class="p-2 lg:px-4 md:mx-2 text-white text-center border border-transparent rounded hover:bg-gray-400 hover:text-white transition-colors duration-300 md:mt-0 mt-2 "><i
+                    class="fas fa-search"></i>
+
+            </button>
+
             <a href="#" id="bag" name="bag"
                 class="p-2 lg:px-4 md:mx-2 text-white text-center border border-transparent rounded hover:bg-gray-400 hover:text-white transition-colors duration-300  md:mt-0 mt-2 md:ml-1"><i
                     class="fas fa-bag-shopping"></i></a>
-            <!-- cart user -->
-            <section id="user_cart" class="invisible z-50">
-                <div class="ml-3 mr-4 mt-10 relative ">
-                    <div class="origin-top-right absolute right-0 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-                        role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                        <div class="container mt-2">
-                            <hr class="w-full h-0.5 bg-slate-400">
-                            <div class="ml-3 p-4">
-                                <h3 class="text-slate-300 my-4">Your Bag is empty</h3>
-                            </div>
-                            <hr class="w-full h-0.5 bg-slate-400">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                id="user-menu-item-0">
-                                <i class="fas fa-shopping-bag"></i> Bag
-                            </a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                id="user-menu-item-1">Settings</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                id="user-menu-item-2">Sign out</a>
+        </div>
+        <!-- menu cart -->
+        <section id="user_cart" class="invisible z-50 -translate-y-8 md:translate-y-3 translate-x-6 mb:translate-x-0">
+            <div class="ml-3 mr-4 mt-10 relative ">
+                <div class="origin-top-right absolute right-0 w-64 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                    <div class="container mt-2">
+                        <hr class="w-full h-0.5 bg-slate-400">
+                        <div class="ml-3 p-4">
+                            <h3 class="text-slate-300 my-4 text-center">Your Bag is empty</h3>
                         </div>
+                        <hr class="w-full h-0.5 bg-slate-400">
+                        <a href="#"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2"
+                            role="menuitem" tabindex="-1" id="user-menu-item-0">
+                            <i class="fas fa-shopping-bag mr-3"></i> Bag
+                        </a>
+                        <hr>
+                        <a href="#"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2 "
+                            role="menuitem" tabindex="-1" id="user-menu-item-1"><i
+                                class="fas fa-box mr-3"></i>Orders</a>
+                        <hr>
+                        <a href="#"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2"
+                            role="menuitem" tabindex="-1" id="user-menu-item-2"><i
+                                class="fas fa-cogs mr-3"></i>Setting</a>
+                        <hr>
+                        <a href="#"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2"
+                            role="menuitem" tabindex="-1" id="user-menu-item-2"><i
+                                class="fas fa-user-circle mr-3"></i>Sign in / Sign out</a>
                     </div>
                 </div>
-            </section>
-            <!-- end cart -->
-        </div>
-
+            </div>
+        </section>
+        <!-- end cart -->
 
     </div>
 </nav>
