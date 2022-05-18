@@ -120,12 +120,16 @@
                     </div>
                 </div>
                 <div class="row mt-10">
+                    {{-- dev --}}
                     <h3 class="text-lg md:text-2xl font-bold">Shipping</h3>
-                    <div class="row block md:flex ">
-                        <div class="col mt-2">
-                            <a href="#">
-                                <div
-                                    class="card border-2 border-blue-600 active:border-blue-600 w-full h-auto p-6 rounded-xl">
+                    </span>
+                    <ul class="flex mt-2 mb-10">
+                        <li class="relative mr-1">
+                            <input class="sr-only peer" type="radio" value="yes" name="shipping" id="shipping_jne">
+                            <label
+                                class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
+                                for="shipping_jne">
+                                <div class="card active:border-blue-600 w-full h-auto p-6 rounded-xl">
                                     <h6 class="text-center font-bold text-lg">JNE</h6>
                                     <div class="row flex gap-2 mt-2">
                                         <div class="mx-auto flex">
@@ -134,7 +138,7 @@
                                                     Rp.9.000,-
                                                 </p>
                                             </div>
-                                            <div class="col ml-4">
+                                            <div class="col  w-full">
                                                 <p class="text-sm">
                                                     3-4 Hari
                                                 </p>
@@ -142,11 +146,14 @@
                                         </div>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="col mt-2 md:ml-4">
-                            <a href="#">
-                                <div class="card border-2 border-slate-200 w-full h-auto p-6 rounded-xl">
+                            </label>
+                        </li>
+                        <li class="relative mr-1">
+                            <input class="sr-only peer" type="radio" value="yes" name="shipping" id="shipping_jnt">
+                            <label
+                                class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
+                                for="shipping_jnt">
+                                <div class="card w-full h-auto p-6 rounded-xl">
                                     <h6 class="text-center font-bold text-lg">J&T</h6>
                                     <div class="row flex gap-2  mt-2">
                                         <div class="mx-auto flex">
@@ -155,7 +162,7 @@
                                                     Rp.9.000,-
                                                 </p>
                                             </div>
-                                            <div class="col ml-4">
+                                            <div class="col w-full">
                                                 <p class="text-sm">
                                                     3-4 Hari
                                                 </p>
@@ -163,9 +170,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
-                    </div>
+                            </label>
+                        </li>
+                    </ul>
                 </div>
                 <div class="row mt-4">
                     <h3 class="text-lg md:text-2xl font-bold">Voucher</h3>
