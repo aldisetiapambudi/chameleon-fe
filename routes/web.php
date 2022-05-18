@@ -54,3 +54,7 @@ Route::get('/cart', function () {
 Route::get('/order-details', function () {
     return view('web.user.sections.order_details');
 })->name('user.order_details');
+
+Route::get('/list', function () {
+    return view('web.user.sections.list-product');
+})->name('user.list');

@@ -34,7 +34,10 @@
                     class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Rompi</a>
                 <a href="{{ route('user.products') }}"
                     class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Kemeja</a>
-
+                <a href="#"
+                    class="md:hidden mt-3 p-1 my-auto lg:px-4 md:mx-2 text-white rounded-full bg-blue-600 hover:bg-blue-500 transition-colors duration-300 text-center justify-center">
+                    Konfirmasi pembayaran
+                </a>
             </div>
         </div>
 
