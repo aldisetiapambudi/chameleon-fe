@@ -55,7 +55,41 @@
             menu_cart.classList.toggle("invisible");
         };
     </script>
-    
+    <script type="text/javascript">
+        let cariLgBtn = document.querySelector("#cari_lg");
+        let boxCari = document.querySelector("#box_cari");
+        let halaman = document.querySelector("#halaman");
+        let closeCari = document.querySelector("#close_cari");
+        let BtnCari = document.querySelector("#cariBtn");
+        let navCari = document.querySelector("#navSearch");
+        cariLgBtn.onclick = () => {
+            boxCari.classList.add("flex");
+            boxCari.classList.add("pl-16");
+            boxCari.classList.remove("hidden");
+            halaman.classList.add("hidden");
+            cariLgBtn.classList.add("hidden");
+            closeCari.classList.remove("hidden");
+            closeCari.classList.add("flex");
+            navCari.classList.add("w-full");
+            BtnCari.classList.add("flex");
+            BtnCari.classList.remove("hidden");
+            
+            
+        }
+        closeCari.onclick = () => {
+            BtnCari.classList.remove("flex");
+            navCari.classList.remove("w-full");
+            cariLgBtn.classList.add("flex");
+            cariLgBtn.classList.remove("hidden");
+            boxCari.classList.add("hidden");
+            boxCari.classList.remove("flex");
+            halaman.classList.add("flex");
+            halaman.classList.remove("hidden");
+            closeCari.classList.add("hidden");
+        }
+
+    </script>
+
     <script type="text/javascript">
         // ==== # sample 1 shopping cart ====
         let addProdc = document.querySelector("#prodc_add");

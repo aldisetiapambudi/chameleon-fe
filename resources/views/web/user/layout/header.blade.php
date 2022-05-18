@@ -25,36 +25,45 @@
                             placeholder="Search">
                     </div>
                 </div>
-                <a href="{{ route('user.products') }}"
-                    class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Jas</a>
-                <a href="{{ route('user.products') }}"
-                    class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Celana</a>
-                <a href="{{ route('user.products') }}"
-                    class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Rompi</a>
-                <a href="{{ route('user.products') }}"
-                    class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Kemeja</a>
+                <section id="halaman">
+                    <a href="{{ route('user.products') }}"
+                        class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Jas</a>
+                    <a href="{{ route('user.products') }}"
+                        class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Celana</a>
+                    <a href="{{ route('user.products') }}"
+                        class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Rompi</a>
+                    <a href="{{ route('user.products') }}"
+                        class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Kemeja</a>
+                </section>
             </div>
         </div>
 
-        <div class="hidden md:flex flex-col md:flex-row mt-3 md:mt-0 md:ml-auto">
+        <div id="navSearch" class="hidden md:flex flex-col md:flex-row mt-3 md:mt-0 md:ml-auto">
 
-            <div class="group flex hover:duration-500 transition-all transform">
-                <form action="" class="flex">
+            <div class="w-10/12 mx-auto flex">
+                <form action="" class="flex w-full">
+                    <button id="cariBtn" class="text-white p-2  hidden">
+                        <i class="fas fa-search"></i>
+                    </button>
                     <input type="text" id="box_cari" name="search"
-                        class="h-10 w-full pl-2 shadow-lg focus:outline-none bg-transparent translate-x-5 border-b-2 border-blue-400 text-white hidden group-hover:flex "
-                        placeholder="Search" autofocus value="tes lg">
-
-                    <button href="" id="cari_lg"
-                        class="p-2 lg:px-4 md:mx-2 text-white text-center border border-transparent rounded hover:bg-gray-400 hover:text-white transition-colors duration-300 md:mt-0 mt-2 "><i
-                            class="fas fa-search"></i>
+                        class="h-10 w-full  shadow-lg focus:outline-none bg-transparent translate-x-5 border-b-2 border-blue-400 text-white text-center mx-auto hidden "
+                        placeholder="Search" value="">
                 </form>
+                <button id="close_cari" class="text-white p-2  hidden">
+                    ❌
                 </button>
             </div>
+
+            <button href="" id="cari_lg" name="cari_lg"
+                class="p-2 lg:px-4 md:mx-2 text-white text-center border border-transparent rounded hover:bg-gray-400 hover:text-white transition-colors duration-300 md:mt-0 mt-2 "><i
+                    class="fas fa-search"></i>
+
+            </button>
+
             <a href="#" id="bag" name="bag"
                 class="p-2 lg:px-4 md:mx-2 text-white text-center border border-transparent rounded hover:bg-gray-400 hover:text-white transition-colors duration-300  md:mt-0 mt-2 md:ml-1"><i
                     class="fas fa-bag-shopping"></i></a>
         </div>
-
         <!-- menu cart -->
         <section id="user_cart" class="invisible z-50 -translate-y-8 md:translate-y-3 translate-x-6 mb:translate-x-0">
             <div class="ml-3 mr-4 mt-10 relative ">
