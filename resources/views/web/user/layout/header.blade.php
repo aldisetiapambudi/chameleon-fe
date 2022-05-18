@@ -42,15 +42,15 @@
 
             <div class="w-10/12 mx-auto flex">
                 <form action="" class="flex w-full">
-                    <button id="cariBtn" class="text-white p-2 hidden">
-                        <i class="fas fa-search"></i>
+                    <button id="cariBtn" class="text-slate-400 p-2 hidden hover:text-slate-200">
+                        <i class="fas fa-search "></i>
                     </button>
                     <input type="text" id="box_cari" name="search"
-                        class="h-10 w-full  shadow-lg focus:outline-none bg-transparent translate-x-5 border-b-2 border-blue-400 text-white text-center mx-auto hidden "
-                        placeholder="Search" value="">
+                        class="h-10 w-full  shadow-lg focus:outline-none bg-transparent  border-b-2 border-blue-400 text-white text-center mx-auto hidden "
+                        placeholder="Search" value="" autofocus autocomplete="off">
                 </form>
-                <button id="close_cari" class="text-white p-2  hidden">
-                    ❌
+                <button id="close_cari" class=" p-2 text-slate-400 hidden hover:text-slate-200">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
 
