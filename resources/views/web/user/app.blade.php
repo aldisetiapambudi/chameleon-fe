@@ -37,11 +37,21 @@
         let toggleBtnCart = document.querySelector("#bag");
         let toggleBtnCartMobile = document.querySelector("#bag_mobile")
         let menu_cart = document.querySelector("#user_cart");
+        // pencarian lg
+        let cariLgBtn = document.querySelector("#cari_lg");
+        let boxCari = document.querySelector("#box_cari");
+        let halaman = document.querySelector("#halaman");
+        let closeCari = document.querySelector("#close_cari");
+        let BtnCari = document.querySelector("#cariBtn");
+        let navCari = document.querySelector("#navSearch");
+        
         // menu
         toggleBtn.onclick = () => {
             collapse.classList.toggle("hidden");
             collapse.classList.toggle("flex");
             collapseSearch.classList.toggle("hidden");
+            halaman.classList.remove("hidden");
+
             menu_cart.classList.toggle("-translate-y-64")
 
         };
@@ -54,14 +64,8 @@
             menu_cart.classList.toggle("visible");
             menu_cart.classList.toggle("invisible");
         };
-    </script>
-    <script type="text/javascript">
-        let cariLgBtn = document.querySelector("#cari_lg");
-        let boxCari = document.querySelector("#box_cari");
-        let halaman = document.querySelector("#halaman");
-        let closeCari = document.querySelector("#close_cari");
-        let BtnCari = document.querySelector("#cariBtn");
-        let navCari = document.querySelector("#navSearch");
+
+    //    -- pencarian
         cariLgBtn.onclick = () => {
             boxCari.classList.add("flex");
             boxCari.classList.add("pl-16");
@@ -78,6 +82,7 @@
         }
         closeCari.onclick = () => {
             BtnCari.classList.remove("flex");
+            BtnCari.classList.add("hidden");
             navCari.classList.remove("w-full");
             cariLgBtn.classList.add("flex");
             cariLgBtn.classList.remove("hidden");

@@ -15,7 +15,7 @@
         </div>
 
         <div class="hidden md:flex flex-row md:flex-row mt-3 md:mt-0 md:ml-auto" id="navbar-collapse">
-            <div class="flex flex-col md:flex-row md:ml-auto w-full">
+            <div id="halaman" class="flex flex-col md:flex-row md:ml-auto w-full">
                 <div class="hidden md:hidden pt-2 relative mx-auto text-gray-300 w-full" id="navbar-collapse-search">
                     <div class="relative w-full bg-gray-900">
                         <div class="absolute top-2 left-3"> <button type="submit"> <i
@@ -25,16 +25,16 @@
                             placeholder="Search">
                     </div>
                 </div>
-                <section id="halaman">
-                    <a href="{{ route('user.products') }}"
-                        class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Jas</a>
-                    <a href="{{ route('user.products') }}"
-                        class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Celana</a>
-                    <a href="{{ route('user.products') }}"
-                        class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Rompi</a>
-                    <a href="{{ route('user.products') }}"
-                        class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Kemeja</a>
-                </section>
+
+                <a href="{{ route('user.products') }}"
+                    class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Jas</a>
+                <a href="{{ route('user.products') }}"
+                    class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Celana</a>
+                <a href="{{ route('user.products') }}"
+                    class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Rompi</a>
+                <a href="{{ route('user.products') }}"
+                    class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Kemeja</a>
+
             </div>
         </div>
 
@@ -42,7 +42,7 @@
 
             <div class="w-10/12 mx-auto flex">
                 <form action="" class="flex w-full">
-                    <button id="cariBtn" class="text-white p-2  hidden">
+                    <button id="cariBtn" class="text-white p-2 hidden">
                         <i class="fas fa-search"></i>
                     </button>
                     <input type="text" id="box_cari" name="search"
