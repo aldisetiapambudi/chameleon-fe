@@ -3737,6 +3737,9 @@ textarea.form-control.is-invalid {
 .z-0 {
   z-index: 0;
 }
+.z-50 {
+  z-index: 50;
+}
 .float-right {
   float: right;
 }
@@ -3775,10 +3778,6 @@ textarea.form-control.is-invalid {
 .mx-1 {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
-}
-.my-auto {
-  margin-top: auto;
-  margin-bottom: auto;
 }
 .mt-4 {
   margin-top: 1rem;
@@ -3834,6 +3833,12 @@ textarea.form-control.is-invalid {
 .mb-6 {
   margin-bottom: 1.5rem;
 }
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+.mr-1 {
+  margin-right: 0.25rem;
+}
 .mt-6 {
   margin-top: 1.5rem;
 }
@@ -3852,26 +3857,26 @@ textarea.form-control.is-invalid {
 .mr-12 {
   margin-right: 3rem;
 }
-.mb-10 {
-  margin-bottom: 2.5rem;
-}
-.mr-1 {
-  margin-right: 0.25rem;
-}
 .mt-32 {
   margin-top: 8rem;
 }
 .mr-0 {
   margin-right: 0px;
 }
-.mt-0 {
-  margin-top: 0px;
+.mr-3 {
+  margin-right: 0.75rem;
 }
 .mt-2\.5 {
   margin-top: 0.625rem;
 }
 .mb-5 {
   margin-bottom: 1.25rem;
+}
+.ml-10 {
+  margin-left: 2.5rem;
+}
+.mt-8 {
+  margin-top: 2rem;
 }
 .block {
   display: block;
@@ -4143,21 +4148,13 @@ textarea.form-control.is-invalid {
   --tw-border-opacity: 1;
   border-color: rgb(148 163 184 / var(--tw-border-opacity));
 }
-.border-blue-600 {
+.border-gray-300 {
   --tw-border-opacity: 1;
-  border-color: rgb(37 99 235 / var(--tw-border-opacity));
-}
-.border-slate-200 {
-  --tw-border-opacity: 1;
-  border-color: rgb(226 232 240 / var(--tw-border-opacity));
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 .border-yellow-500 {
   --tw-border-opacity: 1;
   border-color: rgb(234 179 8 / var(--tw-border-opacity));
-}
-.border-gray-300 {
-  --tw-border-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 .bg-gray-300 {
   --tw-bg-opacity: 1;
@@ -4377,9 +4374,6 @@ textarea.form-control.is-invalid {
 .pb-4 {
   padding-bottom: 1rem;
 }
-.pt-4 {
-  padding-top: 1rem;
-}
 .text-left {
   text-align: left;
 }
@@ -4492,6 +4486,10 @@ textarea.form-control.is-invalid {
 .text-blue-800 {
   --tw-text-opacity: 1;
   color: rgb(30 64 175 / var(--tw-text-opacity));
+}
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 .opacity-50 {
   opacity: 0.5;
@@ -4640,6 +4638,9 @@ textarea.form-control.is-invalid {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+.hover\:ring-offset-2:hover {
+  --tw-ring-offset-width: 2px;
 }
 .focus\:border-blue-600:focus {
   --tw-border-opacity: 1;
@@ -4802,16 +4803,12 @@ textarea.form-control.is-invalid {
     margin-left: 2.5rem;
   }
 
-  .md\:ml-4 {
-    margin-left: 1rem;
+  .md\:mt-2 {
+    margin-top: 0.5rem;
   }
 
   .md\:mr-20 {
     margin-right: 5rem;
-  }
-
-  .md\:mt-2 {
-    margin-top: 0.5rem;
   }
 
   .md\:block {
@@ -4877,10 +4874,6 @@ textarea.form-control.is-invalid {
     padding-bottom: 0.5rem;
   }
 
-  .md\:pt-4 {
-    padding-top: 1rem;
-  }
-
   .md\:text-left {
     text-align: left;
   }
@@ -4913,11 +4906,6 @@ textarea.form-control.is-invalid {
     font-size: 0.875rem;
     line-height: 1.25rem;
   }
-
-  .md\:text-xs {
-    font-size: 0.75rem;
-    line-height: 1rem;
-  }
 }
 @media (min-width: 1024px) {
 
@@ -4940,6 +4928,10 @@ textarea.form-control.is-invalid {
 
   .lg\:mt-3 {
     margin-top: 0.75rem;
+  }
+
+  .lg\:ml-10 {
+    margin-left: 2.5rem;
   }
 
   .lg\:flex {
@@ -4975,11 +4967,6 @@ textarea.form-control.is-invalid {
   .lg\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
-  }
-
-  .lg\:text-sm {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
   }
 }
 @media (min-width: 1280px) {
