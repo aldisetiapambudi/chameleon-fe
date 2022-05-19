@@ -67,7 +67,7 @@
         cariLgBtn.onclick = () => {
             boxCari.classList.add("flex");
             boxCari.autocompleate;
-            boxCari.classList.add("pl-16");
+            boxCari.classList.add("pl-4");
             boxCari.classList.remove("hidden");
             halaman.classList.add("hidden");
             cariLgBtn.classList.add("hidden");
