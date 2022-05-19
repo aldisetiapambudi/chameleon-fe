@@ -49,7 +49,7 @@
                         <i class="fas fa-search "></i>
                     </button>
                     <input type="text" id="box_cari" name="search"
-                        class="h-10 w-full  shadow-lg focus:outline-none bg-transparent  border-b-2 border-blue-400 text-white text-center mx-auto hidden "
+                        class="h-10 w-full shadow-lg focus:outline-none bg-transparent  border-b-2 border-blue-400 text-white text-left mx-auto hidden "
                         placeholder="Search" value="" autofocus autocomplete="off">
                 </form>
                 <button id="close_cari" class=" p-2 text-slate-400 hidden hover:text-slate-200">
