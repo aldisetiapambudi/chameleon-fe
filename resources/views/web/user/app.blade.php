@@ -50,8 +50,7 @@
             collapse.classList.toggle("flex");
             collapseSearch.classList.toggle("hidden");
             halaman.classList.remove("hidden");
-
-            menu_cart.classList.toggle("-translate-y-64")
+            menu_cart.classList.toggle("-translate-y-[294px]")
 
         };
         //  cart 
