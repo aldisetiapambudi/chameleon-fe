@@ -26,13 +26,13 @@
                     </div>
                 </div>
 
-                <a href="{{ route('user.products') }}"
+                <a href="{{ route('user.list') }}"
                     class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Jas</a>
-                <a href="{{ route('user.products') }}"
+                <a href="{{ route('user.list') }}"
                     class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Celana</a>
-                <a href="{{ route('user.products') }}"
+                <a href="{{ route('user.list') }}"
                     class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Rompi</a>
-                <a href="{{ route('user.products') }}"
+                <a href="{{ route('user.list') }}"
                     class="p-2 lg:px-4 md:mx-2 text-white rounded hover:text-gray-400 transition-colors duration-300">Kemeja</a>
                 <a href="#"
                     class="md:hidden mt-3 p-1 my-auto lg:px-4 md:mx-2 text-white rounded-full bg-blue-600 hover:bg-blue-500 transition-colors duration-300 text-center justify-center">
@@ -78,23 +78,23 @@
                             <h3 class="text-slate-300 my-4 text-center">Your Bag is empty</h3>
                         </div>
                         <hr class="w-full h-0.5 bg-slate-400">
-                        <a href="#"
+                        <a href="{{ route('user.cart_detail') }}"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2"
                             role="menuitem" tabindex="-1" id="user-menu-item-0">
                             <i class="fas fa-shopping-bag mr-3"></i> Bag
                         </a>
                         <hr>
-                        <a href="#"
+                        <a href="{{ route('user.orders') }}"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2 "
                             role="menuitem" tabindex="-1" id="user-menu-item-1"><i
                                 class="fas fa-box mr-3"></i>Orders</a>
                         <hr>
-                        <a href="#"
+                        <a href="{{ route('user.account') }}"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2"
                             role="menuitem" tabindex="-1" id="user-menu-item-2"><i
                                 class="fas fa-cogs mr-3"></i>Setting</a>
                         <hr>
-                        <a href="#"
+                        <a href="{{ route('user.login') }}"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2"
                             role="menuitem" tabindex="-1" id="user-menu-item-2"><i
                                 class="fas fa-user-circle mr-3"></i>Sign in / Sign out</a>

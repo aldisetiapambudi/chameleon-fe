@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="col w-full mt-5 lg:mt-3 mb-3 block px-4 ">
                                     <div class="mt-3">
-                                        <a href="#"
+                                        <a href="{{ route('user.order_details') }}"
                                         class="bg-green-500 hover:bg-green-600 text-white  w-full py-2 text-center px-auto rounded-xl text-end  text-sm  xl:text-base block mb-3">Lihat
                                         Pesanan</a>
                                         <a href="#"
@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="col w-full mt-5 lg:mt-3 mb-3 block px-4 ">
                                     <div class="mt-3">
-                                        <a href="#"
+                                        <a href="{{ route('user.order_details') }}"
                                         class="bg-green-500 hover:bg-green-600 text-white  w-full py-2 text-center px-auto rounded-xl text-end  text-sm  xl:text-base block mb-3">Lihat
                                         Pesanan</a>
                                         <a href="#"

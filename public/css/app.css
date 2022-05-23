@@ -4045,10 +4045,6 @@ textarea.form-control.is-invalid {
   --tw-translate-x: -1rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
-.-translate-x-10 {
-  --tw-translate-x: -2.5rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
 .scale-150 {
   --tw-scale-x: 1.5;
   --tw-scale-y: 1.5;
@@ -4427,8 +4423,8 @@ textarea.form-control.is-invalid {
 .pb-5 {
   padding-bottom: 1.25rem;
 }
-.pl-16 {
-  padding-left: 4rem;
+.pl-4 {
+  padding-left: 1rem;
 }
 .pb-10 {
   padding-bottom: 2.5rem;
@@ -4441,9 +4437,6 @@ textarea.form-control.is-invalid {
 }
 .pr-20 {
   padding-right: 5rem;
-}
-.pl-4 {
-  padding-left: 1rem;
 }
 .pb-4 {
   padding-bottom: 1rem;

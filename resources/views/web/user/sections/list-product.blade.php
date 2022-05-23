@@ -19,7 +19,7 @@
             {{-- <div class="col border border-blue-400 w-80 h-80 mx-auto block"> --}}
             <div class="col mt-10 flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-xs">
-                    <a href="#">
+                    <a href="{{ route('user.product.show','aaaa') }}">
                         <img class="rounded-t-lg mx-auto" src="{{ asset('images/product_1.jpeg') }}" alt="" />
                     </a>
                     <div class="p-6">
@@ -43,7 +43,7 @@
             <div class="col mt-10 flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-xs ">
                     <div class="relative group">
-                        <a href="#">
+                        <a href="{{ route('user.product.show','aaaa') }}">
                             <img class="rounded-t-lg mx-auto -z-20" src="{{ asset('images/product_2.jpeg') }}" alt="" />
                             <div
                                 class="bg-black bg-opacity-60 z-20 absolute w-full h-full top-1 flex invisible group-hover:visible transform duration-200 transition-all ">
@@ -77,7 +77,7 @@
             <div class="col mt-10 flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-xs ">
                     <div class="relative group">
-                        <a href="#">
+                        <a href="{{ route('user.product.show','aaaa') }}">
                             <img class="rounded-t-lg mx-auto -z-20" src="{{ asset('images/product_1.jpeg') }}" alt="" />
                             <div
                                 class="bg-black bg-opacity-60 z-20 absolute w-full h-full top-1 flex invisible group-hover:visible transform duration-200 transition-all ">
@@ -108,7 +108,7 @@
             <div class="col mt-10 flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-xs ">
                     <div class="relative group">
-                        <a href="#">
+                        <a href="{{ route('user.product.show','aaaa') }}">
                             <img class="rounded-t-lg mx-auto -z-20" src="{{ asset('images/product_1.jpeg') }}" alt="" />
                             <div
                                 class="bg-black bg-opacity-60 z-20 absolute w-full h-full top-1 flex invisible group-hover:visible transform duration-200 transition-all ">
@@ -139,7 +139,7 @@
             <div class="col mt-10 flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-xs ">
                     <div class="relative group">
-                        <a href="#">
+                        <a href="{{ route('user.product.show','aaaa') }}">
                             <img class="rounded-t-lg mx-auto -z-20" src="{{ asset('images/product_1.jpeg') }}" alt="" />
                             <div
                                 class="bg-black bg-opacity-60 z-20 absolute w-full h-full top-1 flex invisible group-hover:visible transform duration-200 transition-all ">
@@ -170,7 +170,7 @@
             <div class="col mt-10 flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-xs ">
                     <div class="relative group">
-                        <a href="#">
+                        <a href="{{ route('user.product.show','aaaa') }}">
                             <img class="rounded-t-lg mx-auto -z-20" src="{{ asset('images/product_1.jpeg') }}" alt="" />
                             <div
                                 class="bg-black bg-opacity-60 z-20 absolute w-full h-full top-1 flex invisible group-hover:visible transform duration-200 transition-all ">
@@ -201,7 +201,7 @@
             <div class="col mt-10 flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-xs ">
                     <div class="relative group">
-                        <a href="#">
+                        <a href="{{ route('user.product.show','aaaa') }}">
                             <img class="rounded-t-lg mx-auto -z-20" src="{{ asset('images/product_1.jpeg') }}" alt="" />
                             <div
                                 class="bg-black bg-opacity-60 z-20 absolute w-full h-full top-1 flex invisible group-hover:visible transform duration-200 transition-all ">
@@ -232,7 +232,7 @@
             <div class="col mt-10 flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-xs ">
                     <div class="relative group">
-                        <a href="#">
+                        <a href="{{ route('user.product.show','aaaa') }}">
                             <img class="rounded-t-lg mx-auto -z-20" src="{{ asset('images/product_1.jpeg') }}" alt="" />
                             <div
                                 class="bg-black bg-opacity-60 z-20 absolute w-full h-full top-1 flex invisible group-hover:visible transform duration-200 transition-all ">
@@ -263,7 +263,7 @@
             <div class="col mt-10 flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-xs ">
                     <div class="relative group">
-                        <a href="#">
+                        <a href="{{ route('user.product.show','aaaa') }}">
                             <img class="rounded-t-lg mx-auto -z-20" src="{{ asset('images/product_1.jpeg') }}" alt="" />
                             <div
                                 class="bg-black bg-opacity-60 z-20 absolute w-full h-full top-1 flex invisible group-hover:visible transform duration-200 transition-all ">
@@ -294,7 +294,7 @@
             <div class="col mt-10 flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-xs ">
                     <div class="relative group">
-                        <a href="#">
+                        <a href="{{ route('user.product.show','aaaa') }}">
                             <img class="rounded-t-lg mx-auto -z-20" src="{{ asset('images/product_1.jpeg') }}" alt="" />
                             <div
                                 class="bg-black bg-opacity-60 z-20 absolute w-full h-full top-1 flex invisible group-hover:visible transform duration-200 transition-all ">
@@ -325,7 +325,7 @@
             <div class="col mt-10 flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-xs ">
                     <div class="relative group">
-                        <a href="#">
+                        <a href="{{ route('user.product.show','aaaa') }}">
                             <img class="rounded-t-lg mx-auto -z-20" src="{{ asset('images/product_1.jpeg') }}" alt="" />
                             <div
                                 class="bg-black bg-opacity-60 z-20 absolute w-full h-full top-1 flex invisible group-hover:visible transform duration-200 transition-all ">
@@ -356,7 +356,7 @@
             <div class="col mt-10 flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-xs ">
                     <div class="relative group">
-                        <a href="#">
+                        <a href="{{ route('user.product.show','aaaa') }}">
                             <img class="rounded-t-lg mx-auto -z-20" src="{{ asset('images/product_1.jpeg') }}" alt="" />
                             <div
                                 class="bg-black bg-opacity-60 z-20 absolute w-full h-full top-1 flex invisible group-hover:visible transform duration-200 transition-all ">
@@ -387,7 +387,7 @@
             <div class="col mt-10 flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-xs ">
                     <div class="relative group">
-                        <a href="#">
+                        <a href="{{ route('user.product.show','aaaa') }}">
                             <img class="rounded-t-lg mx-auto -z-20" src="{{ asset('images/product_1.jpeg') }}" alt="" />
                             <div
                                 class="bg-black bg-opacity-60 z-20 absolute w-full h-full top-1 flex invisible group-hover:visible transform duration-200 transition-all ">
@@ -418,7 +418,7 @@
             <div class="col mt-10 flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-xs ">
                     <div class="relative group">
-                        <a href="#">
+                        <a href="{{ route('user.product.show','aaaa') }}">
                             <img class="rounded-t-lg mx-auto -z-20" src="{{ asset('images/product_1.jpeg') }}" alt="" />
                             <div
                                 class="bg-black bg-opacity-60 z-20 absolute w-full h-full top-1 flex invisible group-hover:visible transform duration-200 transition-all ">
@@ -449,7 +449,7 @@
             <div class="col mt-10 flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-xs ">
                     <div class="relative group">
-                        <a href="#">
+                        <a href="{{ route('user.product.show','aaaa') }}">
                             <img class="rounded-t-lg mx-auto -z-20" src="{{ asset('images/product_1.jpeg') }}" alt="" />
                             <div
                                 class="bg-black bg-opacity-60 z-20 absolute w-full h-full top-1 flex invisible group-hover:visible transform duration-200 transition-all ">
@@ -480,7 +480,7 @@
             <div class="col mt-10 flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-xs ">
                     <div class="relative group">
-                        <a href="#">
+                        <a href="{{ route('user.product.show','aaaa') }}">
                             <img class="rounded-t-lg mx-auto -z-20" src="{{ asset('images/product_1.jpeg') }}" alt="" />
                             <div
                                 class="bg-black bg-opacity-60 z-20 absolute w-full h-full top-1 flex invisible group-hover:visible transform duration-200 transition-all ">
