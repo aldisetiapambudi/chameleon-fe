@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class TrouserProductSize extends Model
 {
     use HasFactory;
+    protected $table = "size_produk_celana";
+    protected $primaryKey = 'no';
 }

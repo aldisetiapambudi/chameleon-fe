@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class StockSizeProduct extends Model
 {
     use HasFactory;
+    protected $table = "size_stock_produk";
+    
 }

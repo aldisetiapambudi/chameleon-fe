@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class SizeRecommendation extends Model
 {
     use HasFactory;
+    protected $table = "tb_size_recom";
+    protected $primaryKey = 'no';
 }
