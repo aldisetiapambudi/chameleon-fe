@@ -58,3 +58,12 @@ Route::get('/order-details', function () {
 Route::get('/list', function () {
     return view('web.user.sections.list-product');
 })->name('user.list');
+
+
+Route::get('/admin/dashboard', function() {
+    return view('web.admin.sections.dashboard');
+})->name('dashboard');
+
+Route::get('/admin/login', function() {
+    return view('web.admin.login');
+});

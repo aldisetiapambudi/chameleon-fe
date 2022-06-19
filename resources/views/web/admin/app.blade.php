@@ -33,8 +33,15 @@
 
 </head>
 
-<body>
+<body class="  ">
+    @include('web.admin.layout.sidebar')
+    <main class="main-content">
+        @include('web.admin.layout.header')
 
+        @yield('content')
+        
+        @include('web.admin.layout.footer')
+    </main>
     <!-- Library Bundle Script -->
     <script src="{{ asset('admin/assets/js/core/libs.min.js') }}"></script>
 
@@ -61,10 +68,10 @@
     <script src="{{ asset('admin/assets/js/plugins/form-wizard.js') }}"></script>
 
     <!-- AOS Animation Plugin-->
-    <script src="../assets/vendor/aos/dist/aos.js"></script>
+    <script src="{{ asset('admin/assets/vendor/aos/dist/aos.js') }}"></script>
 
     <!-- App Script -->
-    <script src="../assets/js/hope-ui.js" defer></script>
+    <script src="{{ asset('admin/assets/js/hope-ui.js') }}" defer></script>
 
 </body>
 
