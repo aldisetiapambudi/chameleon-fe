@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\User\HomeController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +14,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('web.user.sections.home');
-})->name('user.home');
+Route::get('/', [HomeController::class, 'index'])->name('user.home');
 
 Route::get('/product/{slug}', function () {
     return view('web.user.sections.detail-product');
@@ -60,10 +58,10 @@ Route::get('/list', function () {
 })->name('user.list');
 
 
-Route::get('/admin/dashboard', function() {
+Route::get('/admin/dashboard', function () {
     return view('web.admin.sections.dashboard');
 })->name('dashboard');
 
-Route::get('/admin/login', function() {
+Route::get('/admin/login', function () {
     return view('web.admin.login');
 });
