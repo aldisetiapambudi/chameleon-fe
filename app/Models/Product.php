@@ -45,8 +45,8 @@ class Product extends Model
         });
     }
 
-    public function bestSeller()
-    {
-        return $this->hasOne(BestSeller::class, 'produk_id');
-    }
+    // public function bestSeller()
+    // {
+    //     return $this->hasOne(BestSeller::class, 'produk_id');
+    // }
 }
