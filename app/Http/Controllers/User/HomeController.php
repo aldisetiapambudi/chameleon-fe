@@ -12,9 +12,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-
         return view('web.user.sections.home', [
-            'bestSeller' => BestSeller::where('active', 1)->get(),
+            'bestSeller' =>  BestSeller::where('active', 1)->orderBy('order', 'asc')->get(),
 
         ]);
     }

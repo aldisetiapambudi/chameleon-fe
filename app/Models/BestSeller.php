@@ -9,11 +9,10 @@ class BestSeller extends Model
 {
     use HasFactory;
     protected $table = "best_seller";
-    protected $primaryKey = 'id';
     protected $guarded = ['id'];
 
-    public function product()
+    public function Product()
     {
-        return $this->hasOne(Product::class, 'id_produk');
+        return $this->belongsTo(Product::class, 'produk_id');
     }
 }
