@@ -13,18 +13,14 @@
             ">
                     Shop
                 </h6>
-                <p class="mb-0 text-sm">
-                    <a href="#!" class="text-gray-600">Jas</a>
-                </p>
-                <p class="mb-0 text-sm">
-                    <a href="#!" class="text-gray-600">Celana</a>
-                </p>
-                <p class="mb-0 text-sm">
-                    <a href="#!" class="text-gray-600">Rompi</a>
-                </p>
-                <p class="mb-0 text-sm">
-                    <a href="#!" class="text-gray-600">Kemeja</a>
-                </p>
+
+
+                @foreach ($shareMenu as $menu)
+                    <p class="mb-0 text-sm">
+                        <a href="#!" class="text-gray-600">{{ $menu->nama_kategori }}</a>
+                    </p>
+                @endforeach
+
             </div>
             <div class="">
                 <h6 class="text-xl font-bold mb-0 flex justify-start">
