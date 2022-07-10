@@ -17,7 +17,8 @@
 
                 @foreach ($shareMenu as $menu)
                     <p class="mb-0 text-sm">
-                        <a href="#!" class="text-gray-600">{{ $menu->nama_kategori }}</a>
+                        <a href="{{ route('user.list', Str::lower($menu->nama_kategori)) }}"
+                            class="text-gray-600">{{ $menu->nama_kategori }}</a>
                     </p>
                 @endforeach
 

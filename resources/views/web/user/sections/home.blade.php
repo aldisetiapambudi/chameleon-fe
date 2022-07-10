@@ -42,7 +42,7 @@
                             <div class="text-left">
                                 <p class="text-gray text-sm">Light Gray</p>
                                 <h6 class="text-lg font-bold">{{ $best->title }}</h6>
-                                <h6 class="text-lg font-bold"> @currency($best->product->harga_produk) </h6>
+                                <h6 class="text-lg font-bold">IDR. @currency($best->product->harga_produk) </h6>
                             </div>
                             <div class="text-left md:text-right">
                                 <p class="text-gray text-sm mr-1">7 Colors</p>

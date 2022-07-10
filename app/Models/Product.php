@@ -49,4 +49,9 @@ class Product extends Model
     {
         return $this->hasOne(BestSeller::class, 'id_produk');
     }
+
+    public function Category()
+    {
+        return $this->belongsTo(Category::class, 'id_kategori');
+    }
 }

@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // view currency
         Blade::directive('currency', function ($expression) {
-            return "IDR. <?php echo number_format($expression,0,',','.'); ?>";
+            return "<?php echo number_format($expression,0,',','.'); ?>";
         });
 
         // menu

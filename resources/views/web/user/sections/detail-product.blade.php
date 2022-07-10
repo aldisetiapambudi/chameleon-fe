@@ -13,14 +13,9 @@
                         class="inline-flex items-center justify-center px-4 py-2 m-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full">BEST
                         SELLER</span>
                 </div>
-                <h1 class="text-gray-400 pb-4 pt-2 text-4xl mr-4">Basic Suit - Notch</h1>
+                <h1 class="text-gray-400 pb-4 pt-2 text-4xl mr-4">{{ $produk->nama_produk }}</h1>
                 <p class="text-left mr-12 mb-10">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
-                    ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-                    dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                    magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                    clita kasd
+                    {{ $produk->deskripsi_produk }}
                 </p>
                 <label class="font-bold text-lg">COLORS : </label><span class="text-lg"> Navy </span>
                 <ul class="flex mt-2 mb-10">
@@ -144,7 +139,8 @@
 
                 <div class="flex space-x-2">
                     <button type="button"
-                        class=" w-full inline-block px-6 py-2.5 bg-blue-600 text-white font-bold text-sm leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">ADD TO BAG</button>
+                        class=" w-full inline-block px-6 py-2.5 bg-blue-600 text-white font-bold text-sm leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">ADD
+                        TO BAG</button>
                 </div>
             </div>
         </div>
