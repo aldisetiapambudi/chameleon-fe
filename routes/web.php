@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\ListController;
+use App\Http\Controllers\User\ProductController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +16,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('web.user.sections.home');
-})->name('user.home');
+Route::get('/', [HomeController::class, 'index'])->name('user.home');
 
-Route::get('/product/{slug}', function () {
-    return view('web.user.sections.detail-product');
-})->name('user.product.show');
+Route::get('/product/{slug}', [ProductController::class, 'index'])->name('user.product.show');
 
 Route::get('/products', function () {
     return view('web.user.sections.products');
@@ -55,15 +53,13 @@ Route::get('/order-details', function () {
     return view('web.user.sections.order_details');
 })->name('user.order_details');
 
-Route::get('/list', function () {
-    return view('web.user.sections.list-product');
-})->name('user.list');
+Route::get('/list/{category}', [ListController::class, 'index'])->name('user.list');
 
 
-Route::get('/admin/dashboard', function() {
+Route::get('/admin/dashboard', function () {
     return view('web.admin.sections.dashboard');
 })->name('dashboard');
 
-Route::get('/admin/login', function() {
+Route::get('/admin/login', function () {
     return view('web.admin.login');
 });

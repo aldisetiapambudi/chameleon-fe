@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 class Product extends Model
 {
-    use HasFactory,Uuids;
+    use HasFactory, Uuids;
     protected $table = "produk";
     protected $primaryKey = 'id_produk';
     protected $fillable = [
@@ -39,9 +39,19 @@ class Product extends Model
             if (empty($model->{$model->getKeyName()})) {
                 $model->{$model->getKeyName()} = Str::uuid()->toString();
                 $digits = 2;
-                $random = rand(pow(10, $digits-1), pow(10, $digits)-1);
-                $model->kode_produk = IdGenerator::generate(['table' => $model->getTable(),'length' => '21','prefix' => "CC-".$random.date("YmdHi")."-",'field' => "kode_produk"]);
+                $random = rand(pow(10, $digits - 1), pow(10, $digits) - 1);
+                $model->kode_produk = IdGenerator::generate(['table' => $model->getTable(), 'length' => '21', 'prefix' => "CC-" . $random . date("YmdHi") . "-", 'field' => "kode_produk"]);
             }
         });
+    }
+
+    public function bestSeller()
+    {
+        return $this->hasOne(BestSeller::class, 'id_produk');
+    }
+
+    public function Category()
+    {
+        return $this->belongsTo(Category::class, 'id_kategori');
     }
 }
