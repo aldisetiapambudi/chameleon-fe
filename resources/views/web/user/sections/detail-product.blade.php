@@ -7,11 +7,12 @@
             </div>
             <div class="px-2">
                 <div class="flex flex-row">
-                    <span
-                        class="inline-flex items-center justify-center px-4 py-1 m-1 text-xs font-bold leading-none text-white bg-black rounded-full">NEW</span>
-                    <span
-                        class="inline-flex items-center justify-center px-4 py-2 m-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full">BEST
-                        SELLER</span>
+
+                    @for ($i = 0; $i < $labelLeght; $i++)
+                        <span
+                            class="inline-flex items-center justify-center px-4 py-1 m-1 text-xs font-bold leading-none text-white badge_label_<?php echo str_replace(' ', '_', $labelExplode[$i]); ?> rounded-full">{{ $labelExplode[$i] }}</span>
+                    @endfor
+
                 </div>
                 <h1 class="text-gray-400 pb-4 pt-2 text-4xl mr-4">{{ $produk->nama_produk }}</h1>
                 <p class="text-left mr-12 mb-10">
