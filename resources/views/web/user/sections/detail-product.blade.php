@@ -7,11 +7,12 @@
             </div>
             <div class="px-2">
                 <div class="flex flex-row">
-                    <span
-                        class="inline-flex items-center justify-center px-4 py-1 m-1 text-xs font-bold leading-none text-white bg-black rounded-full">NEW</span>
-                    <span
-                        class="inline-flex items-center justify-center px-4 py-2 m-1 text-xs font-bold leading-none text-white bg-red-600 rounded-full">BEST
-                        SELLER</span>
+
+                    @for ($i = 0; $i < $labelLeght; $i++)
+                        <span
+                            class="inline-flex items-center justify-center px-4 py-1 m-1 text-xs font-bold leading-none text-white badge_label_<?php echo str_replace(' ', '_', $labelExplode[$i]); ?> rounded-full">{{ $labelExplode[$i] }}</span>
+                    @endfor
+
                 </div>
                 <h1 class="text-gray-400 pb-4 pt-2 text-4xl mr-4">{{ $produk->nama_produk }}</h1>
                 <p class="text-left mr-12 mb-10">
@@ -103,38 +104,21 @@
 
                 <label class="font-bold text-lg mt-5">SIZE : </label><span class="text-lg"> Small </span>
                 <ul class="grid grid-cols-2 gap-2 mt-2 mb-10">
-                    <li class="relative">
-                        <input class="sr-only peer" type="radio" value="s" name="size" id="size_s">
-                        <label
-                            class="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
-                            for="size_s">
-                            <p class="text-center w-full font-bold">S</p>
-                        </label>
-                    </li>
-                    <li class="relative">
-                        <input class="sr-only peer" type="radio" value="m" name="size" id="size_m">
-                        <label
-                            class="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
-                            for="size_m">
-                            <p class="text-center w-full font-bold">M</p>
-                        </label>
-                    </li>
-                    <li class="relative">
-                        <input class="sr-only peer" type="radio" value="l" name="size" id="size_l">
-                        <label
-                            class="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
-                            for="size_l">
-                            <p class="text-center w-full font-bold">L</p>
-                        </label>
-                    </li>
-                    <li class="relative">
-                        <input class="sr-only peer" type="radio" value="xl" name="size" id="size_xl">
-                        <label
-                            class="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
-                            for="size_xl">
-                            <p class="text-center w-full font-bold">XL</p>
-                        </label>
-                    </li>
+
+                    @for ($s = 0; $s < $sizeLeght; $s++)
+                        <li class="relative">
+                            <input class="sr-only peer" type="radio" value="{{ $sizeExplode[$s] }}" name="size"
+                                id="{{ $sizeExplode[$s] }}">
+                            <label
+                                class="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
+                                for="{{ $sizeExplode[$s] }}">
+                                <p class="text-center w-full font-bold">
+                                    {{ $sizeExplode[$s] }}
+                                </p>
+                            </label>
+                        </li>
+                    @endfor
+
                 </ul>
 
                 <div class="flex space-x-2">

@@ -36,7 +36,7 @@
 
             @foreach ($bestSeller as $best)
                 <div class="mx-2">
-                    <a href="{{ route('user.product.show', 'suit-combination-black') }}">
+                    <a href="{{ route('user.product.show', $best->title) }}">
                         <img class="mx-auto w-full" src="{{ asset('/storage/' . $best->filename) }}">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-0 my-4 px-4">
                             <div class="text-left">
