@@ -47,15 +47,15 @@
 
 .badge_label_limited {
 	width: 50px;
-	border: 1px solid #000;
 	padding: 4px;
+    background-color: #60A5FA;
 	margin: 2px;
 	border-radius: 20px;
 }
 
 .badge_label_limited p {
 	text-align: center;
-	color: #000;
+	color: #fff;
 	font-size: 10px;
 	font-weight: bold;
 	margin: 0;

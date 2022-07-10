@@ -14,15 +14,22 @@ class ProductController extends Controller
         $getSlug = $request['slug'];
         $getDetailProduct = Product::where('nama_produk', $getSlug)->get();
         $getProduk = $getDetailProduct[0];
+
         $getLabel = $getProduk['label_produk'];
         $labelExplode = explode(',', $getLabel);
         $labelLeght = count($labelExplode);
+
+        $getSize = $getProduk['size_produk'];
+        $sizeExplode = explode(',', $getSize);
+        $sizeLeght = count($sizeExplode);
+
 
         return view('web.user.sections.detail-product', [
             'produk' => $getProduk,
             'labelLeght' => $labelLeght,
             'labelExplode' => $labelExplode,
-            'i' => 0
+            'sizeExplode' => $sizeExplode,
+            'sizeLeght' => $sizeLeght
         ]);
     }
 }
