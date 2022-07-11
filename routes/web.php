@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\ListController;
 use App\Http\Controllers\User\ProductController;
+use App\Http\Controllers\User\DaftarController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,8 @@ Route::get('/login', function () {
     return view('web.user.sections.login');
 })->name('user.login');
 
-Route::get('/daftar', function () {
-    return view('web.user.sections.daftar');
-})->name('user.daftar');
+Route::get('/daftar', [DaftarController::class, 'index'])->name('user.daftar');
+Route::post('/daftar', [DaftarController::class, 'validasi'])->name('user.daftar.validasi');
 
 Route::get('/account', function () {
     return view('web.user.sections.account');

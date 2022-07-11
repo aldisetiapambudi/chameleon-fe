@@ -6,6 +6,13 @@
 
             <section id="form" class="mb-14">
                 <div class="card w-72 md:w-96 h-auto mx-auto">
+                    {{-- @if (session()->has('RegistrasiSukses')) --}}
+                    <div class="bg-blue-100 p-2 text-center rounded-md" role="alert">
+                        <small> <i class="fas fa-check text-green-500 fa-xl"></i><strong> Yey! </strong> Your
+                            registration is
+                            successfully</small> i
+                    </div>
+                    {{-- @endif --}}
                     <div class="block p-2 mt-6 bg-white max-w-sm">
                         <form>
                             <div class="form-group mb-3">

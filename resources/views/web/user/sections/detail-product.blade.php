@@ -107,8 +107,8 @@
 
                     @for ($s = 0; $s < $sizeLeght; $s++)
                         <li class="relative">
-                            <input class="sr-only peer" type="radio" value="{{ $sizeExplode[$s] }}" name="size"
-                                id="{{ $sizeExplode[$s] }}">
+                            <input class="sr-only peer" onclick="getLabelSize()" type="radio"
+                                value="{{ $sizeExplode[$s] }}" name="size" id="{{ $sizeExplode[$s] }}">
                             <label
                                 class="flex p-5 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
                                 for="{{ $sizeExplode[$s] }}">
@@ -129,6 +129,14 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function getLabelSize() {
+            var labelUkuran = document.getElementsByName('size');
+            console.log(labelUkuran);
+        }
+    </script>
+
 
     {{-- articles --}}
     <x-article-component />
