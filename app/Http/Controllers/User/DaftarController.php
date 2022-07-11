@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
 class DaftarController extends Controller
@@ -14,8 +15,10 @@ class DaftarController extends Controller
     {
         return view('web.user.sections.daftar');
     }
+
     public function validasi(Request $request)
     {
+        $token = $this->generateToken();
 
         $validatedData = $request->validate([
             'nama_depan' => 'required',
@@ -26,7 +29,7 @@ class DaftarController extends Controller
         ]);
         $validatedData['username'] = $validatedData['nama_depan'] . ' ' . $validatedData['nama_belakang'];
         $validatedData['is_reseller'] = false;
-        $validatedData['token'] = Hash::make($validatedData['email']);
+        $validatedData['token'] = $token;
         $validatedData['status'] = true;
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::create($validatedData);
@@ -34,5 +37,14 @@ class DaftarController extends Controller
         return redirect()
             ->route('user.login')
             ->with('RegistrasiSukses', 'Registrasi anda sukses');
+    }
+
+    function generateToken()
+    {
+        $token = Str::random(20);
+        if (DB::table('pengguna')->where('token', $token)->exists()) {
+            $token = Str::random(20);
+        }
+        return $token;
     }
 }
