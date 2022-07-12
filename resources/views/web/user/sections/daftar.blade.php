@@ -70,7 +70,7 @@
                 </div>
                 <div class="row mt-14 text-center">
                     <p>
-                        Sudah memiliki akun? <a href="" class="text-blue-500">Login Di sini</a>
+                        Sudah memiliki akun? <a href="{{ route('user.login') }}" class="text-blue-500">Login Di sini</a>
                     </p>
                 </div>
                 <div class="row mt-3 text-center">
