@@ -69,32 +69,46 @@
                 <div class="origin-top-right absolute right-0 w-64 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                     role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                     <div class="container mt-2">
-                        <hr class="w-full h-0.5 bg-slate-400">
-                        <div class="ml-3 p-4">
-                            <h3 class="text-slate-300 my-4 text-center">Your Bag is empty</h3>
+
+                        @auth
+                            <hr class="w-full h-0.5 bg-slate-400">
+                            <div class="ml-3 p-4">
+                                <h3 class="text-slate-300 my-4 text-center">Your Bag is empty</h3>
+                            </div>
+                            <hr class="w-full h-0.5 bg-slate-400">
+                            <a href="{{ route('user.cart_detail') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2"
+                                role="menuitem" tabindex="-1" id="user-menu-item-0">
+                                <i class="fas fa-shopping-bag mr-3"></i> Bag
+                            </a>
+                            <hr>
+                            <a href="{{ route('user.orders') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2 "
+                                role="menuitem" tabindex="-1" id="user-menu-item-1"><i
+                                    class="fas fa-box mr-3"></i>Orders</a>
+                            <hr>
+                            <a href="{{ route('user.account') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2 w-full"
+                                role="menuitem" tabindex="-1" id="user-menu-item-2"><i
+                                    class="fas fa-cogs mr-3"></i>Setting</a>
+                            <hr>
+                            <form action="{{ route('user.logout') }}" method="post">
+                                @csrf
+                                @method('POST')
+                                <button type="submit"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2 w-full"
+                                    role="menuitem" tabindex="-1" id="user-menu-item-2"><i
+                                        class="fas fa-user-circle mr-3"></i>Sign out
+                                </button>
+                            </form>
+
                         </div>
-                        <hr class="w-full h-0.5 bg-slate-400">
-                        <a href="{{ route('user.cart_detail') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2"
-                            role="menuitem" tabindex="-1" id="user-menu-item-0">
-                            <i class="fas fa-shopping-bag mr-3"></i> Bag
-                        </a>
-                        <hr>
-                        <a href="{{ route('user.orders') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2 "
-                            role="menuitem" tabindex="-1" id="user-menu-item-1"><i
-                                class="fas fa-box mr-3"></i>Orders</a>
-                        <hr>
-                        <a href="{{ route('user.account') }}"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2"
-                            role="menuitem" tabindex="-1" id="user-menu-item-2"><i
-                                class="fas fa-cogs mr-3"></i>Setting</a>
-                        <hr>
+                    @else
                         <a href="{{ route('user.login') }}"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2"
                             role="menuitem" tabindex="-1" id="user-menu-item-2"><i
-                                class="fas fa-user-circle mr-3"></i>Sign in / Sign out</a>
-                    </div>
+                                class="fas fa-user-circle mr-3"></i>Sign in</a>
+                    @endauth
                 </div>
             </div>
         </section>
@@ -102,9 +116,48 @@
 
     </div>
 </nav>
+
 <div class="bg-red-400 py-2 md:py-2 px-4">
     <div class="mx-auto px-4 text-center">
         <p class="text-white text-sm md:text-lg">Get <span class="font-bold">Discount 50.000</span> with voucher
             code <span class="font-bold">FREE50</span></p>
     </div>
+
+    {{-- notify --}}
+    @if (session()->has('LoginSukses'))
+        <div class="container w-full mx-auto offcanvas-top " id="alertbox">
+            <div class="container w-full bg-blue-500 flex items-center text-white text-sm  px-4 py-3 rounded-lg"
+                role="alert">
+                <p class="mx-auto"> <i class="fas fa-info-circle"></i> Halo, Selamat datang
+                    {{ Auth::user()->username }}</p>
+                <button class="absolute top-0 bottom-0 right-0 px-4 py-3 closealertbutton">
+                    <i class="fas fa-close"></i>
+                </button>
+            </div>
+        </div>
+        {{-- notify end --}}
+    @endif
 </div>
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"
+    integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+
+<script>
+    $(".closealertbutton").click(function(e) {
+
+        pid = $(this).parent().parent().hide(500).slideUp(500)
+        console.log(pid)
+
+    })
+
+
+    setTimeout(function() {
+
+        // Closing the alert
+        $('#alertbox').alert('close');
+    }, 5000);
+</script>

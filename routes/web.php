@@ -5,6 +5,7 @@ use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\ListController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\DaftarController;
+use App\Http\Controllers\User\LoginController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +27,17 @@ Route::get('/products', function () {
 })->name('user.products');
 
 // dev
-Route::get('/login', function () {
-    return view('web.user.sections.login');
-})->name('user.login');
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [LoginController::class, 'index'])->name('user.login');
+    Route::post('/login', [LoginController::class, 'login'])->name('user.login.validasi');
+    Route::get('/daftar', [DaftarController::class, 'index'])->name('user.daftar');
+    Route::post('/daftar', [DaftarController::class, 'validasi'])->name('user.daftar.validasi');
+});
 
-Route::get('/daftar', [DaftarController::class, 'index'])->name('user.daftar');
-Route::post('/daftar', [DaftarController::class, 'validasi'])->name('user.daftar.validasi');
+Route::middleware(['auth'])->group(function () {
+    Route::post('/logout', [LoginController::class, 'logout'])->name('user.logout');
+});
+
 
 Route::get('/account', function () {
     return view('web.user.sections.account');

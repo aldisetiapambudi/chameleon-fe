@@ -8,17 +8,27 @@
                 <div class="card w-72 md:w-96 h-auto mx-auto">
                     @if (session()->has('RegistrasiSukses'))
                         <div class="bg-blue-100 p-2 text-center rounded-md" role="alert">
-                            <small> <i class="fas fa-check text-green-500 fa-xl"></i><strong> Yey! </strong> Your
-                                registration is
-                                successfully</small> i
+                            <small> <i class="fas fa-check text-green-500 fa-xl"></i><strong> Yey! </strong> Registrasi anda
+                                sukses</small>
+                        </div>
+                    @endif
+                    @if (session()->has('LoginGagal'))
+                        <div class="bg-blue-100 p-2 text-center rounded-md" role="alert">
+                            <small> <i class="fas fa-warning text-green-500 fa-xl"></i><strong> Ups! </strong> Login Anda
+                                Gagal</small>
                         </div>
                     @endif
                     <div class="block p-2 mt-6 bg-white max-w-sm">
-                        <form>
+                        <form action="{{ route('user.login') }}" method="POST">
+                            @csrf
+                            @method('POST')
                             <div class="form-group mb-3">
                                 <input type="email" id="email" name="email"
                                     class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300 rounded-lg transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none shadow-sm"
                                     placeholder="Email" autofocus required>
+                                @error('email')
+                                    <p class="text-xs text-red-500 pt-1"><i class="fas fa-warning"></i> {{ $massage }}</p>
+                                @enderror
                             </div>
                             <div class="form-group mb-6">
                                 <input type="password" id="password" name="password"
@@ -35,7 +45,7 @@
                     <div class="row text-center">
                         <a href="#" class="text-blue-600">Lupa Password?</a>
                         <p>Tidak punya akun Chameleon Cloth?,
-                            <a href="/daftar" class="text-blue-600">Daftar</a>
+                            <a href="{{ route('user.daftar') }}" class="text-blue-600">Daftar</a>
                         </p>
                     </div>
 
