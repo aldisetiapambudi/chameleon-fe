@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -20,7 +21,14 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
+
         if (Auth::attempt($validasi)) {
+            if (Auth::user()->status !== 1) {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return back()->with('LoginGagal', 'Login anda gagal!');
+            }
             $request->session()->regenerate();
             return redirect()->route('user.home')->with('LoginSukses', 'Selamat Anda Berhasil Login');
         }
