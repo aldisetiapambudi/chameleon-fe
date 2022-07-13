@@ -27,6 +27,9 @@ class AddToBagController extends Controller
             'size' => 'required'
         ]);
         $validasi['id_cart'] = $getIdCart;
+        $validasi['quantity'] = 1;
         DetailCartItem::create($validasi);
+
+        return back()->with('successAddToCart', 'sukes');
     }
 }
