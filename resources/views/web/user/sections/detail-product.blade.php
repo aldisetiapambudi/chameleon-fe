@@ -21,6 +21,7 @@
                 <form action="{{ route('user.product.add') }}" method="post">
                     @method('POST')
                     @csrf
+                    <input type="hidden" name="id_produk" value="{{ $produk->id_produk }}">
                     {{-- <form action="{{ route('user.product.add') }}" action="POST"> --}}
                     {{-- @csrf --}}
                     {{-- @method('POST') --}}
