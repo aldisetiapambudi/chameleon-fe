@@ -6,6 +6,7 @@ use App\Http\Controllers\User\ListController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\DaftarController;
 use App\Http\Controllers\User\LoginController;
+use App\Http\Controllers\User\AddToBagController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,9 @@ use Illuminate\Http\Request;
 Route::get('/', [HomeController::class, 'index'])->name('user.home');
 
 Route::get('/product/{slug}', [ProductController::class, 'index'])->name('user.product.show');
+
+Route::POST('/add', [AddToBagController::class, 'index'])->name('user.product.add');
+
 
 Route::get('/products', function () {
     return view('web.user.sections.products');
