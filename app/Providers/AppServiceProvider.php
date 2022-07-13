@@ -6,6 +6,11 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use App\Models\Category;
 use Illuminate\Support\Facades\View;
+use App\Models\CartItem;
+use App\Models\DetailCartItem;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,5 +38,14 @@ class AppServiceProvider extends ServiceProvider
         // menu
         $menu = Category::all();
         View::share('shareMenu', $menu);
+
+
+        // Cart Item
+        // $getIdUser = Auth::guest();
+        // return ddd($getIdUser);
+        // $cartItem = CartItem::where('id_pengguna', $getIdUser)->get();
+        // // $cartItemShow = $cartItem['id_produk'];
+        // $cartItem = DetailCartItem::all();
+        // View::share('shareCartItem', $cartItem);
     }
 }

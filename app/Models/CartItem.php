@@ -24,11 +24,11 @@ class CartItem extends Model
         parent::boot();
         self::creating(function ($model) {
             if (empty($model->{$model->getKeyName()})) {
-                $model->{$model->getKeyName()} = IdGenerator::generate(['table' => $model->getTable(),'length' => '24','prefix' => "Invoice-".date("YmdHi")."-",'field' => $model->getKeyName()]);
+                $model->{$model->getKeyName()} = IdGenerator::generate(['table' => $model->getTable(), 'length' => '24', 'prefix' => "Invoice-" . date("YmdHi") . "-", 'field' => $model->getKeyName()]);
             }
         });
     }
-   /**
+    /**
      * Get the auto-incrementing key type.
      *
      * @return string
