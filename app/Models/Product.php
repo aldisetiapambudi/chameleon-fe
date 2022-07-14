@@ -54,4 +54,9 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'id_kategori');
     }
+
+    public function DetailCartItem()
+    {
+        return $this->hasMany(DetailCartItem::class, 'id_produk');
+    }
 }

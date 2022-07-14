@@ -5,48 +5,52 @@
         <hr class="mt-2 mb-4 h-0.5 bg-blue-900">
         <div class="row mb-96 block md:flex">
             <div class="col">
-                <div class="row mt-3">
-                    <div class="card flex md:block lg:flex shadow-lg border-2 p-1">
-                        <div class="col flex justify-center">
-                            <img src="{{ asset('images/product_3.jpeg') }}" alt="product image" class="w-40">
-                        </div>
-                        <div class="col p-4">
-                            <div class="row block lg:flex">
-                                <div class="col">
-                                    <h3 class="text-base md:text-xl font-semibold">Basic Plaid Suit - Notch</h3>
-                                    <h4 class="font-semibold text-sm md:text-base flex">
-                                        Rp.
-                                        <input type="text" id="harga" readonly value="10"
-                                            class="font-semibold text-sm md:text-base">
-                                    </h4>
-                                </div>
-                                <div class="col md:ml-10 mt-4 md:mt-2">
-                                    <div class="row">
-                                        <div class="col">
-                                            <form action="">
-                                                <button type="submit"
-                                                    class="w-full max-w-md h-auto p-2 bg-black text-white rounded-md">Hapus</button>
-                                            </form>
-                                        </div>
-                                        <div class="col mt-2">
-                                            <div class="row flex justify-center">
-                                                <div class="col">
-                                                    <button id="prodc_min"
-                                                        class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white">
-                                                        <i class="fa fa-minus" aria-hidden="true"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="col">
-                                                    <input type="hidden" value="10" id="harga_satuan">
-                                                    <input type="text" id="prodc_qty" name="prodc_qty"
-                                                        class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg"
-                                                        value="1">
-                                                </div>
-                                                <div class="col">
-                                                    <button id="prodc_add"
-                                                        class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white">
-                                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                                    </button>
+                <!-- product -->
+                @foreach ($cart as $produk)
+                    <div class="row mt-3">
+                        <div class="card flex md:block lg:flex shadow-lg border-2 p-1">
+                            <div class="col flex justify-center">
+                                <img src="{{ asset('images/product_3.jpeg') }}" alt="product image" class="w-40">
+                            </div>
+                            <div class="col p-4">
+                                <div class="row block lg:flex">
+                                    <div class="col">
+                                        <h3 class="text-base md:text-xl font-semibold">
+                                            {{ $produk->DetailCartItem }}</h3>
+                                        <h4 class="font-semibold text-sm md:text-base flex">
+                                            Rp.
+                                            <input type="text" id="harga" readonly value="10"
+                                                class="font-semibold text-sm md:text-base">
+                                        </h4>
+                                    </div>
+                                    <div class="col md:ml-10 mt-4 md:mt-2">
+                                        <div class="row">
+                                            <div class="col">
+                                                <form action="">
+                                                    <button type="submit"
+                                                        class="w-full max-w-md h-auto p-2 bg-black text-white rounded-md">Hapus</button>
+                                                </form>
+                                            </div>
+                                            <div class="col mt-2">
+                                                <div class="row flex justify-center">
+                                                    <div class="col">
+                                                        <button id="prodc_min"
+                                                            class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white">
+                                                            <i class="fa fa-minus" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="hidden" value="10" id="harga_satuan">
+                                                        <input type="text" id="prodc_qty" name="prodc_qty"
+                                                            class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg"
+                                                            value="1">
+                                                    </div>
+                                                    <div class="col">
+                                                        <button id="prodc_add"
+                                                            class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white">
+                                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -55,55 +59,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="card flex md:block lg:flex shadow-lg border-2 p-1">
-                        <div class="col flex justify-center">
-                            <img src="{{ asset('images/product_3.jpeg') }}" alt="product image" class="w-40">
-                        </div>
-                        <div class="col p-4">
-                            <div class="row block lg:flex">
-                                <div class="col">
-                                    <h3 class="text-base md:text-xl font-semibold">Basic Plaid Suit - Notch</h3>
-                                    <h4 class="font-semibold text-sm md:text-base">
-                                        Rp.589.000
-                                    </h4>
-                                </div>
-                                <div class="col md:ml-10 mt-4 md:mt-2">
-                                    <div class="row">
-                                        <div class="col">
-                                            <form action="">
-                                                <button type="submit"
-                                                    class="w-full max-w-md h-auto p-2 bg-black text-white rounded-md">Hapus</button>
-                                            </form>
-                                        </div>
-                                        <div class="col mt-2">
-                                            <div class="row flex justify-center">
-                                                <div class="col">
-                                                    <button id="prodc_min2"
-                                                        class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white">
-                                                        <i class="fa fa-minus" aria-hidden="true"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="col">
-                                                    <input type="text" id="prodc_qty2" name="prodc_qty2"
-                                                        class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg"
-                                                        value="1">
-                                                </div>
-                                                <div class="col">
-                                                    <button id="prodc_add2"
-                                                        class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white">
-                                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+                <!-- End Product -->
+
             </div>
             <div class="col md:ml-10 mt-4 md:mt-0 max-w-md ">
                 <div class="row">
@@ -189,7 +147,7 @@
                     <table class="table-fixed w-full mt-2">
                         <tbody class="">
                             <tr>
-                                <td class=" 
+                                <td class="
                             text-xl font-semibold">Subtotal</td>
                                 <td class="text-xl flex justify-end ">
                                     <p class="font-semibold">
