@@ -8,6 +8,7 @@ use App\Http\Controllers\User\DaftarController;
 use App\Http\Controllers\User\LoginController;
 use App\Http\Controllers\User\AddToBagController;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -44,17 +45,18 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::get('/account', function () {
-    return view('web.user.sections.account');
-})->name('user.account');
 
-Route::get('/address', function () {
-    return view('web.user.sections.address');
-})->name('user.address');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/account', function () {
+        return view('web.user.sections.account');
+    })->name('user.account');
+    Route::get('/address', [UserController::class, 'address'])->name('user.address');
+    Route::get('/orders', function () {
+        return view('web.user.sections.orders');
+    })->name('user.orders');
+});
 
-Route::get('/orders', function () {
-    return view('web.user.sections.orders');
-})->name('user.orders');
+
 
 Route::get('/cart', [CartController::class, 'index'])->name('user.cart_detail');
 

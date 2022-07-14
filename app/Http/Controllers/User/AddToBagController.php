@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AddToBagController extends Controller
 {
-
-
     public function index(Request $request)
     {
 

@@ -1,5 +1,6 @@
 @extends('web.user.app')
 @section('section')
+    @include('web.user.sections.partials.modalAddressBag')
     <div class="container max-w-6xl w px-4 mx-auto">
         <h1 class="font-bold text-2xl lg:text-3xl">Bag</h1>
         <hr class="mt-2 mb-4 h-0.5 bg-blue-900">
@@ -74,7 +75,7 @@
                         </p>
                     </div>
                     <div class="card border-2 border-slate-400 p-4 rounded-2xl mt-3 bg-slate-50">
-                        <button type="" class="flex mx-auto">
+                        <button data-bs-toggle="modal" data-bs-target="#modalAddressBag" class="flex mx-auto">
                             <p class="font-semibold text-base md:text-lg">
                                 Pilih alamat lainnya <i class="fas fa-plus-circle" aria-hidden="true"></i>
                             </p>

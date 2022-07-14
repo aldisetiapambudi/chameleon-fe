@@ -7,7 +7,9 @@
                     Chameleon Cloth Account</h3>
             </div>
             <div class="col w-1/2 flex justify-end items-end ">
-                <form action="">
+                <form action="{{ route('user.logout') }}" method="POST">
+                    @csrf
+                    @method('POST')
                     <button type="submit"
                         class="w-30 h-auto text-white bg-blue-600 py-2 px-4 rounded-lg font-semibold hover:bg-blue-500 mr-2">Keluar</button>
                 </form>
