@@ -22,16 +22,18 @@
                         <a href="" class="group">
                             <div class="card  w-48 md:w-96 max-w-2xl p-3 md:p-7 mt-3 md:mt-0 ">
                                 <h1 class="text-base md:text-xl font-bold">Email</h1>
-                                <h6 class="text-xs md:text-base">chameleoncloth@gmail.com</h6>
+                                <h6 class="text-xs md:text-base">{{ Auth::user()->email }}</h6>
                             </div>
                         </a>
                     </div>
-                    <div class="col w-10/12 lg:w-full md:mt-3 lg:mt-0 max-w-full bg-slate-100 ml-3 hover:bg-slate-200 rounded-xl ">
+                    <div
+                        class="col w-10/12 lg:w-full md:mt-3 lg:mt-0 max-w-full bg-slate-100 ml-3 hover:bg-slate-200 rounded-xl ">
                         <a href="" class="">
                             <div class="card w-full max-w-2xl p-3 md:p-7 mt-3 md:mt-0 ">
                                 <h1 class="text-base md:text-xl font-bold">Password</h1>
-                                <p class="text-xs md:text-base">Terakhir di perbarui 01 Jumadil Awwal 1444 atau 24 November
-                                    2022</p>
+                                <p class="text-xs md:text-base">Terakhir di perbarui
+                                    {{ Auth::user()->updated_at->diffForHumans() }}
+                                </p>
                             </div>
                         </a>
                     </div>
