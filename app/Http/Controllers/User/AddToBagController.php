@@ -10,8 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AddToBagController extends Controller
 {
+
+
     public function index(Request $request)
     {
+
+        if (Auth::check() == false) {
+            return redirect()->route('user.login');
+        }
 
         $idPengguna = Auth::user()->id_pengguna;
         $cartItem =  CartItem::create([

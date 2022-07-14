@@ -7,6 +7,7 @@ use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\DaftarController;
 use App\Http\Controllers\User\LoginController;
 use App\Http\Controllers\User\AddToBagController;
+use App\Http\Controllers\User\CartController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -55,9 +56,7 @@ Route::get('/orders', function () {
     return view('web.user.sections.orders');
 })->name('user.orders');
 
-Route::get('/cart', function () {
-    return view('web.user.sections.cart_detail');
-})->name('user.cart_detail');
+Route::get('/cart', [CartController::class, 'index'])->name('user.cart_detail');
 
 Route::get('/order-details', function () {
     return view('web.user.sections.order_details');

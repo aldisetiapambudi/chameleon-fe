@@ -37,4 +37,9 @@ class CartItem extends Model
     {
         return 'string';
     }
+
+    public function DetailCartItem()
+    {
+        return  $this->hasOne(DetailCartItem::class, 'id_cart');
+    }
 }

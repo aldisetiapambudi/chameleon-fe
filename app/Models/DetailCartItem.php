@@ -13,4 +13,14 @@ class DetailCartItem extends Model
     protected $primaryKey = 'id_detail_item_cart';
     protected $guarded = ['id_detail_item_cart'];
     // protected $fillable = ['id_produk', 'id_cart', 'quantity', 'size', 'color'];
+
+    public function CartItem()
+    {
+        return  $this->belongsTo(CartItem::class, 'id_cart');
+    }
+
+    public function Product()
+    {
+        return $this->belongsTo(Product::class, 'id_produk');
+    }
 }

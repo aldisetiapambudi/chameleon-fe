@@ -1040,9 +1040,6 @@ textarea.form-control.is-invalid {
 .navbar-expand .navbar-toggler {
   display: none;
 }
-.navbar-expand .offcanvas-header {
-  display: none;
-}
 .navbar-expand .offcanvas {
   position: inherit;
   bottom: 0;
@@ -4616,6 +4613,10 @@ textarea.form-control.is-invalid {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -4623,10 +4624,6 @@ textarea.form-control.is-invalid {
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
-}
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
 }
 .text-2xl {
   font-size: 1.5rem;
@@ -4671,6 +4668,10 @@ textarea.form-control.is-invalid {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.text-yellow-500 {
+  --tw-text-opacity: 1;
+  color: rgb(234 179 8 / var(--tw-text-opacity));
 }
 .text-gray-300 {
   --tw-text-opacity: 1;
@@ -4727,10 +4728,6 @@ textarea.form-control.is-invalid {
 .text-blue-800 {
   --tw-text-opacity: 1;
   color: rgb(30 64 175 / var(--tw-text-opacity));
-}
-.text-yellow-500 {
-  --tw-text-opacity: 1;
-  color: rgb(234 179 8 / var(--tw-text-opacity));
 }
 .opacity-50 {
   opacity: 0.5;
