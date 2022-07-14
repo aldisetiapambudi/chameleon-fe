@@ -4,10 +4,12 @@
         <div class="row ml-2 mt-4 mb-2 flex">
             <div class="col w-1/2">
                 <h3 class="text-base md:text-2xl font-semibold ml-4">
-                    Chameleon Cloth Account</h3>
+                    Chameleon Cloth Orders</h3>
             </div>
             <div class="col w-1/2 flex justify-end items-end ">
-                <form action="">
+                <form action="{{ route('user.logout') }}" method="POST">
+                    @csrf
+                    @method('POST')
                     <button type="submit"
                         class="w-30 h-auto text-white bg-blue-600 py-2 px-4 rounded-lg font-semibold hover:bg-blue-500 mr-2">Keluar</button>
                 </form>
@@ -43,10 +45,11 @@
                                 <div class="col w-full mt-5 lg:mt-3 mb-3 block px-4 ">
                                     <div class="mt-3">
                                         <a href="{{ route('user.order_details') }}"
-                                        class="bg-green-500 hover:bg-green-600 text-white  w-full py-2 text-center px-auto rounded-xl text-end  text-sm  xl:text-base block mb-3">Lihat
-                                        Pesanan</a>
+                                            class="bg-green-500 hover:bg-green-600 text-white  w-full py-2 text-center px-auto rounded-xl text-end  text-sm  xl:text-base block mb-3">Lihat
+                                            Pesanan</a>
                                         <a href="#"
-                                        class="bg-blue-500 hover:bg-blue-600 text-white  w-full py-2 text-center px-2 rounded-xl text-end  text-sm  xl:text-base block mb-3">Konfirmasi Pesanan</a>
+                                            class="bg-blue-500 hover:bg-blue-600 text-white  w-full py-2 text-center px-2 rounded-xl text-end  text-sm  xl:text-base block mb-3">Konfirmasi
+                                            Pesanan</a>
                                     </div>
                                 </div>
                             </div>
@@ -77,10 +80,11 @@
                                 <div class="col w-full mt-5 lg:mt-3 mb-3 block px-4 ">
                                     <div class="mt-3">
                                         <a href="{{ route('user.order_details') }}"
-                                        class="bg-green-500 hover:bg-green-600 text-white  w-full py-2 text-center px-auto rounded-xl text-end  text-sm  xl:text-base block mb-3">Lihat
-                                        Pesanan</a>
+                                            class="bg-green-500 hover:bg-green-600 text-white  w-full py-2 text-center px-auto rounded-xl text-end  text-sm  xl:text-base block mb-3">Lihat
+                                            Pesanan</a>
                                         <a href="#"
-                                        class="bg-black hover:ring-2 hover:ring-offset-2 text-white  w-full py-2 text-center px-auto rounded-xl text-end  text-sm  xl:text-base block mb-3">Lacak Pesanan</a>
+                                            class="bg-black hover:ring-2 hover:ring-offset-2 text-white  w-full py-2 text-center px-auto rounded-xl text-end  text-sm  xl:text-base block mb-3">Lacak
+                                            Pesanan</a>
                                     </div>
                                 </div>
                             </div>

@@ -3,10 +3,12 @@
     <div class="container max-w-6xl w px-4 mx-auto">
         <div class="row ml-2 mt-4 mb-2 flex">
             <div class="col w-1/2">
-                <h3 class="text-base md:text-2xl font-semibold ml-4">Chameleon Cloth Account</h3>
+                <h3 class="text-base md:text-2xl font-semibold ml-4">Chameleon Cloth Address</h3>
             </div>
             <div class="col w-1/2 flex justify-end items-end ">
-                <form action="">
+                <form action="{{ route('user.logout') }}" method="POST">
+                    @csrf
+                    @method('POST')
                     <button type="submit"
                         class="w-30 h-auto text-white bg-blue-600 py-2 px-4 rounded-lg font-semibold hover:bg-blue-500 mr-2">Keluar</button>
                 </form>
@@ -26,15 +28,16 @@
                         </div>
                         <a href="#" class=" ">
                             <div class="card md:w-full max-w-2xl px-8 pb-4 md:mt-0">
-                                <h1 class="text-base md:text-xl font-semibold">CHAMELEON CLOTH</h1>
+                                <h1 class="text-base md:text-xl font-semibold">
+                                    {{ Auth::user()->UserAddress[0]->nama_lengkap }}</h1>
                                 <p class="text-xs md:text-sm mt-4 w-full">
-                                    Jl. Patimuan - Kedungreja, Cinyawang, Patimuan, Cilacap 53264083116200500
+                                    {{ Auth::user()->UserAddress[0]->alamat_1 }}
                                 </p>
                             </div>
                         </a>
                     </div>
                     <div class="col max-w-full hover:bg-slate-100 border-2 border-blue-200 ml-3 mt-4 lg:mt-0  rounded-xl">
-                        <a href="#" class="group">
+                        <button class="group" data-bs-toggle="modal" data-bs-target="#modalAddress">
 
                             <div class="card w-48 md:w-96 max-w-2xl p-3 md:p-7 mt-3 md:mt-0 mx-auto lg:mx-0">
                                 <h1 class="text-base md:text-xl font-bold text-center my-4">
@@ -43,7 +46,7 @@
                                 <p class="text-xs md:text-base text-center group-hover:text-blue-600">Tambah alamat
                                     lainnya</p>
                             </div>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -52,4 +55,5 @@
             </div>
         </div>
     </div>
+    @include('web.user.sections.partials.modalAddress')
 @endsection

@@ -11,4 +11,10 @@ class UserAddress extends Model
     use HasFactory, Uuids;
     protected $table = "alamat_pengguna";
     protected $primaryKey = 'id_alamat';
+
+
+    public function User()
+    {
+        return $this->belongsTo(User::class, 'id_pengguna');
+    }
 }
