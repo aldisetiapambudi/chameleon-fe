@@ -16,10 +16,11 @@
                                 <div class="row block lg:flex">
                                     <div class="col">
                                         <h3 class="text-base md:text-xl font-semibold">
-                                            {{ $produk->DetailCartItem }}</h3>
+                                            {{ $produk->DetailCartItem->Product->nama_produk }}</h3>
                                         <h4 class="font-semibold text-sm md:text-base flex">
                                             Rp.
-                                            <input type="text" id="harga" readonly value="10"
+                                            <input type="text" id="harga" readonly
+                                                value="{{ $produk->DetailCartitem->Product->harga_produk }}"
                                                 class="font-semibold text-sm md:text-base">
                                         </h4>
                                     </div>
@@ -201,4 +202,55 @@
 
         </div>
     </div>
+
+    {{-- java script --}}
+    <script type="text/javascript">
+        // ==== # sample 1 shopping cart ====
+        let addProdc = document.querySelector("#prodc_add");
+        let minProdc = document.querySelector("#prodc_min");
+        let getValProdc = document.querySelector("#prodc_qty").value;
+        let valProdc = document.getElementById("prodc_qty");
+        let getHarga = document.getElementById("harga").value;
+        let harga = document.getElementById("harga");
+        let hargaPcs = document.getElementById("harga_satuan").value;
+        addProdc.onclick = () => {
+            valProdc.value = ++getValProdc;
+            // dev
+            getHarga = getValProdc * hargaPcs;
+            harga.value = getHarga;
+            minProdc.disabled = false;
+            // dev
+            // console.log(harga.value);
+            // end dev
+        };
+        minProdc.onclick = () => {
+            valProdc.value = --getValProdc;
+            getHarga = getValProdc * hargaPcs;
+            harga.value = getHarga;
+            // dev
+            // console.log(harga.value);
+            // end dev
+            if (getValProdc <= 0) {
+                getValProdc.value = 0;
+                valProdc.value = 0;
+                harga.value = 0;
+                minProdc.disabled = true;
+            }
+        };
+
+        // =====  # sample 2 shopping cart ====
+        let addProdc2 = document.querySelector("#prodc_add2");
+        let minProdc2 = document.querySelector("#prodc_min2");
+        let valProdc2 = document.getElementById("prodc_qty2");
+        addProdc2.onclick = () => {
+            valProdc2.value = ++getValProdc;
+            minProdc2.disabled = false;
+        };
+        minProdc2.onclick = () => {
+            valProdc2.value = --getValProdc;
+            if (valProdc2.value <= 0) {
+                minProdc2.disabled = true;
+            }
+        };
+    </script>
 @endsection

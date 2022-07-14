@@ -19,8 +19,8 @@ class DetailCartItem extends Model
         return  $this->belongsTo(CartItem::class, 'id_cart');
     }
 
-    public function Produk()
+    public function Product()
     {
-        return $this->belongsTo(Produk::class, 'id_produk');
+        return $this->belongsTo(Product::class, 'id_produk');
     }
 }

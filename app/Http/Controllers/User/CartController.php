@@ -15,7 +15,6 @@ class CartController extends Controller
     {
         $getIdUser = Auth::user()->id_pengguna;
         $getCart = CartItem::where('id_pengguna', $getIdUser)->get();
-        $getCart = $getCart[20];
         // $countCart = count($getCart);
         // $countCart = $countCart - 1;
         // // return ddd($countCart);
