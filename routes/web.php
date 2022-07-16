@@ -51,6 +51,10 @@ Route::middleware(['auth'])->group(function () {
         return view('web.user.sections.account');
     })->name('user.account');
     Route::get('/address', [UserController::class, 'address'])->name('user.address');
+    Route::post('/address/change', [UserController::class, 'changeAddress'])->name('user.address.change');
+    Route::delete('/address/remove', [UserController::class, 'hapusAlamat'])->name('user.address.remove');
+
+
     Route::get('/orders', function () {
         return view('web.user.sections.orders');
     })->name('user.orders');

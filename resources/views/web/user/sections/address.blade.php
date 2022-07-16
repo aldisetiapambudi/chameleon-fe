@@ -19,23 +19,42 @@
             <div class="col w-full justify-start  lg:order-2">
                 <h1 class="text-lg md:text-2xl pl-4 font-semibold mt-4">Address</h1>
                 <div class="row lg:flex  ml-2 mt-2 md:mt-4">
+                    @if(isset($address[0]))
                     <div class="col max-w-full hover:bg-slate-100 ml-3 border-2 border-blue-800 rounded-xl ">
                         <div class="group flex justify-end translate-y-3 -translate-x-2">
-                            <form action="">
-                                <button type="submit" class="button group w-6 h-auto"><i
+                            <form action="{{ route('user.address.remove') }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="id_alamat" value="{{ $address[0]->id_alamat }}">
+                                <button type="submit" class="button group w-6 h-auto" onclick="confirm('Apakah anda yakin akan menghapus alamat?')"><i
                                         class="fas fa-trash hover:text-red-600"></i></button>
                             </form>
                         </div>
-                        <a href="#" class=" ">
+                        <a href="#" class=" " data-bs-toggle="modal" data-bs-target="#modalAddressBag">
                             <div class="card md:w-full max-w-2xl px-8 pb-4 md:mt-0">
                                 <h1 class="text-base md:text-xl font-semibold">
-                                    {{ Auth::user()->UserAddress[0]->nama_lengkap }}</h1>
+                                    {{ $address[0]->nama_lengkap }}</h1>
                                 <p class="text-xs md:text-sm mt-4 w-full">
-                                    {{ Auth::user()->UserAddress[0]->alamat_1 }}
+                                    {{ $address[0]->alamat_1 }}
                                 </p>
                             </div>
                         </a>
                     </div>
+                    @else
+                    <div class="col max-w-full hover:bg-slate-100 ml-3 border-2 border-blue-800 rounded-xl ">
+                        <a href="#" class=" " data-bs-toggle="modal" data-bs-target="#modalAddressBag">
+                            <div class="card md:w-full max-w-2xl px-8 pb-4 md:mt-0 text-center py-4">
+                                <p class="text-base md:text-md font-semibold p-4">
+                                Anda belum memilih alamat utama
+                                <i class="fas fa-map-marker-alt"></i>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    @endif
+
+
+
                     <div class="col max-w-full hover:bg-slate-100 border-2 border-blue-200 ml-3 mt-4 lg:mt-0  rounded-xl">
                         <button class="group" data-bs-toggle="modal" data-bs-target="#modalAddress">
 

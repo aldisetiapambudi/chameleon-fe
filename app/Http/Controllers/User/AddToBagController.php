@@ -36,4 +36,6 @@ class AddToBagController extends Controller
 
         return back()->with('successAddToCart', 'sukes');
     }
+
+
 }

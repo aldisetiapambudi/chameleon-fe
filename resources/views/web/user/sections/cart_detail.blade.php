@@ -69,13 +69,13 @@
                 <div class="row">
                     <h3 class="text-lg md:text-2xl font-bold">Address</h3>
                     <div class="card border-2 border-blue-500 active:border-blue-600 p-4 rounded-2xl mt-3 bg-slate-50">
-                        <h1 class="font-semibold text-base md:text-lg">CHAMELEON CLOTH</h1>
+                        <h1 class="font-semibold text-base md:text-lg">{{ $address[0]->nama_lengkap }}</h1>
                         <p class="text-sm md:text-base mb-6 mt-2">
-                            Jl. Patimuan - Kedungreja, Cinyawang, Patimuan, Cilacap53264083116200500
+                            {{ $address[0]->alamat_1 }} | {{ $address[0]->no_telp }}
                         </p>
                     </div>
                     <div class="card border-2 border-slate-400 p-4 rounded-2xl mt-3 bg-slate-50">
-                        <button data-bs-toggle="modal" data-bs-target="#modalAddressBag" class="flex mx-auto">
+                        <button  class="flex mx-auto">
                             <p class="font-semibold text-base md:text-lg">
                                 Pilih alamat lainnya <i class="fas fa-plus-circle" aria-hidden="true"></i>
                             </p>
