@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\DetailCartItem;
 use App\Models\CartItem;
 use App\Models\Product;
+Use App\Models\UserAddress;
+use Faker\Provider\UserAgent;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -15,6 +17,9 @@ class CartController extends Controller
     {
         $getIdUser = Auth::user()->id_pengguna;
         $getCart = CartItem::where('id_pengguna', $getIdUser)->get();
+
+        // return ddd($addressUser);
+
         // $countCart = count($getCart);
         // $countCart = $countCart - 1;
         // // return ddd($countCart);
@@ -34,6 +39,7 @@ class CartController extends Controller
         // $getDetailCart = CartItem::where('id_cart');
         return view('web.user.sections.cart_detail', [
             'cart' => $getCart,
+
         ]);
     }
 }
