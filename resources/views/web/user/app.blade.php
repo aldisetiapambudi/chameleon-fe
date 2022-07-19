@@ -6,14 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
     <title>CHAMELEON CLOTH</title>
     @stack('css')
     <!-- JS -->
 
-    <script src="https://kit.fontawesome.com/26c87d64a2.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/26c87d64a2.js" crossorigin="anonymous"></script> -->
 
+    <!-- On local development -->
+    <script src="{{ asset('vendor/fontawesome-free/js/all.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-3.6.0.min.js') }}"></script>
+    <!-- end on local development -->
+
 </head>
 
 <body>

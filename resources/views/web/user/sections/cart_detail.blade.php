@@ -1,6 +1,6 @@
 @extends('web.user.app')
 @section('section')
-    @include('web.user.sections.partials.modalAddressBag')
+
     <div class="container max-w-6xl w px-4 mx-auto">
         <h1 class="font-bold text-2xl lg:text-3xl">Bag</h1>
         <hr class="mt-2 mb-4 h-0.5 bg-blue-900">
@@ -48,7 +48,7 @@
                                                             value="1">
                                                     </div>
                                                     <div class="col">
-                                                        <button id="prodc_add"
+                                                        <button id="prodc_add" onclick="productAdd()"
                                                             class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white">
                                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                                         </button>
@@ -67,13 +67,27 @@
             </div>
             <div class="col md:ml-10 mt-4 md:mt-0 max-w-md ">
                 <div class="row">
+                    @if(isset($address[0]))
                     <h3 class="text-lg md:text-2xl font-bold">Address</h3>
                     <div class="card border-2 border-blue-500 active:border-blue-600 p-4 rounded-2xl mt-3 bg-slate-50">
                         <h1 class="font-semibold text-base md:text-lg">{{ $address[0]->nama_lengkap }}</h1>
                         <p class="text-sm md:text-base mb-6 mt-2">
                             {{ $address[0]->alamat_1 }} | {{ $address[0]->no_telp }}
                         </p>
+
                     </div>
+                    @else
+                    <div class="col max-w-full hover:bg-slate-100 border-2 border-blue-800 rounded-xl ">
+                        <a href="#" class=" ">
+                            <div class="card md:w-full max-w-2xl px-8 pb-4 md:mt-0 text-center py-4">
+                                <p class="text-base md:text-md font-semibold p-4">
+                                Anda belum memilih alamat utama pilih alamat utama anda <a href="{{ route('user.address') }}" class="text-blue-400">disini</a>
+                                <i class="fas fa-map-marker-alt"></i>
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    @endif
                     <div class="card border-2 border-slate-400 p-4 rounded-2xl mt-3 bg-slate-50">
                         <button  class="flex mx-auto">
                             <p class="font-semibold text-base md:text-lg">
@@ -206,52 +220,11 @@
 
     {{-- java script --}}
     <script type="text/javascript">
-        // ==== # sample 1 shopping cart ====
-        let addProdc = document.querySelector("#prodc_add");
-        let minProdc = document.querySelector("#prodc_min");
-        let getValProdc = document.querySelector("#prodc_qty").value;
-        let valProdc = document.getElementById("prodc_qty");
-        let getHarga = document.getElementById("harga").value;
-        let harga = document.getElementById("harga");
-        let hargaPcs = document.getElementById("harga_satuan").value;
-        addProdc.onclick = () => {
-            valProdc.value = ++getValProdc;
-            // dev
-            getHarga = getValProdc * hargaPcs;
-            harga.value = getHarga;
-            minProdc.disabled = false;
-            // dev
-            // console.log(harga.value);
-            // end dev
-        };
-        minProdc.onclick = () => {
-            valProdc.value = --getValProdc;
-            getHarga = getValProdc * hargaPcs;
-            harga.value = getHarga;
-            // dev
-            // console.log(harga.value);
-            // end dev
-            if (getValProdc <= 0) {
-                getValProdc.value = 0;
-                valProdc.value = 0;
-                harga.value = 0;
-                minProdc.disabled = true;
-            }
-        };
+    function productAdd(){
 
-        // =====  # sample 2 shopping cart ====
-        let addProdc2 = document.querySelector("#prodc_add2");
-        let minProdc2 = document.querySelector("#prodc_min2");
-        let valProdc2 = document.getElementById("prodc_qty2");
-        addProdc2.onclick = () => {
-            valProdc2.value = ++getValProdc;
-            minProdc2.disabled = false;
-        };
-        minProdc2.onclick = () => {
-            valProdc2.value = --getValProdc;
-            if (valProdc2.value <= 0) {
-                minProdc2.disabled = true;
-            }
-        };
+        console.log('ok');
+    }
+
+
     </script>
 @endsection

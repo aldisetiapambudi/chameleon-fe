@@ -17,7 +17,7 @@ class CartController extends Controller
     {
         $getIdUser = Auth::user()->id_pengguna;
         $getCart = CartItem::where('id_pengguna', $getIdUser)->get();
-
+        $addressUser = UserAddress::where('id_pengguna', $getIdUser)->where('main', 1)->get();
         // return ddd($addressUser);
 
         // $countCart = count($getCart);
@@ -39,6 +39,7 @@ class CartController extends Controller
         // $getDetailCart = CartItem::where('id_cart');
         return view('web.user.sections.cart_detail', [
             'cart' => $getCart,
+            'address' => $addressUser,
 
         ]);
     }

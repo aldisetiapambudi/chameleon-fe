@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-    id="modalAddressBag" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    id="modalAddressChange" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog relative w-auto pointer-events-none">
         <div

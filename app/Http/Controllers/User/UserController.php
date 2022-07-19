@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -10,6 +12,7 @@ Use App\Models\UserAddress;
 
 class UserController extends Controller
 {
+
     public function address()
     {
         $getIdUser = Auth::user()->id_pengguna;
@@ -36,5 +39,19 @@ class UserController extends Controller
         UserAddress::where('id_alamat', $request->id_alamat)->delete();
          return back();
     }
+
+
+    // public function addAddress(Request $request)
+    // {
+    //     $provinsi = json_decode($this->get_provinsi());
+    //     $data['list_provinsi'] = $provinsi->rajaongkir->results;
+
+    //     if($request){
+
+    //     }
+
+    // }
+
+
 
 }

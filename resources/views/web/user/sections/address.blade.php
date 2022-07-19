@@ -30,7 +30,7 @@
                                         class="fas fa-trash hover:text-red-600"></i></button>
                             </form>
                         </div>
-                        <a href="#" class=" " data-bs-toggle="modal" data-bs-target="#modalAddressBag">
+                        <a href="#" class=" " data-bs-toggle="modal" data-bs-target="#modalAddressChange">
                             <div class="card md:w-full max-w-2xl px-8 pb-4 md:mt-0">
                                 <h1 class="text-base md:text-xl font-semibold">
                                     {{ $address[0]->nama_lengkap }}</h1>
@@ -42,7 +42,7 @@
                     </div>
                     @else
                     <div class="col max-w-full hover:bg-slate-100 ml-3 border-2 border-blue-800 rounded-xl ">
-                        <a href="#" class=" " data-bs-toggle="modal" data-bs-target="#modalAddressBag">
+                        <a href="#" class=" " data-bs-toggle="modal" data-bs-target="#modalAddressChange">
                             <div class="card md:w-full max-w-2xl px-8 pb-4 md:mt-0 text-center py-4">
                                 <p class="text-base md:text-md font-semibold p-4">
                                 Anda belum memilih alamat utama
@@ -56,7 +56,7 @@
 
 
                     <div class="col max-w-full hover:bg-slate-100 border-2 border-blue-200 ml-3 mt-4 lg:mt-0  rounded-xl">
-                        <button class="group" data-bs-toggle="modal" data-bs-target="#modalAddress">
+                        <button class="group" data-bs-toggle="modal" data-bs-target="#modalAddressAdd">
 
                             <div class="card w-48 md:w-96 max-w-2xl p-3 md:p-7 mt-3 md:mt-0 mx-auto lg:mx-0">
                                 <h1 class="text-base md:text-xl font-bold text-center my-4">
@@ -75,4 +75,92 @@
         </div>
     </div>
     @include('web.user.sections.partials.modalAddress')
+    @include('web.user.sections.partials.modalAddressAdd')
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            console.log('OK');
+            $('#select_prov').hide();
+            $('#select_kab').hide();
+            $('#select_kec').hide();
+
+// get provinsi
+                var str = $(this).val()
+                var res = ""
+                res = str.split(",")
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('address.get.provinsi') }}" ,
+                    dataType: 'JSON',
+                    data: {},
+                    success: function(data) {
+                        $.each(data.rajaongkir.results, function(key, value) {
+                            $('#select_prov').append('<option value="' + value.province_id + ',' + value.province + '">' + value.province + '</option>')
+                        });
+                        console.log(data)
+                        $('#select_prov').show();
+
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                        console.log(errorThrown);
+                    }
+                })
+
+            // end get provinsi
+
+            $('#select_prov').on('change', function() {
+                var str = $(this).val()
+                $('#select_kab').hide()
+                $('#select_kab').empty()
+                var res = ""
+                res = str.split(",")
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('address.get.kabupaten', '') }}" + "/" + res[0],
+                    dataType: 'JSON',
+                    data: {},
+                    success: function(data) {
+                        $.each(data.rajaongkir.results, function(key, value) {
+                            $('#select_kab').append('<option value="' + value.city_id + ',' + value.city_name + '">' + value.city_name + '</option>')
+                        });
+                        console.log(data)
+                        $('#select_kab').show()
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                        console.log(errorThrown);
+                    }
+                })
+            });
+            $('#select_kab').on('change', function() {
+                var str = $(this).val()
+                $('#select_kec').hide()
+                $('#select_kec').empty()
+                var res = ""
+                res = str.split(",")
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('address.get.kecamatan', '') }}" + "/" + res[0],
+                    dataType: 'JSON',
+                    data: {},
+                    success: function(data) {
+                        $.each(data.rajaongkir.results, function(key, value) {
+                            $('#select_kec').append('<option value="' + value.subdistrict_id + ',' + value.subdistrict_name + '">' + value.subdistrict_name + '</option>')
+                        });
+                        console.log(data)
+                        $('#select_kec').show()
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                        console.log(errorThrown);
+                    }
+                })
+            });
+
+
+        });
+
+    </script>
+
 @endsection
