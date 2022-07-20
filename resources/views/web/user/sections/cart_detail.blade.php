@@ -8,7 +8,7 @@
             <div class="col">
                 <!-- product -->
                 @foreach ($cart as $produk)
-                    <div class="row mt-3" id="komponen">
+                    <div class="row mt-3 komponen-{{ $produk->id_cart }}" id="komponen" data-komponen="{{ $produk->id_cart }}" >
                         <div class="card flex md:block lg:flex shadow-lg border-2 p-1">
                             <div class="col flex justify-center">
                                 <img src="{{ asset('images/product_3.jpeg') }}" alt="product image" class="w-40">
@@ -27,17 +27,18 @@
                                     </div>
                                     <div class="col md:ml-10 mt-4 md:mt-2">
                                         <div class="row">
-                                            <div class="col">
+                                            <div class="col" ">
                                                 {{-- <form action="{{ route('user.product.remove') }}" method="POST" > --}}
                                                     {{-- <form action="" method=""> --}}
                                                     {{-- @csrf --}}
                                                     {{-- @method('POST') --}}
-                                                    <input type="hidden" value="{{ $produk->DetailCartItem->Product->id_produk }}" name="id_produk" id="id_produk">
+
                                                     <input type="hidden" name="_token" id="csrfToken" value="{{ csrf_token() }}" />
-                                                    <input type="hidden" value="{{ $produk->id_cart }}" name="id_cart" id="id_cart">
-                                                    <input type="hidden" value="{{ $produk->DetailCartItem->id_detail_item_cart }}" name="id_detail_item_cart" id="id_detail_item_cart">
+                                                    <input type="text" name="_token" id="csrfToken" value="{{ $produk->id_cart }}" />
+                                                    <input type="text" name="_token" id="csrfToken" value="{{ $produk->DetailCartItem->id_detail_item_cart }}" />
+
                                                     <button type="button"
-                                                        class="w-full max-w-md h-auto p-2 bg-black text-white rounded-md HapusClass" id="btnHapus" name="btnHapus">Hapus</button>
+                                                        class="w-full max-w-md h-auto p-2 bg-black text-white rounded-md HapusClass" data-id-detail="{{ $produk->DetailCartItem->id_detail_item_cart }}" data-id-cart="{{ $produk->id_cart }}" id="btnHapus" >Hapus</button>
                                                  {{-- </form> --}}
                                             </div>
                                             <div class="col mt-2">
@@ -55,7 +56,7 @@
                                                             value="1">
                                                     </div>
                                                     <div class="col">
-                                                        <button id="prodc_add" onclick="productAdd()"
+                                                        <button id="prodc_add"
                                                             class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white">
                                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                                         </button>
@@ -69,6 +70,7 @@
                         </div>
                     </div>
                 @endforeach
+
                 <!-- End Product -->
 
             </div>
@@ -229,30 +231,40 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $('.HapusClass').on('click', function(){
+                var IdDetailCart = $(this).attr('data-id-detail');
+                var IdCart = $(this).attr('data-id-cart');
+                // -- on dev
+                // console.log(IdDetailCart)
+                // console.log(IdCart)
+                // return
+                 // --  end on dev
+                var tokenCsrf = $('#csrfToken').val()
+
                 if(confirm('Apakah anda yakin akan menghapus data?')){
-                    var idCart = $('#id_cart').val();
-                    var idDetailCart = $('#id_detail_item_cart').val();
-                    var tokenCsrf = $('#csrfToken').val()
-                    console.log('ID cart : ' ,idCart)
-                    console.log('ID Detail Cart : ' ,idDetailCart)
-                    console.log('Token : ' ,tokenCsrf)
 
                     $.ajax({
                         url: "{{ route('user.product.remove') }}",
                         type: "POST",
                         dataType: "JSON",
-                        cache: false,
+                        // cache: false,
                         data: {
-
-                            "id_cart": idCart,
-                            "id_detail_item_cart": idDetailCart,
+                            "idDetailCart_sendToController": IdDetailCart,
+                            'idCart_sendToController': IdCart,
                             "_token": tokenCsrf
                         },
                         success:function(response){
-                            console.log(response)
+                            // console.log(response)
+
+                            var delKomponen = $('#komponen').attr('data-komponen');
+
+                            if(delKomponen =  response[2]){
+                                $('.komponen-'+delKomponen).remove();
+                            }
                             if(response.success){
+
+
                                 alert('Item berhasil dihapus');
-                                $('#komponen').remove()
+
                             } else {
                                 console.log(response.success)
                                 alert('Hapus gagal');
