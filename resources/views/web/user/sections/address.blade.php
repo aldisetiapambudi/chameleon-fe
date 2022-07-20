@@ -30,19 +30,23 @@
                                         class="fas fa-trash hover:text-red-600"></i></button>
                             </form>
                         </div>
-                        <a href="#" class=" " data-bs-toggle="modal" data-bs-target="#modalAddressBag">
+                        <a href="#" class=" " data-bs-toggle="modal" data-bs-target="#modalAddressChange">
                             <div class="card md:w-full max-w-2xl px-8 pb-4 md:mt-0">
                                 <h1 class="text-base md:text-xl font-semibold">
                                     {{ $address[0]->nama_lengkap }}</h1>
+                                    <p class="text-xs md:text-sm ">
+                                        {{ $address[0]->no_telp }}
+                                    </p>
                                 <p class="text-xs md:text-sm mt-4 w-full">
                                     {{ $address[0]->alamat_1 }}
                                 </p>
+
                             </div>
                         </a>
                     </div>
                     @else
                     <div class="col max-w-full hover:bg-slate-100 ml-3 border-2 border-blue-800 rounded-xl ">
-                        <a href="#" class=" " data-bs-toggle="modal" data-bs-target="#modalAddressBag">
+                        <a href="#" class=" " data-bs-toggle="modal" data-bs-target="#modalAddressChange">
                             <div class="card md:w-full max-w-2xl px-8 pb-4 md:mt-0 text-center py-4">
                                 <p class="text-base md:text-md font-semibold p-4">
                                 Anda belum memilih alamat utama
@@ -53,20 +57,19 @@
                     </div>
                     @endif
 
-
-
-                    <div class="col max-w-full hover:bg-slate-100 border-2 border-blue-200 ml-3 mt-4 lg:mt-0  rounded-xl">
-                        <button class="group" data-bs-toggle="modal" data-bs-target="#modalAddress">
-
-                            <div class="card w-48 md:w-96 max-w-2xl p-3 md:p-7 mt-3 md:mt-0 mx-auto lg:mx-0">
+                    <div class="col max-w-full hover:bg-slate-100 ml-3 border-2 border-blue-400 rounded-xl mt-3 md:mt-2 xl:mt-0">
+                        <a href="#" class=" " data-bs-toggle="modal" data-bs-target="#modalAddressAdd">
+                            <div class="card md:w-full max-w-2xl px-8 pb-4 md:mt-0 ">
                                 <h1 class="text-base md:text-xl font-bold text-center my-4">
                                     <i class="fas fa-plus-circle group-hover:text-blue-600"></i>
                                 </h1>
-                                <p class="text-xs md:text-base text-center group-hover:text-blue-600">Tambah alamat
+                                <p class="text-xs md:text-base text-center group-hover:text-blue-600 ">Tambah alamat
                                     lainnya</p>
                             </div>
-                        </button>
+                        </a>
                     </div>
+
+
                 </div>
             </div>
             <div class="col w-1/2 max-w-xs lg:order-1 mt-5 ">
@@ -75,4 +78,8 @@
         </div>
     </div>
     @include('web.user.sections.partials.modalAddress')
+    @include('web.user.sections.partials.modalAddressAdd')
+
+
+
 @endsection

@@ -9,6 +9,7 @@ use App\Http\Controllers\User\LoginController;
 use App\Http\Controllers\User\AddToBagController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\RajaongkirController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -53,11 +54,21 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/address', [UserController::class, 'address'])->name('user.address');
     Route::post('/address/change', [UserController::class, 'changeAddress'])->name('user.address.change');
     Route::delete('/address/remove', [UserController::class, 'hapusAlamat'])->name('user.address.remove');
+    Route::post('/add/address', [UserController::class, 'addAddress'])->name('user.address.add');
 
 
     Route::get('/orders', function () {
         return view('web.user.sections.orders');
     })->name('user.orders');
+});
+
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('user/rajaongkir/get_provinsi/', [RajaongkirController::class, 'get_provinsi'])->name('address.get.provinsi');
+    Route::get('user/rajaongkir/get_kabupaten/{id}', [RajaongkirController::class, 'get_kabupaten'])->name('address.get.kabupaten');
+    Route::get('user/rajaongkir/get_kecamatan/{id}', [RajaongkirController::class, 'get_kecamatan'])->name('address.get.kecamatan');
+
+
 });
 
 

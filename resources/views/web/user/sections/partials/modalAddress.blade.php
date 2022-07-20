@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-    id="modalAddressBag" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    id="modalAddressChange" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog relative w-auto pointer-events-none">
         <div
@@ -23,13 +23,22 @@
                                 <li class="relative mr-1">
                                     <input class="sr-only peer" type="radio"
                                         value="{{ $address->id_alamat }}" name="changeAddressUser"
-                                        id="addressUser {{$address->id_alamat}}">
+                                        id="addressUser_{{$address->id_alamat}}">
                                     <label
                                         class="block p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent font-semibold"
-                                        for="addressUser {{$address->id_alamat}}">
-                                        {{ $address->nama_lengkap }}
+                                        for="addressUser_{{$address->id_alamat}}">
+                                        <p class="flex">
+                                           <i class="fas fa-user mr-2 my-auto"></i> {{ $address->nama_lengkap }}
+
+                                        </p>
+                                        <p class="text-xs my-auto font-normal">
+                                          <i class="fas fa-phone fa-sm"></i>
+                                            {{ $address->no_telp }}
+                                         </p>
+
                                         <p class="font-normal text-sm">
-                                            {{ $address->alamat_1 }}
+                                           {{ $address->alamat_1 }}
+                                           {{ $address->kecamatan }},  {{ $address->kabupaten }},  {{ $address->provinsi }}, Kode Pos : {{ $address->kode_pos }}
                                         </p>
                                     </label>
 
