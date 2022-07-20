@@ -60,6 +60,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/orders', function () {
         return view('web.user.sections.orders');
     })->name('user.orders');
+
+    Route::get('/cart', [CartController::class, 'index'])->name('user.cart_detail');
+    Route::post('/product/remove', [CartController::class, 'removeProduk'])->name('user.product.remove');
+
 });
 
 
@@ -73,7 +77,6 @@ Route::middleware(['auth'])->group(function(){
 
 
 
-Route::get('/cart', [CartController::class, 'index'])->name('user.cart_detail');
 
 Route::get('/order-details', function () {
     return view('web.user.sections.order_details');

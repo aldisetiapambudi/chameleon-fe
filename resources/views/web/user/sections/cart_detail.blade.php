@@ -8,7 +8,7 @@
             <div class="col">
                 <!-- product -->
                 @foreach ($cart as $produk)
-                    <div class="row mt-3">
+                    <div class="row mt-3" id="komponen">
                         <div class="card flex md:block lg:flex shadow-lg border-2 p-1">
                             <div class="col flex justify-center">
                                 <img src="{{ asset('images/product_3.jpeg') }}" alt="product image" class="w-40">
@@ -28,10 +28,17 @@
                                     <div class="col md:ml-10 mt-4 md:mt-2">
                                         <div class="row">
                                             <div class="col">
-                                                <form action="">
-                                                    <button type="submit"
-                                                        class="w-full max-w-md h-auto p-2 bg-black text-white rounded-md">Hapus</button>
-                                                </form>
+                                                {{-- <form action="{{ route('user.product.remove') }}" method="POST" > --}}
+                                                    {{-- <form action="" method=""> --}}
+                                                    {{-- @csrf --}}
+                                                    {{-- @method('POST') --}}
+                                                    <input type="hidden" value="{{ $produk->DetailCartItem->Product->id_produk }}" name="id_produk" id="id_produk">
+                                                    <input type="hidden" name="_token" id="csrfToken" value="{{ csrf_token() }}" />
+                                                    <input type="hidden" value="{{ $produk->id_cart }}" name="id_cart" id="id_cart">
+                                                    <input type="hidden" value="{{ $produk->DetailCartItem->id_detail_item_cart }}" name="id_detail_item_cart" id="id_detail_item_cart">
+                                                    <button type="button"
+                                                        class="w-full max-w-md h-auto p-2 bg-black text-white rounded-md HapusClass" id="btnHapus" name="btnHapus">Hapus</button>
+                                                 {{-- </form> --}}
                                             </div>
                                             <div class="col mt-2">
                                                 <div class="row flex justify-center">
@@ -220,10 +227,55 @@
 
     {{-- java script --}}
     <script type="text/javascript">
-    function productAdd(){
+        $(document).ready(function(){
+            $('.HapusClass').on('click', function(){
+                if(confirm('Apakah anda yakin akan menghapus data?')){
+                    var idCart = $('#id_cart').val();
+                    var idDetailCart = $('#id_detail_item_cart').val();
+                    var tokenCsrf = $('#csrfToken').val()
+                    console.log('ID cart : ' ,idCart)
+                    console.log('ID Detail Cart : ' ,idDetailCart)
+                    console.log('Token : ' ,tokenCsrf)
 
-        console.log('ok');
-    }
+                    $.ajax({
+                        url: "{{ route('user.product.remove') }}",
+                        type: "POST",
+                        dataType: "JSON",
+                        cache: false,
+                        data: {
+
+                            "id_cart": idCart,
+                            "id_detail_item_cart": idDetailCart,
+                            "_token": tokenCsrf
+                        },
+                        success:function(response){
+                            console.log(response)
+                            if(response.success){
+                                alert('Item berhasil dihapus');
+                                $('#komponen').remove()
+                            } else {
+                                console.log(response.success)
+                                alert('Hapus gagal');
+                            }
+                            console.log(response);
+                        },
+
+                    });
+
+                } else {
+                   return
+                }
+
+
+
+
+
+
+            });
+
+
+
+        });
 
 
     </script>
