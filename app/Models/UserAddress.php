@@ -11,7 +11,7 @@ class UserAddress extends Model
     use HasFactory, Uuids;
     protected $table = "alamat_pengguna";
     protected $primaryKey = 'id_alamat';
-
+    protected $guarded = ['id_alamat'];
 
     public function User()
     {

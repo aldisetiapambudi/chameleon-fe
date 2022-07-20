@@ -23,13 +23,22 @@
                                 <li class="relative mr-1">
                                     <input class="sr-only peer" type="radio"
                                         value="{{ $address->id_alamat }}" name="changeAddressUser"
-                                        id="addressUser {{$address->id_alamat}}">
+                                        id="addressUser_{{$address->id_alamat}}">
                                     <label
                                         class="block p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent font-semibold"
-                                        for="addressUser {{$address->id_alamat}}">
-                                        {{ $address->nama_lengkap }}
+                                        for="addressUser_{{$address->id_alamat}}">
+                                        <p class="flex">
+                                           <i class="fas fa-user mr-2 my-auto"></i> {{ $address->nama_lengkap }}
+
+                                        </p>
+                                        <p class="text-xs my-auto font-normal">
+                                          <i class="fas fa-phone fa-sm"></i>
+                                            {{ $address->no_telp }}
+                                         </p>
+
                                         <p class="font-normal text-sm">
-                                            {{ $address->alamat_1 }}
+                                           {{ $address->alamat_1 }}
+                                           {{ $address->kecamatan }},  {{ $address->kabupaten }},  {{ $address->provinsi }}, Kode Pos : {{ $address->kode_pos }}
                                         </p>
                                     </label>
 

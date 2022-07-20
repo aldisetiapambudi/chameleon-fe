@@ -4532,10 +4532,6 @@ textarea.form-control.is-invalid {
   --tw-border-opacity: 1;
   border-color: rgb(30 64 175 / var(--tw-border-opacity));
 }
-.border-blue-200 {
-  --tw-border-opacity: 1;
-  border-color: rgb(191 219 254 / var(--tw-border-opacity));
-}
 .border-yellow-300 {
   --tw-border-opacity: 1;
   border-color: rgb(253 224 71 / var(--tw-border-opacity));
@@ -4812,6 +4808,9 @@ textarea.form-control.is-invalid {
 }
 .pt-1 {
   padding-top: 0.25rem;
+}
+.pt-3 {
+  padding-top: 0.75rem;
 }
 .text-left {
   text-align: left;
@@ -5517,6 +5516,10 @@ textarea.form-control.is-invalid {
     margin-top: 0.75rem;
   }
 
+  .md\:mt-5 {
+    margin-top: 1.25rem;
+  }
+
   .md\:ml-10 {
     margin-left: 2.5rem;
   }
@@ -5651,11 +5654,6 @@ textarea.form-control.is-invalid {
     order: 1;
   }
 
-  .lg\:mx-0 {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-
   .lg\:mt-0 {
     margin-top: 0px;
   }
@@ -5698,8 +5696,12 @@ textarea.form-control.is-invalid {
 
 @media (min-width: 1280px) {
 
-  .xl\:w-96 {
-    width: 24rem;
+  .xl\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .xl\:mt-3 {
+    margin-top: 0.75rem;
   }
 
   .xl\:text-base {
