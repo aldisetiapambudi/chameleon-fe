@@ -1,5 +1,6 @@
 @extends('web.user.app')
 @section('section')
+@include('web.user.sections.partials.modalAddressCart')
 
     <div class="container max-w-6xl w px-4 mx-auto">
         <h1 class="font-bold text-2xl lg:text-3xl">Bag</h1>
@@ -34,9 +35,6 @@
                                                     {{-- @method('POST') --}}
 
                                                     <input type="hidden" name="_token" id="csrfToken" value="{{ csrf_token() }}" />
-                                                    <input type="text" name="_token" id="csrfToken" value="{{ $produk->id_cart }}" />
-                                                    <input type="text" name="_token" id="csrfToken" value="{{ $produk->DetailCartItem->id_detail_item_cart }}" />
-
                                                     <button type="button"
                                                         class="w-full max-w-md h-auto p-2 bg-black text-white rounded-md HapusClass" data-id-detail="{{ $produk->DetailCartItem->id_detail_item_cart }}" data-id-cart="{{ $produk->id_cart }}" id="btnHapus" >Hapus</button>
                                                  {{-- </form> --}}
@@ -79,11 +77,20 @@
                     @if(isset($address[0]))
                     <h3 class="text-lg md:text-2xl font-bold">Address</h3>
                     <div class="card border-2 border-blue-500 active:border-blue-600 p-4 rounded-2xl mt-3 bg-slate-50">
-                        <h1 class="font-semibold text-base md:text-lg">{{ $address[0]->nama_lengkap }}</h1>
-                        <p class="text-sm md:text-base mb-6 mt-2">
-                            {{ $address[0]->alamat_1 }} | {{ $address[0]->no_telp }}
+                        <h1 class="font-semibold text-base md:text-lg" id="nama_user">{{ $address[0]->nama_lengkap }}</h1>
+                        <p class="text-sm md:text-base m2-2 mt-2" >
+                           <span id="alamat_1_cart">{{ $address[0]->alamat_1 }} </span> |
+                           <span id="no_telp">{{ $address[0]->no_telp }}</span>
                         </p>
-
+                        <p class="text-xs md:text-sm ">
+                            <span id="address_kec">{{ $address[0]->kecamatan }}</span>,
+                            <span id="address_kab">{{ $address[0]->kabupaten }}</span>,
+                            <span id="address_prov">{{ $address[0]->provinsi }}</span> |
+                            <span id="address_kode_pos">{{ $address[0]->kode_pos }}</span>
+                        </p>
+                        <input type="hidden" id="id_kec"  value="{{ $address[0]->kecamatan_id }}">
+                        <input type="hidden" id="id_kab" value="{{ $address[0]->kabupaten_id }}">
+                        <input type="hidden" id="id_prov" value="{{ $address[0]->provinsi_id }}">
                     </div>
                     @else
                     <div class="col max-w-full hover:bg-slate-100 border-2 border-blue-800 rounded-xl ">
@@ -98,7 +105,7 @@
                     </div>
                     @endif
                     <div class="card border-2 border-slate-400 p-4 rounded-2xl mt-3 bg-slate-50">
-                        <button  class="flex mx-auto">
+                        <button  class="flex mx-auto"  data-bs-toggle="modal" data-bs-target="#modalAddressChangeCart">
                             <p class="font-semibold text-base md:text-lg">
                                 Pilih alamat lainnya <i class="fas fa-plus-circle" aria-hidden="true"></i>
                             </p>

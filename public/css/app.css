@@ -4809,9 +4809,6 @@ textarea.form-control.is-invalid {
 .pt-1 {
   padding-top: 0.25rem;
 }
-.pt-3 {
-  padding-top: 0.75rem;
-}
 .text-left {
   text-align: left;
 }
@@ -5516,16 +5513,12 @@ textarea.form-control.is-invalid {
     margin-top: 0.75rem;
   }
 
-  .md\:mt-5 {
-    margin-top: 1.25rem;
+  .md\:mt-2 {
+    margin-top: 0.5rem;
   }
 
   .md\:ml-10 {
     margin-left: 2.5rem;
-  }
-
-  .md\:mt-2 {
-    margin-top: 0.5rem;
   }
 
   .md\:mr-20 {
@@ -5698,10 +5691,6 @@ textarea.form-control.is-invalid {
 
   .xl\:mt-0 {
     margin-top: 0px;
-  }
-
-  .xl\:mt-3 {
-    margin-top: 0.75rem;
   }
 
   .xl\:text-base {
