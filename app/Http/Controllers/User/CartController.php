@@ -43,4 +43,25 @@ class CartController extends Controller
 
         ]);
     }
+
+    public function removeProduk(Request $request)
+    {
+
+        $idCart = $request->idCart_sendToController;
+        $idDetailCart = $request->idDetailCart_sendToController;
+        $elemenYangDihapus = $idCart;
+        $removeDetail = DetailCartItem::where('id_detail_item_cart', $idDetailCart)->delete();
+
+        $removeItem = CartItem::where('id_cart', $idCart)->delete();
+        return response()->json([
+            $removeDetail,
+            $removeItem,
+            $elemenYangDihapus,
+            'success' => true
+        ], 200);
+
+
+
+    }
+
 }

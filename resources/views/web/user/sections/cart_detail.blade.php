@@ -1,5 +1,6 @@
 @extends('web.user.app')
 @section('section')
+@include('web.user.sections.partials.modalAddressCart')
 
     <div class="container max-w-6xl w px-4 mx-auto">
         <h1 class="font-bold text-2xl lg:text-3xl">Bag</h1>
@@ -8,7 +9,7 @@
             <div class="col">
                 <!-- product -->
                 @foreach ($cart as $produk)
-                    <div class="row mt-3">
+                    <div class="row mt-3 komponen-{{ $produk->id_cart }}" id="komponen" data-komponen="{{ $produk->id_cart }}" >
                         <div class="card flex md:block lg:flex shadow-lg border-2 p-1">
                             <div class="col flex justify-center">
                                 <img src="{{ asset('images/product_3.jpeg') }}" alt="product image" class="w-40">
@@ -27,11 +28,16 @@
                                     </div>
                                     <div class="col md:ml-10 mt-4 md:mt-2">
                                         <div class="row">
-                                            <div class="col">
-                                                <form action="">
-                                                    <button type="submit"
-                                                        class="w-full max-w-md h-auto p-2 bg-black text-white rounded-md">Hapus</button>
-                                                </form>
+                                            <div class="col" ">
+                                                {{-- <form action="{{ route('user.product.remove') }}" method="POST" > --}}
+                                                    {{-- <form action="" method=""> --}}
+                                                    {{-- @csrf --}}
+                                                    {{-- @method('POST') --}}
+
+                                                    <input type="hidden" name="_token" id="csrfToken" value="{{ csrf_token() }}" />
+                                                    <button type="button"
+                                                        class="w-full max-w-md h-auto p-2 bg-black text-white rounded-md HapusClass" data-id-detail="{{ $produk->DetailCartItem->id_detail_item_cart }}" data-id-cart="{{ $produk->id_cart }}" id="btnHapus" >Hapus</button>
+                                                 {{-- </form> --}}
                                             </div>
                                             <div class="col mt-2">
                                                 <div class="row flex justify-center">
@@ -48,7 +54,7 @@
                                                             value="1">
                                                     </div>
                                                     <div class="col">
-                                                        <button id="prodc_add" onclick="productAdd()"
+                                                        <button id="prodc_add"
                                                             class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white">
                                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                                         </button>
@@ -62,6 +68,7 @@
                         </div>
                     </div>
                 @endforeach
+
                 <!-- End Product -->
 
             </div>
@@ -70,11 +77,20 @@
                     @if(isset($address[0]))
                     <h3 class="text-lg md:text-2xl font-bold">Address</h3>
                     <div class="card border-2 border-blue-500 active:border-blue-600 p-4 rounded-2xl mt-3 bg-slate-50">
-                        <h1 class="font-semibold text-base md:text-lg">{{ $address[0]->nama_lengkap }}</h1>
-                        <p class="text-sm md:text-base mb-6 mt-2">
-                            {{ $address[0]->alamat_1 }} | {{ $address[0]->no_telp }}
+                        <h1 class="font-semibold text-base md:text-lg" id="nama_user">{{ $address[0]->nama_lengkap }}</h1>
+                        <p class="text-sm md:text-base m2-2 mt-2" >
+                           <span id="alamat_1_cart">{{ $address[0]->alamat_1 }} </span> |
+                           <span id="no_telp">{{ $address[0]->no_telp }}</span>
                         </p>
-
+                        <p class="text-xs md:text-sm ">
+                            <span id="address_kec">{{ $address[0]->kecamatan }}</span>,
+                            <span id="address_kab">{{ $address[0]->kabupaten }}</span>,
+                            <span id="address_prov">{{ $address[0]->provinsi }}</span> |
+                            <span id="address_kode_pos">{{ $address[0]->kode_pos }}</span>
+                        </p>
+                        <input type="hidden" id="id_kec"  value="{{ $address[0]->kecamatan_id }}">
+                        <input type="hidden" id="id_kab" value="{{ $address[0]->kabupaten_id }}">
+                        <input type="hidden" id="id_prov" value="{{ $address[0]->provinsi_id }}">
                     </div>
                     @else
                     <div class="col max-w-full hover:bg-slate-100 border-2 border-blue-800 rounded-xl ">
@@ -89,7 +105,7 @@
                     </div>
                     @endif
                     <div class="card border-2 border-slate-400 p-4 rounded-2xl mt-3 bg-slate-50">
-                        <button  class="flex mx-auto">
+                        <button  class="flex mx-auto"  data-bs-toggle="modal" data-bs-target="#modalAddressChangeCart">
                             <p class="font-semibold text-base md:text-lg">
                                 Pilih alamat lainnya <i class="fas fa-plus-circle" aria-hidden="true"></i>
                             </p>
@@ -220,10 +236,65 @@
 
     {{-- java script --}}
     <script type="text/javascript">
-    function productAdd(){
+        $(document).ready(function(){
+            $('.HapusClass').on('click', function(){
+                var IdDetailCart = $(this).attr('data-id-detail');
+                var IdCart = $(this).attr('data-id-cart');
+                // -- on dev
+                // console.log(IdDetailCart)
+                // console.log(IdCart)
+                // return
+                 // --  end on dev
+                var tokenCsrf = $('#csrfToken').val()
 
-        console.log('ok');
-    }
+                if(confirm('Apakah anda yakin akan menghapus data?')){
+
+                    $.ajax({
+                        url: "{{ route('user.product.remove') }}",
+                        type: "POST",
+                        dataType: "JSON",
+                        // cache: false,
+                        data: {
+                            "idDetailCart_sendToController": IdDetailCart,
+                            'idCart_sendToController': IdCart,
+                            "_token": tokenCsrf
+                        },
+                        success:function(response){
+                            // console.log(response)
+
+                            var delKomponen = $('#komponen').attr('data-komponen');
+
+                            if(delKomponen =  response[2]){
+                                $('.komponen-'+delKomponen).remove();
+                            }
+                            if(response.success){
+
+
+                                alert('Item berhasil dihapus');
+
+                            } else {
+                                console.log(response.success)
+                                alert('Hapus gagal');
+                            }
+                            console.log(response);
+                        },
+
+                    });
+
+                } else {
+                   return
+                }
+
+
+
+
+
+
+            });
+
+
+
+        });
 
 
     </script>
