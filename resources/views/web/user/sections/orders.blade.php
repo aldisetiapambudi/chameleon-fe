@@ -33,10 +33,9 @@
                                             <span class="block md:inline">{{ $order->status_transaksi }}</span>
                                         </h3>
                                         <h6 class="text-xs mt-2 md:mt-0 md:text-sm">
-                                            <span>01 Jumadil Awwal 1444 H</span>
+                                            <span>{{ $orderDateHijriah }}</span>
                                             <span>/</span>
-                                            <span>{{ $date }}</span>
-                                            <span>{{ $time }}</span>
+                                            <span>{{ $orderDate }}</span>
                                         </h6>
                                         <h2 class="text-base lg:text-xl mt-10 font-bold">
                                             Rp.@currency($order->total_harga)
