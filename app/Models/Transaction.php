@@ -33,4 +33,19 @@ class Transaction extends Model
             }
         });
     }
+
+    public function TransactionDetail()
+    {
+        return $this->hasMany(TransactionDetail::class, 'id_transaksi');
+    }
+
+    public function UserAddress()
+    {
+        return $this->belongsTo(UserAddress::class, 'id_alamat');
+    }
+
+
+
+
+
 }
