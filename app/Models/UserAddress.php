@@ -17,4 +17,10 @@ class UserAddress extends Model
     {
         return $this->belongsTo(User::class, 'id_pengguna');
     }
+
+    public function Transaction()
+    {
+        return $this->hasOne(Transaction::class, 'id_alamat');
+    }
+
 }

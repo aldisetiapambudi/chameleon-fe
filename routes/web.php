@@ -10,6 +10,7 @@ use App\Http\Controllers\User\AddToBagController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\RajaongkirController;
+use App\Http\Controllers\User\OrderController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -57,9 +58,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/add/address', [UserController::class, 'addAddress'])->name('user.address.add');
 
 
-    Route::get('/orders', function () {
-        return view('web.user.sections.orders');
-    })->name('user.orders');
+    Route::get('/orders', [OrderController::class, 'index'])->name('user.orders');
+
+    Route::get('/order-details/{kode_transaksi}', [OrderController::class, 'show'] )->name('user.order_details');
 
     Route::get('/cart', [CartController::class, 'index'])->name('user.cart_detail');
     Route::post('/product/remove', [CartController::class, 'removeProduk'])->name('user.product.remove');
@@ -78,9 +79,7 @@ Route::middleware(['auth'])->group(function(){
 
 
 
-Route::get('/order-details', function () {
-    return view('web.user.sections.order_details');
-})->name('user.order_details');
+
 
 Route::get('/list/{category}', [ListController::class, 'index'])->name('user.list');
 
