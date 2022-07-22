@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Pharaonic\LaravelHijri\LaravelHijri;
 
 class OrderController extends Controller
 {
@@ -38,12 +40,27 @@ class OrderController extends Controller
 
 
         $DetailTransaksi = TransactionDetail::where('kode_transaksi', $getKode)->get();
-        // $subTotal = $DetailTransaksi->jumlah_produk*$DetailTransaksi->total;
 
-        // return ddd($DetailTransaksi[0]->kode_transaksi);
+        $getTransaction = Transaction::where('kode_transaksi', $getKode)->get();
+        $waktu_kadaluarsa = $getTransaction[0]->waktu_exipired;
+        $waktu_order = $getTransaction[0]->waktu_transaksi;
+
+        $ExpHijriah = Carbon::parse($waktu_kadaluarsa)->toHijri()->isoFormat('dddd, D MMMM Y');
+        $ExpMasehi = Carbon::parse($waktu_kadaluarsa)->isoFormat('dddd, D MMMM Y, H:m:s');
+        $TransaksiHijriah = Carbon::parse($waktu_order)->toHijri()->isoFormat('dddd, D MMMM Y');
+        $TransaksiMasehi =  Carbon::parse($waktu_order)->isoFormat('dddd, D MMMM Y, H:m:s');
+        // // return ddd($waktu_expired);
+        // // return ddd($DetailTransaksi[0]->kode_transaksi);
+
+
+    //    return ddd();
         return view('web.user.sections.order_details', [
             'detailTransaksi' => $DetailTransaksi,
-            // 'subTotal' => $subTotal,
+            'expMasehi' => $ExpMasehi,
+            'expHijriah' => $ExpHijriah,
+            'orderDateHijriah' => $TransaksiHijriah,
+            'orderDateMasehi' => $TransaksiMasehi,
+
         ]);
     }
 

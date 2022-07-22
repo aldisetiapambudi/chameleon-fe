@@ -33,12 +33,11 @@
                 <div class="row">
                     <h3 class="text-lg md:text-2xl font-bold">Order Details</h3>
                     <div class="card mt-3">
-                        <h5>Order Date : <span class="font-semibold">01 Jumadil Awwal 1444 H </span> / 24 november 2022
-                            12:25:07</h5>
+                        <h5>Order Date : <span class="font-semibold">{{ $orderDateHijriah }} </span> / {{ $orderDateMasehi }}</h5>
                         <h5>Order Number : <span class="font-semibold">#{{ $detail->kode_transaksi }}</span></h5>
                         <h5>Receipt Number : <span class="font-semibold">{{ $detail->kode_transaksi }}</span></h5>
                         <h5>Status : <span class="font-semibold">{{ $detail->status_transaksi }}</span></h5>
-                        <h5>Make a payment before : <span class="font-semibold text-red-600">02 Jumadil Awwal 1444 H / {{  $detail->Transaction->waktu_expired }}</span></h5>
+                        <h5>Make a payment before : <span class="font-semibold text-red-600">{{ $expHijriah }} / {{ $expMasehi }} </span></h5>
                     </div>
                     <h3 class="text-lg md:text-2xl font-bold mt-3">Address</h3>
                     <div class="card border-2 border-blue-500 active:border-blue-600 p-4 rounded-2xl mt-3 bg-slate-50">
@@ -92,7 +91,7 @@
                             <h1 class="text-2xl font-bold">Total</h1>
                         </div>
                         <div class="col w-full">
-                            <h1 class="flex justify-end text-2xl font-bold">@currency($detail->Transaction->total_harga)</h1>
+                            <h1 class="flex justify-end text-2xl font-bold">Rp. @currency($detail->Transaction->total_harga)</h1>
                         </div>
                     </div>
                 </div>
