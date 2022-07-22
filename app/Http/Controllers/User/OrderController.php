@@ -20,15 +20,15 @@ class OrderController extends Controller
 
         foreach( $dataOrder as $date ){
             $date = $date->waktu_transaksi;
-            $convertDate = strtotime($date);
-            $dateConverted = date('l F Y ', $convertDate);
-            $time = date('h:i:s A');
+            $TransaksiHijriah = Carbon::parse($date)->toHijri()->isoFormat('dddd, D MMMM Y');
+            $TransaksiMasehi =  Carbon::parse($date)->isoFormat('dddd, D MMMM Y, H:m:s');
+
         }
         // return ddd($dateConverted);
         return view('web.user.sections.orders', [
-            'date' => $dateConverted,
-            'time' => $time,
             'orders' => $dataOrder,
+            'orderDate' => $TransaksiMasehi,
+            'orderDateHijriah' => $TransaksiHijriah
         ]);
     }
 
