@@ -49,9 +49,11 @@
                                         class="bg-green-500 hover:bg-green-600 text-white  w-full py-2 text-center px-auto rounded-xl text-end  text-sm  xl:text-base block mb-3">Lihat
                                         Pesanan</a>
 
-                                        <a href="#"
-                                            class="bg-blue-500 hover:bg-blue-600 text-white  w-full py-2 text-center px-2 rounded-xl text-end  text-sm  xl:text-base block mb-3">Konfirmasi
-                                            Pesanan</a>
+                                        <a href="#" id="konfirmasiBtn" data-bs-toggle="modal" data-bs-target="#modalKonfirmasi"
+                                            class="bg-blue-500 hover:bg-blue-600 text-white  w-full py-2 text-center px-2 rounded-xl text-end  text-sm  xl:text-base block mb-3 konfirm_pesan" data-kode-transaksi="{{ $order->kode_transaksi }}"
+                                            data-date-kadaluarsa="{{ $orderDate }}"
+                                            data-harga-total="Rp. @currency($order->total_harga) ">
+                                            Konfirmasi Pesanan</a>
                                     </div>
                                 </div>
                             </div>
@@ -69,4 +71,26 @@
             </div>
         </div>
     </div>
+    @include('web.user.sections.partials.modalKonfirmasi')
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('.konfirm_pesan').on('click', function(){
+            var getKode = $(this).attr('data-kode-transaksi');
+            var getHarga = $(this).attr('data-harga-total');
+            var getExp = $(this).attr('data-date-kadaluarsa');
+            // console.log("Kode :", getKode);
+            // console.log("Exp :", getExp);
+            // console.log("Harga :", getHarga);
+            $('#modal_kode').text(getKode);
+            $('#modal_totalHarga').text(getHarga);
+            $('#modal_expDate').text(getExp);
+            $('#kode_order').val(getKode);
+        });
+
+    });
+    </script>
+
+
+
 @endsection

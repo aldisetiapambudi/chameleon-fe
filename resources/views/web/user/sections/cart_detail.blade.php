@@ -43,19 +43,26 @@
                                                 <div class="row flex justify-center">
                                                     <div class="col">
                                                         <button id="prodc_min"
-                                                            class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white">
+                                                            class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white prodc_min" data-harga="{{ $produk->DetailCartitem->Product->harga_produk }}"
+                                                            data-aty="{{ $produk->DetailCartitem->qty  }}"
+                                                            data-id="{{ $produk->id_cart }}"  for="prodc_qty-{{ $produk->id_cart  }}"
+                                                            >
                                                             <i class="fa fa-minus" aria-hidden="true"></i>
                                                         </button>
                                                     </div>
                                                     <div class="col">
-                                                        <input type="hidden" value="10" id="harga_satuan">
-                                                        <input type="text" id="prodc_qty" name="prodc_qty"
-                                                            class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg"
-                                                            value="1">
+
+                                                        <input type="text" id="prodc_qty-{{ $produk->id_cart }}" name="prodc_qty"
+                                                            class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg prodc_qty-{{ $produk->id_cart  }}" data-id="{{ $produk->id_cart }}"
+                                                            value="{{ $produk->DetailCartItem->quantity }}">
                                                     </div>
                                                     <div class="col">
-                                                        <button id="prodc_add"
-                                                            class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white">
+                                                        <button id="prodc_add" for="prodc_qty-{{ $produk->id_cart  }}"
+                                                            class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white prodc_add"
+                                                            data-harga="{{ $produk->DetailCartitem->Product->harga_produk }}"
+                                                            data-aty="{{ $produk->DetailCartitem->qty  }}"
+                                                            data-id="{{ $produk->id_cart }}"
+                                                            >
                                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                                         </button>
                                                     </div>
@@ -67,8 +74,8 @@
                             </div>
                         </div>
                     </div>
+                    {{-- <h1 id="berat">{{ $produk->DetailCartitem->Product->berat_produk  }}</h1> --}}
                 @endforeach
-
                 <!-- End Product -->
 
             </div>
@@ -105,7 +112,7 @@
                     </div>
                     @endif
                     <div class="card border-2 border-slate-400 p-4 rounded-2xl mt-3 bg-slate-50">
-                        <button  class="flex mx-auto"  data-bs-toggle="modal" data-bs-target="#modalAddressChangeCart">
+                        <button class="flex mx-auto" data-bs-toggle="modal" data-bs-target="#modalAddressChangeCart">
                             <p class="font-semibold text-base md:text-lg">
                                 Pilih alamat lainnya <i class="fas fa-plus-circle" aria-hidden="true"></i>
                             </p>
@@ -183,7 +190,7 @@
                             text-xl font-semibold">Subtotal</td>
                                 <td class="text-xl flex justify-end ">
                                     <p class="font-semibold">
-                                        Rp. 895.000
+                                        Rp. @currency($totalHarga)
                                     </p>
                                 </td>
                             </tr>
@@ -236,7 +243,51 @@
 
     {{-- java script --}}
     <script type="text/javascript">
-        $(document).ready(function(){
+       $(document).ready(function(){
+    //  -- On Dev
+        var getHargaProdukPcs = 0;
+        $('.prodc_add').on('click', function(){
+            var id = $(this).attr('data-id');
+            var getQtyColumn = $('#prodc_qty-'+id).val();
+            getQtyColumn++;
+
+            $('#prodc_qty-'+id).val(getQtyColumn);
+
+
+            console.log(getQtyColumn);
+
+        });
+
+
+        $('.prodc_min').on('click', function(){
+            var id = $(this).attr('data-id');
+            var getQtyColumn = $('#prodc_qty-'+id).val();
+
+            if(getQtyColumn > 1){
+                getQtyColumn--;
+            }
+
+
+            $('#prodc_qty-'+id).val(getQtyColumn);
+
+
+            console.log(getQtyColumn);
+        });
+
+
+
+
+        // cek ongkir
+
+
+
+        // cek ongkir
+
+
+    // -- End Of Dev
+
+
+
             $('.HapusClass').on('click', function(){
                 var IdDetailCart = $(this).attr('data-id-detail');
                 var IdCart = $(this).attr('data-id-cart');

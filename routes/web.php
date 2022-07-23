@@ -59,8 +59,8 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/orders', [OrderController::class, 'index'])->name('user.orders');
-
     Route::get('/order-details/{kode_transaksi}', [OrderController::class, 'show'] )->name('user.order_details');
+    Route::post('/konfirmasi-order', [OrderController::class, 'konfirmasiPembayaran'])->name('user.order.konfirmasi');
 
     Route::get('/cart', [CartController::class, 'index'])->name('user.cart_detail');
     Route::post('/product/remove', [CartController::class, 'removeProduk'])->name('user.product.remove');
