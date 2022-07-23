@@ -21,9 +21,10 @@
                                             {{ $produk->DetailCartItem->Product->nama_produk }}</h3>
                                         <h4 class="font-semibold text-sm md:text-base flex">
                                             Rp.
-                                            <input type="text" id="harga" readonly
-                                                value="{{ $produk->DetailCartitem->Product->harga_produk }}"
+                                            <input type="text" id="harga-{{ $produk->id_cart  }}" readonly
+                                                value=" @currency($produk->DetailCartitem->Product->harga_produk)"
                                                 class="font-semibold text-sm md:text-base">
+                                            <input type="hidden" id="hargaPcs-{{ $produk->id_cart }}" value="{{ $produk->DetailCartitem->Product->harga_produk }}">
                                         </h4>
                                     </div>
                                     <div class="col md:ml-10 mt-4 md:mt-2">
@@ -249,12 +250,18 @@
         $('.prodc_add').on('click', function(){
             var id = $(this).attr('data-id');
             var getQtyColumn = $('#prodc_qty-'+id).val();
+            var getHarga = $('#harga-'+id).val()
+
+
             getQtyColumn++;
+            var updateQty = $('#prodc_qty-'+id).val(getQtyColumn);
 
-            $('#prodc_qty-'+id).val(getQtyColumn);
+            var getHargaPcs = $('#hargaPcs-'+id).val();
+            console.log(getHargaPcs);
+            var hitungProduk = getQtyColumn*getHargaPcs;
+            $('#harga-'+id).val(hitungProduk);
 
-
-            console.log(getQtyColumn);
+            console.log(hitungProduk);
 
         });
 
