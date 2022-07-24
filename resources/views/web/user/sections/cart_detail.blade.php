@@ -61,7 +61,7 @@
                                                         <button id="prodc_add" for="prodc_qty-{{ $produk->id_cart  }}"
                                                             class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white prodc_add"
                                                             data-harga="{{ $produk->DetailCartitem->Product->harga_produk }}"
-                                                            data-aty="{{ $produk->DetailCartitem->qty  }}"
+                                                            data-ty="{{ $produk->DetailCartitem->qty  }}"
                                                             data-id="{{ $produk->id_cart }}"
                                                             >
                                                             <i class="fa fa-plus" aria-hidden="true"></i>
@@ -75,10 +75,11 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <h1 id="berat">{{ $produk->DetailCartitem->Product->berat_produk  }}</h1> --}}
+                    <input type="text" class="berat_satuan_class" id="berat_satuan-{{ $produk->id_cart }}" value="{{ $produk->DetailCartitem->Product->berat_produk  }}"></input>
+                    <input type="hidden" id="berat_satuan_fix-{{ $produk->id_cart }}" value="{{ $produk->DetailCartitem->Product->berat_produk  }}"></input>
                 @endforeach
                 <!-- End Product -->
-
+                    <input type="text" id="total_berat" value="{{ $totalBerat }}" ></input>
             </div>
             <div class="col md:ml-10 mt-4 md:mt-0 max-w-md ">
                 <div class="row">
@@ -245,7 +246,36 @@
     {{-- java script --}}
     <script type="text/javascript">
        $(document).ready(function(){
-    //  -- On Dev
+        //  -- On Dev
+
+        // kalkulasi berat
+
+
+
+        // end kalkulasi berat
+
+        // kalkulasi ongkir
+
+        // end kalkulasi ongkir
+
+
+
+
+                // cek ongkir
+
+
+
+                // cek ongkir
+
+
+        // -- End Of Dev
+        // kalkulasi berat
+
+        $('.berat_satuan_class').on('change', function(){
+            console.log('Berat total bertambah');
+        });
+
+    // add and minus product
         var getHargaProdukPcs = 0;
         $('.prodc_add').on('click', function(){
             var id = $(this).attr('data-id');
@@ -262,6 +292,14 @@
             $('#harga-'+id).val(hitungProduk);
 
             console.log(hitungProduk);
+            // tambah berat
+            var beratPcs = $('#berat_satuan_fix-'+id).val();
+            console.log(beratPcs);
+            console.log(getQtyColumn);
+
+            var tambah_berat = beratPcs*getQtyColumn;
+            $('#berat_satuan-'+id).val(tambah_berat);
+            console.log(tambah_berat);
 
         });
 
@@ -269,41 +307,53 @@
         $('.prodc_min').on('click', function(){
             var id = $(this).attr('data-id');
             var getQtyColumn = $('#prodc_qty-'+id).val();
+            var getHarga = $('#harga-'+id).val()
+
 
             if(getQtyColumn > 1){
                 getQtyColumn--;
+                var updateQty = $('#prodc_qty-'+id).val(getQtyColumn);
+
+                var getHargaPcs = $('#hargaPcs-'+id).val();
+                console.log(getHargaPcs);
+                var hitungProduk = getQtyColumn*getHargaPcs;
+                $('#harga-'+id).val(hitungProduk);
+
+                console.log(hitungProduk);
+                $('#prodc_qty-'+id).val(getQtyColumn);
+                console.log(getQtyColumn);
+
+                // kurang berat
+                var beratPcs = $('#berat_satuan_fix-'+id).val();
+                console.log(beratPcs);
+                console.log(getQtyColumn);
+
+                var tambah_berat = beratPcs*getQtyColumn;
+                $('#berat_satuan-'+id).val(tambah_berat);
+                console.log(tambah_berat);
             }
 
 
-            $('#prodc_qty-'+id).val(getQtyColumn);
 
 
-            console.log(getQtyColumn);
+
+
+
         });
 
+        // end
 
 
-
-        // cek ongkir
-
-
-
-        // cek ongkir
-
-
-    // -- End Of Dev
-
-
+        // hapus action
 
             $('.HapusClass').on('click', function(){
                 var IdDetailCart = $(this).attr('data-id-detail');
                 var IdCart = $(this).attr('data-id-cart');
-                // -- on dev
-                // console.log(IdDetailCart)
-                // console.log(IdCart)
-                // return
-                 // --  end on dev
+
                 var tokenCsrf = $('#csrfToken').val()
+
+                var getBeratTotalProduct = $('#total_berat').val();
+                var getBeratProductRemove = $('#berat_satuan-'+IdCart).val();
 
                 if(confirm('Apakah anda yakin akan menghapus data?')){
 
@@ -320,13 +370,18 @@
                         success:function(response){
                             // console.log(response)
 
-                            var delKomponen = $('#komponen').attr('data-komponen');
 
+                            var delKomponen = $('#komponen').attr('data-komponen');
                             if(delKomponen =  response[2]){
                                 $('.komponen-'+delKomponen).remove();
                             }
                             if(response.success){
-
+                                // hapus berat
+                                var kurangBerat = getBeratTotalProduct-getBeratProductRemove;
+                                $('#total_berat').val(kurangBerat);
+                                console.log(kurangBerat);
+                                getBeratProductRemove.remove();
+                                // end hapus berat
 
                                 alert('Item berhasil dihapus');
 
@@ -343,16 +398,13 @@
                    return
                 }
 
-
-
-
-
-
             });
 
+            // end Hapus action
 
 
         });
+
 
 
     </script>
