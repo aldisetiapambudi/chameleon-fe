@@ -77,7 +77,7 @@
                     </div>
                     <input type="text" class="berat_satuan_class" id="berat_satuan-{{ $produk->id_cart }}" value="{{ $produk->DetailCartitem->Product->berat_produk  }}"></input>
                     <input type="hidden" id="berat_satuan_fix-{{ $produk->id_cart }}" value="{{ $produk->DetailCartitem->Product->berat_produk  }}"></input>
-                @endforeach
+                    @endforeach
                 <!-- End Product -->
                     <input type="text" id="total_berat" value="{{ $totalBerat }}" ></input>
             </div>
@@ -192,8 +192,9 @@
                             text-xl font-semibold">Subtotal</td>
                                 <td class="text-xl flex justify-end ">
                                     <p class="font-semibold" id="total_harga" data-harga="{{ $totalHarga }}">
-                                        Rp. @currency($totalHarga)
+                                        {{ $totalHarga }}
                                     </p>
+                                    {{-- <input type="text" id="total"> --}}
                                 </td>
                             </tr>
                             <tr>
@@ -313,6 +314,7 @@
             totalHarga = parseInt(totalHarga)+parseInt(getHargaPcs);
             // console.log('Total harga',totalHarga);
             $('#total_harga').text(totalHarga);
+            $('#total_harga').attr('data-harga', totalHarga);
 
         });
 
@@ -354,6 +356,7 @@
                 totalHarga = parseInt(totalHarga)-parseInt(getHargaPcs);
                 // console.log('Total harga',totalHarga);
                 $('#total_harga').text(totalHarga);
+                $('#total_harga').attr('data-harga', totalHarga);
 
             }
 
@@ -378,6 +381,8 @@
 
                 var getBeratTotalProduct = $('#total_berat').val();
                 var getBeratProductRemove = $('#berat_satuan-'+IdCart).val();
+
+                var hargaHapus = $('#harga-'+IdCart).val();
 
                 if(confirm('Apakah anda yakin akan menghapus data?')){
 
@@ -406,6 +411,12 @@
                                 // console.log(kurangBerat);
                                 $('#berat_satuan-'+IdCart).remove();
                                 // end hapus berat
+
+                                // hapus harga total
+                                 var hapusHarga = parseInt(totalHarga)-parseInt(hargaHapus);
+                                console.log('harga pasca hapus', hapusHarga)
+                                $('#total_harga').text(hapusHarga);
+
 
                                 alert('Item berhasil dihapus');
 
