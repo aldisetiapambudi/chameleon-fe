@@ -191,7 +191,7 @@
                                 <td class="
                             text-xl font-semibold">Subtotal</td>
                                 <td class="text-xl flex justify-end ">
-                                    <p class="font-semibold">
+                                    <p class="font-semibold" id="total_harga" data-harga="{{ $totalHarga }}">
                                         Rp. @currency($totalHarga)
                                     </p>
                                 </td>
@@ -271,12 +271,13 @@
         // -- End Of Dev
         // kalkulasi berat
 
-        $('.berat_satuan_class').on('change', function(){
-            console.log('Berat total bertambah');
-        });
+
+         var totalBerat = $('#total_berat').val();
 
     // add and minus product
-        var getHargaProdukPcs = 0;
+        var totalHarga = $('#total_harga').attr('data-harga');
+
+
         $('.prodc_add').on('click', function(){
             var id = $(this).attr('data-id');
             var getQtyColumn = $('#prodc_qty-'+id).val();
@@ -294,12 +295,24 @@
             console.log(hitungProduk);
             // tambah berat
             var beratPcs = $('#berat_satuan_fix-'+id).val();
-            console.log(beratPcs);
-            console.log(getQtyColumn);
-
+            console.log('Berat Pcs :', beratPcs);
+            console.log('QTY column', getQtyColumn);
             var tambah_berat = beratPcs*getQtyColumn;
-            $('#berat_satuan-'+id).val(tambah_berat);
+
+            var hasil = $('#berat_satuan-'+id).val(tambah_berat);
+
             console.log(tambah_berat);
+
+            // berat total tambah
+            totalBerat = (parseInt(totalBerat)+parseInt(beratPcs));
+            // console.log('total berat' ,totalBerat);
+            $('#total_berat').val(totalBerat);
+
+
+            // tambah total harga
+            totalHarga = parseInt(totalHarga)+parseInt(getHargaPcs);
+            // console.log('Total harga',totalHarga);
+            $('#total_harga').text(totalHarga);
 
         });
 
@@ -331,6 +344,17 @@
                 var tambah_berat = beratPcs*getQtyColumn;
                 $('#berat_satuan-'+id).val(tambah_berat);
                 console.log(tambah_berat);
+
+                // berat total tambah
+                totalBerat = (parseInt(totalBerat)-parseInt(beratPcs));
+                console.log('total berat' ,totalBerat);
+                $('#total_berat').val(totalBerat);
+
+                   // tambah total harga
+                totalHarga = parseInt(totalHarga)-parseInt(getHargaPcs);
+                // console.log('Total harga',totalHarga);
+                $('#total_harga').text(totalHarga);
+
             }
 
 
@@ -379,8 +403,8 @@
                                 // hapus berat
                                 var kurangBerat = getBeratTotalProduct-getBeratProductRemove;
                                 $('#total_berat').val(kurangBerat);
-                                console.log(kurangBerat);
-                                getBeratProductRemove.remove();
+                                // console.log(kurangBerat);
+                                $('#berat_satuan-'+IdCart).remove();
                                 // end hapus berat
 
                                 alert('Item berhasil dihapus');
