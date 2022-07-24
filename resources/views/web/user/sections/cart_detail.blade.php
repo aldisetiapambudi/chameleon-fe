@@ -54,8 +54,8 @@
                                                     <div class="col">
 
                                                         <input type="text" id="prodc_qty-{{ $produk->id_cart }}" name="prodc_qty"
-                                                            class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg prodc_qty-{{ $produk->id_cart  }}" data-id="{{ $produk->id_cart }}"
-                                                            value="{{ $produk->DetailCartItem->quantity }}">
+                                                            class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg prodc_qty-class prodc_qty-{{ $produk->id_cart  }}" data-id="{{ $produk->id_cart }}"
+                                                            value="{{ $produk->DetailCartItem->quantity }}" onchange="cekAllOngkir()">
                                                     </div>
                                                     <div class="col">
                                                         <button id="prodc_add" for="prodc_qty-{{ $produk->id_cart  }}"
@@ -97,7 +97,7 @@
                             <span id="address_prov">{{ $address[0]->provinsi }}</span> |
                             <span id="address_kode_pos">{{ $address[0]->kode_pos }}</span>
                         </p>
-                        <input type="hidden" id="id_kec"  value="{{ $address[0]->kecamatan_id }}">
+                        <input type="text" id="id_kec"  value="{{ $address[0]->kecamatan_id }}" onchange="cekAllOngkir()">
                         <input type="hidden" id="id_kab" value="{{ $address[0]->kabupaten_id }}">
                         <input type="hidden" id="id_prov" value="{{ $address[0]->provinsi_id }}">
                     </div>
@@ -126,7 +126,7 @@
                     </span>
                     <ul class="flex mt-2 mb-10">
                         <li class="relative mr-1">
-                            <input class="sr-only peer" type="radio" value="yes" name="shipping" id="shipping_jne">
+                            <input class="sr-only peer" type="radio" value="jne" name="shipping" id="shipping_jne">
                             <label
                                 class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
                                 for="shipping_jne">
@@ -135,8 +135,8 @@
                                     <div class="row flex gap-2 mt-2">
                                         <div class="mx-auto flex">
                                             <div class="col mr-4  text-left">
-                                                <p class="text-xs md:text-sm">
-                                                    Rp.9.000,-
+                                                <p class="text-xs md:text-sm" id="ongkirJNE">
+                                                    Rp.0,-
                                                 </p>
                                             </div>
                                             <div class="col  w-full">
@@ -150,7 +150,7 @@
                             </label>
                         </li>
                         <li class="relative mr-1">
-                            <input class="sr-only peer" type="radio" value="yes" name="shipping" id="shipping_jnt">
+                            <input class="sr-only peer" type="radio" value="jnt" name="shipping" id="shipping_jnt">
                             <label
                                 class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
                                 for="shipping_jnt">
@@ -159,8 +159,8 @@
                                     <div class="row flex gap-2  mt-2">
                                         <div class="mx-auto flex">
                                             <div class="col mr-4  text-left">
-                                                <p class="text-xs md:text-sm">
-                                                    Rp.9.000,-
+                                                <p class="text-xs md:text-sm" id="ongkirJNT">
+                                                    Rp.0,-
                                                 </p>
                                             </div>
                                             <div class="col w-full">
@@ -226,7 +226,7 @@
                             <h1 class="text-2xl font-bold">Total</h1>
                         </div>
                         <div class="col w-full">
-                            <h1 class="flex justify-end text-2xl font-bold">Rp. 895.000</h1>
+                            <h1 class="flex justify-end text-2xl font-bold">Rp. 0</h1>
                         </div>
                     </div>
                     <div class="row">
@@ -249,11 +249,11 @@
        $(document).ready(function(){
         //  -- On Dev
 
-        // kalkulasi berat
+        // $('#prodc_qty-class').on('change', function(){
+        //     console.log('harga berubah');
+        // });
 
 
-
-        // end kalkulasi berat
 
         // kalkulasi ongkir
 
@@ -263,6 +263,78 @@
 
 
                 // cek ongkir
+            $('#kec_id').on('change', function(){
+                console.log('Kec id change berfungsi');
+                cekAllOngkir();
+            })
+
+
+
+
+            // var kurir = $(this).val();
+            var tujuan = $('#id_kec').val();
+            var mode = "GET";
+            var total_ongkirJne = 0;
+            var total_ongkirJnt = 0;
+            var total_berat = $('#total_berat').val();
+            $('#vocer').val();
+
+
+            ongkirJnt();
+            ongkirJne();
+
+            function ongkirJne() {
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('cek.ongkir') }}",
+                    dataType: 'JSON',
+                    data: {
+                        kurir: 'jne',
+                        tujuan: tujuan,
+                        berat: total_berat,
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        var ongkir =0;
+                            ongkirJne = data.rajaongkir.results[0].costs[0].cost[0].value
+
+                        total_ongkirJne = total_ongkirJne + ongkirJne;
+                        console.log(total_ongkirJne);
+                        $('#ongkirJNE').text(total_ongkirJne)
+                    }
+                });
+            }
+            function ongkirJnt() {
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('cek.ongkir') }}",
+                    dataType: 'JSON',
+                    data: {
+                        kurir: 'jnt',
+                        tujuan: tujuan,
+                        berat: total_berat,
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        var ongkir =0;
+                            ongkirJnt = data.rajaongkir.results[0].costs[0].cost[0].value
+
+                        total_ongkirJnt = total_ongkirJnt + ongkirJnt;
+                        console.log(total_ongkirJnt);
+                        $('#ongkirJNT').text(total_ongkirJnt);
+                    }
+                });
+
+            }
+
+           function cekAllOngkir()
+           {
+            console.log('mangil fungsi oke')
+            // ongkirJne();
+            // ongkirJnt();
+           }
+
+
 
 
 
@@ -270,130 +342,89 @@
 
 
         // -- End Of Dev
-        // kalkulasi berat
+
 
 
         var totalHarga = $('#total_harga').attr('data-harga');
-
-
-
         $('.prodc_add').on('click', function(){
              var totalBerat = $('#total_berat').val();
-
-    // add and minus product
-
-
-
+            // add and minus product
             var id = $(this).attr('data-id');
             var getQtyColumn = $('#prodc_qty-'+id).val();
             var getHarga = $('#harga-'+id).val()
-
-
             getQtyColumn++;
             var updateQty = $('#prodc_qty-'+id).val(getQtyColumn);
-
             var getHargaPcs = $('#hargaPcs-'+id).val();
             console.log(getHargaPcs);
             var hitungProduk = getQtyColumn*getHargaPcs;
             $('#harga-'+id).val(hitungProduk);
-
             console.log(hitungProduk);
             // tambah berat
             var beratPcs = $('#berat_satuan_fix-'+id).val();
             console.log('Berat Pcs :', beratPcs);
             console.log('QTY column', getQtyColumn);
             var tambah_berat = beratPcs*getQtyColumn;
-
             var hasil = $('#berat_satuan-'+id).val(tambah_berat);
-
             console.log(tambah_berat);
-
             // berat total tambah
             totalBerat = (parseInt(totalBerat)+parseInt(beratPcs));
             // console.log('total berat' ,totalBerat);
             $('#total_berat').val(totalBerat);
-
-
             // tambah total harga
             totalHarga = parseInt($('#total_harga').attr('data-harga'))+parseInt(getHargaPcs);
             console.log('Total harga add',totalHarga);
             $('#total_harga').text(totalHarga);
             $('#total_harga').attr('data-harga', totalHarga);
 
+
         });
 
 
         $('.prodc_min').on('click', function(){
-
             var totalBerat = $('#total_berat').val();
-
-// add and minus product
-
-
+        // add and minus product
             var id = $(this).attr('data-id');
             var getQtyColumn = $('#prodc_qty-'+id).val();
             var getHarga = $('#harga-'+id).val()
-
-
             if(getQtyColumn > 1){
                 getQtyColumn--;
                 var updateQty = $('#prodc_qty-'+id).val(getQtyColumn);
-
                 var getHargaPcs = $('#hargaPcs-'+id).val();
                 console.log(getHargaPcs);
                 var hitungProduk = getQtyColumn*getHargaPcs;
                 $('#harga-'+id).val(hitungProduk);
-
                 console.log(hitungProduk);
                 $('#prodc_qty-'+id).val(getQtyColumn);
                 console.log(getQtyColumn);
-
                 // kurang berat
                 var beratPcs = $('#berat_satuan_fix-'+id).val();
                 console.log(beratPcs);
                 console.log(getQtyColumn);
-
                 var tambah_berat = beratPcs*getQtyColumn;
                 $('#berat_satuan-'+id).val(tambah_berat);
                 console.log(tambah_berat);
-
                 // berat total tambah
                 totalBerat = (parseInt(totalBerat)-parseInt(beratPcs));
                 console.log('total berat' ,totalBerat);
                 $('#total_berat').val(totalBerat);
-
                    // tambah total harga
                 totalHarga = parseInt($('#total_harga').attr('data-harga'))-parseInt(getHargaPcs);
                 console.log('Total harga min ',totalHarga);
                 $('#total_harga').text(totalHarga);
                 $('#total_harga').attr('data-harga', totalHarga);
-
             }
 
 
-
-
-
-
-
         });
-
         // end
-
-
         // hapus action
-
             $('.HapusClass').on('click', function(){
                 var IdDetailCart = $(this).attr('data-id-detail');
                 var IdCart = $(this).attr('data-id-cart');
-
                 var tokenCsrf = $('#csrfToken').val()
-
                 var getBeratTotalProduct = $('#total_berat').val();
                 var getBeratProductRemove = $('#berat_satuan-'+IdCart).val();
-
                 var hargaHapus = $('#harga-'+IdCart).val();
-
                 if(confirm('Apakah anda yakin akan menghapus data?')){
 
                     $.ajax({
@@ -408,8 +439,6 @@
                         },
                         success:function(response){
                             // console.log(response)
-
-
                             var delKomponen = $('#komponen').attr('data-komponen');
                             if(delKomponen =  response[2]){
                                 $('.komponen-'+delKomponen).remove();
@@ -428,6 +457,8 @@
                                 $('#total_harga').text(hapusHarga);
                                 $('#total_harga').attr('data-harga', hapusHarga);
 
+
+
                                 alert('Item berhasil dihapus');
 
                             } else {
@@ -436,18 +467,12 @@
                             }
                             console.log(response);
                         },
-
                     });
-
                 } else {
                    return
                 }
-
             });
-
             // end Hapus action
-
-
         });
 
 
