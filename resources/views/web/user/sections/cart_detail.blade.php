@@ -273,13 +273,17 @@
         // kalkulasi berat
 
 
-         var totalBerat = $('#total_berat').val();
-
-    // add and minus product
         var totalHarga = $('#total_harga').attr('data-harga');
 
 
+
         $('.prodc_add').on('click', function(){
+             var totalBerat = $('#total_berat').val();
+
+    // add and minus product
+
+
+
             var id = $(this).attr('data-id');
             var getQtyColumn = $('#prodc_qty-'+id).val();
             var getHarga = $('#harga-'+id).val()
@@ -311,8 +315,8 @@
 
 
             // tambah total harga
-            totalHarga = parseInt(totalHarga)+parseInt(getHargaPcs);
-            // console.log('Total harga',totalHarga);
+            totalHarga = parseInt($('#total_harga').attr('data-harga'))+parseInt(getHargaPcs);
+            console.log('Total harga add',totalHarga);
             $('#total_harga').text(totalHarga);
             $('#total_harga').attr('data-harga', totalHarga);
 
@@ -320,6 +324,12 @@
 
 
         $('.prodc_min').on('click', function(){
+
+            var totalBerat = $('#total_berat').val();
+
+// add and minus product
+
+
             var id = $(this).attr('data-id');
             var getQtyColumn = $('#prodc_qty-'+id).val();
             var getHarga = $('#harga-'+id).val()
@@ -353,8 +363,8 @@
                 $('#total_berat').val(totalBerat);
 
                    // tambah total harga
-                totalHarga = parseInt(totalHarga)-parseInt(getHargaPcs);
-                // console.log('Total harga',totalHarga);
+                totalHarga = parseInt($('#total_harga').attr('data-harga'))-parseInt(getHargaPcs);
+                console.log('Total harga min ',totalHarga);
                 $('#total_harga').text(totalHarga);
                 $('#total_harga').attr('data-harga', totalHarga);
 
@@ -416,7 +426,7 @@
                                  var hapusHarga = parseInt(totalHarga)-parseInt(hargaHapus);
                                 console.log('harga pasca hapus', hapusHarga)
                                 $('#total_harga').text(hapusHarga);
-
+                                $('#total_harga').attr('data-harga', hapusHarga);
 
                                 alert('Item berhasil dihapus');
 
