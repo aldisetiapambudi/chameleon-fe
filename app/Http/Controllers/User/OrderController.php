@@ -41,6 +41,12 @@ class OrderController extends Controller
 
         $DetailTransaksi = TransactionDetail::where('kode_transaksi', $getKode)->get();
 
+        $idPengguna = $DetailTransaksi[0]->Transaction->id_pengguna;
+        if(Auth::user()->id_pengguna !== $idPengguna){
+            return back();
+        }
+
+
         $getTransaction = Transaction::where('kode_transaksi', $getKode)->get();
         $waktu_kadaluarsa = $getTransaction[0]->waktu_exipired;
         $waktu_order = $getTransaction[0]->waktu_transaksi;
@@ -63,5 +69,11 @@ class OrderController extends Controller
 
         ]);
     }
+
+    public function konfirmasiPembayaran(Request $request)
+    {
+        return ddd($request->kode_order);
+    }
+
 
 }

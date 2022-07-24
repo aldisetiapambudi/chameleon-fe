@@ -1,5 +1,6 @@
 @extends('web.user.app')
 @section('section')
+
     <div class="container max-w-6xl w px-4 mx-auto">
         <h1 class="font-bold text-2xl lg:text-3xl">Order Details</h1>
         <hr class="mt-2 mb-4 h-0.5 bg-blue-900">
@@ -58,7 +59,7 @@
                             text-xl font-semibold">Subtotal</td>
                                 <td class="text-xl flex justify-end ">
                                     <p class="font-semibold">
-                                        Rp. @currency($detail->jumlah_produk*$detail->total)
+                                        Rp. @currency($detail->Transaction->total_harga)
                                     </p>
                                 </td>
                             </tr>

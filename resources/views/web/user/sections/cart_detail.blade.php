@@ -21,9 +21,10 @@
                                             {{ $produk->DetailCartItem->Product->nama_produk }}</h3>
                                         <h4 class="font-semibold text-sm md:text-base flex">
                                             Rp.
-                                            <input type="text" id="harga" readonly
-                                                value="{{ $produk->DetailCartitem->Product->harga_produk }}"
+                                            <input type="text" id="harga-{{ $produk->id_cart  }}" readonly
+                                                value=" @currency($produk->DetailCartitem->Product->harga_produk)"
                                                 class="font-semibold text-sm md:text-base">
+                                            <input type="hidden" id="hargaPcs-{{ $produk->id_cart }}" value="{{ $produk->DetailCartitem->Product->harga_produk }}">
                                         </h4>
                                     </div>
                                     <div class="col md:ml-10 mt-4 md:mt-2">
@@ -43,19 +44,26 @@
                                                 <div class="row flex justify-center">
                                                     <div class="col">
                                                         <button id="prodc_min"
-                                                            class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white">
+                                                            class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white prodc_min" data-harga="{{ $produk->DetailCartitem->Product->harga_produk }}"
+                                                            data-aty="{{ $produk->DetailCartitem->qty  }}"
+                                                            data-id="{{ $produk->id_cart }}"  for="prodc_qty-{{ $produk->id_cart  }}"
+                                                            >
                                                             <i class="fa fa-minus" aria-hidden="true"></i>
                                                         </button>
                                                     </div>
                                                     <div class="col">
-                                                        <input type="hidden" value="10" id="harga_satuan">
-                                                        <input type="text" id="prodc_qty" name="prodc_qty"
-                                                            class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg"
-                                                            value="1">
+
+                                                        <input type="text" id="prodc_qty-{{ $produk->id_cart }}" name="prodc_qty"
+                                                            class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg prodc_qty-{{ $produk->id_cart  }}" data-id="{{ $produk->id_cart }}"
+                                                            value="{{ $produk->DetailCartItem->quantity }}">
                                                     </div>
                                                     <div class="col">
-                                                        <button id="prodc_add"
-                                                            class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white">
+                                                        <button id="prodc_add" for="prodc_qty-{{ $produk->id_cart  }}"
+                                                            class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white prodc_add"
+                                                            data-harga="{{ $produk->DetailCartitem->Product->harga_produk }}"
+                                                            data-ty="{{ $produk->DetailCartitem->qty  }}"
+                                                            data-id="{{ $produk->id_cart }}"
+                                                            >
                                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                                         </button>
                                                     </div>
@@ -67,10 +75,11 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
-
+                    <input type="text" class="berat_satuan_class" id="berat_satuan-{{ $produk->id_cart }}" value="{{ $produk->DetailCartitem->Product->berat_produk  }}"></input>
+                    <input type="hidden" id="berat_satuan_fix-{{ $produk->id_cart }}" value="{{ $produk->DetailCartitem->Product->berat_produk  }}"></input>
+                    @endforeach
                 <!-- End Product -->
-
+                    <input type="text" id="total_berat" value="{{ $totalBerat }}" ></input>
             </div>
             <div class="col md:ml-10 mt-4 md:mt-0 max-w-md ">
                 <div class="row">
@@ -105,7 +114,7 @@
                     </div>
                     @endif
                     <div class="card border-2 border-slate-400 p-4 rounded-2xl mt-3 bg-slate-50">
-                        <button  class="flex mx-auto"  data-bs-toggle="modal" data-bs-target="#modalAddressChangeCart">
+                        <button class="flex mx-auto" data-bs-toggle="modal" data-bs-target="#modalAddressChangeCart">
                             <p class="font-semibold text-base md:text-lg">
                                 Pilih alamat lainnya <i class="fas fa-plus-circle" aria-hidden="true"></i>
                             </p>
@@ -182,9 +191,10 @@
                                 <td class="
                             text-xl font-semibold">Subtotal</td>
                                 <td class="text-xl flex justify-end ">
-                                    <p class="font-semibold">
-                                        Rp. 895.000
+                                    <p class="font-semibold" id="total_harga" data-harga="{{ $totalHarga }}">
+                                        {{ $totalHarga }}
                                     </p>
+                                    {{-- <input type="text" id="total"> --}}
                                 </td>
                             </tr>
                             <tr>
@@ -236,16 +246,143 @@
 
     {{-- java script --}}
     <script type="text/javascript">
-        $(document).ready(function(){
+       $(document).ready(function(){
+        //  -- On Dev
+
+        // kalkulasi berat
+
+
+
+        // end kalkulasi berat
+
+        // kalkulasi ongkir
+
+        // end kalkulasi ongkir
+
+
+
+
+                // cek ongkir
+
+
+
+                // cek ongkir
+
+
+        // -- End Of Dev
+        // kalkulasi berat
+
+
+         var totalBerat = $('#total_berat').val();
+
+    // add and minus product
+        var totalHarga = $('#total_harga').attr('data-harga');
+
+
+        $('.prodc_add').on('click', function(){
+            var id = $(this).attr('data-id');
+            var getQtyColumn = $('#prodc_qty-'+id).val();
+            var getHarga = $('#harga-'+id).val()
+
+
+            getQtyColumn++;
+            var updateQty = $('#prodc_qty-'+id).val(getQtyColumn);
+
+            var getHargaPcs = $('#hargaPcs-'+id).val();
+            console.log(getHargaPcs);
+            var hitungProduk = getQtyColumn*getHargaPcs;
+            $('#harga-'+id).val(hitungProduk);
+
+            console.log(hitungProduk);
+            // tambah berat
+            var beratPcs = $('#berat_satuan_fix-'+id).val();
+            console.log('Berat Pcs :', beratPcs);
+            console.log('QTY column', getQtyColumn);
+            var tambah_berat = beratPcs*getQtyColumn;
+
+            var hasil = $('#berat_satuan-'+id).val(tambah_berat);
+
+            console.log(tambah_berat);
+
+            // berat total tambah
+            totalBerat = (parseInt(totalBerat)+parseInt(beratPcs));
+            // console.log('total berat' ,totalBerat);
+            $('#total_berat').val(totalBerat);
+
+
+            // tambah total harga
+            totalHarga = parseInt(totalHarga)+parseInt(getHargaPcs);
+            // console.log('Total harga',totalHarga);
+            $('#total_harga').text(totalHarga);
+            $('#total_harga').attr('data-harga', totalHarga);
+
+        });
+
+
+        $('.prodc_min').on('click', function(){
+            var id = $(this).attr('data-id');
+            var getQtyColumn = $('#prodc_qty-'+id).val();
+            var getHarga = $('#harga-'+id).val()
+
+
+            if(getQtyColumn > 1){
+                getQtyColumn--;
+                var updateQty = $('#prodc_qty-'+id).val(getQtyColumn);
+
+                var getHargaPcs = $('#hargaPcs-'+id).val();
+                console.log(getHargaPcs);
+                var hitungProduk = getQtyColumn*getHargaPcs;
+                $('#harga-'+id).val(hitungProduk);
+
+                console.log(hitungProduk);
+                $('#prodc_qty-'+id).val(getQtyColumn);
+                console.log(getQtyColumn);
+
+                // kurang berat
+                var beratPcs = $('#berat_satuan_fix-'+id).val();
+                console.log(beratPcs);
+                console.log(getQtyColumn);
+
+                var tambah_berat = beratPcs*getQtyColumn;
+                $('#berat_satuan-'+id).val(tambah_berat);
+                console.log(tambah_berat);
+
+                // berat total tambah
+                totalBerat = (parseInt(totalBerat)-parseInt(beratPcs));
+                console.log('total berat' ,totalBerat);
+                $('#total_berat').val(totalBerat);
+
+                   // tambah total harga
+                totalHarga = parseInt(totalHarga)-parseInt(getHargaPcs);
+                // console.log('Total harga',totalHarga);
+                $('#total_harga').text(totalHarga);
+                $('#total_harga').attr('data-harga', totalHarga);
+
+            }
+
+
+
+
+
+
+
+        });
+
+        // end
+
+
+        // hapus action
+
             $('.HapusClass').on('click', function(){
                 var IdDetailCart = $(this).attr('data-id-detail');
                 var IdCart = $(this).attr('data-id-cart');
-                // -- on dev
-                // console.log(IdDetailCart)
-                // console.log(IdCart)
-                // return
-                 // --  end on dev
+
                 var tokenCsrf = $('#csrfToken').val()
+
+                var getBeratTotalProduct = $('#total_berat').val();
+                var getBeratProductRemove = $('#berat_satuan-'+IdCart).val();
+
+                var hargaHapus = $('#harga-'+IdCart).val();
 
                 if(confirm('Apakah anda yakin akan menghapus data?')){
 
@@ -262,12 +399,23 @@
                         success:function(response){
                             // console.log(response)
 
-                            var delKomponen = $('#komponen').attr('data-komponen');
 
+                            var delKomponen = $('#komponen').attr('data-komponen');
                             if(delKomponen =  response[2]){
                                 $('.komponen-'+delKomponen).remove();
                             }
                             if(response.success){
+                                // hapus berat
+                                var kurangBerat = getBeratTotalProduct-getBeratProductRemove;
+                                $('#total_berat').val(kurangBerat);
+                                // console.log(kurangBerat);
+                                $('#berat_satuan-'+IdCart).remove();
+                                // end hapus berat
+
+                                // hapus harga total
+                                 var hapusHarga = parseInt(totalHarga)-parseInt(hargaHapus);
+                                console.log('harga pasca hapus', hapusHarga)
+                                $('#total_harga').text(hapusHarga);
 
 
                                 alert('Item berhasil dihapus');
@@ -285,16 +433,13 @@
                    return
                 }
 
-
-
-
-
-
             });
 
+            // end Hapus action
 
 
         });
+
 
 
     </script>
