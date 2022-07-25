@@ -178,13 +178,13 @@
                 <div class="row mt-4">
                     <h3 class="text-lg md:text-2xl font-bold">Voucher</h3>
                     <div class="w-full h-16 rounded-xl mt-2">
-                        <form action="{{ route('validasi.vocer') }}" method="POST">
-                            @csrf
-                            @method('POST')
+                        {{-- <form action="{{ route('validasi.vocer') }}" method="POST"> --}}
+                            {{-- @csrf --}}
+                            {{-- @method('POST') --}}
                             <input type="text" id="inputVocer" name="kode"
                             class=" w-full h-full bg-yellow-100 text-slate-500 text-base md:text-lg py-3 px-4 rounded-xl border-[6px] border-yellow-500 border-dotted "
                             placeholder="Voucher code">
-                            <button type="submit">Cek vocer</button>
+                            {{-- <button type="submit">Cek vocer</button> --}}
                         </form>
 
                     </div>
@@ -221,7 +221,7 @@
                             <tr>
                                 <td>Voucher</td>
                                 <td class="text-xl flex justify-end">
-                                    <p class="">
+                                    <p class="" id="totalVocer">
                                         0
                                     </p>
                             </tr>
@@ -267,8 +267,8 @@
         }
 
         $('#inputVocer').on('change', function(){
-
-
+            validasiVocer();
+            // console.log('cek kolom vocer');
 
 
         });
@@ -335,7 +335,7 @@
         function validasiVocer() {
              var codeVoder = $('#inputVocer').val();
              var tokenCsrf = $('#csrfToken').val();
-             var hasilValidasi = "";
+
             $.ajax({
                 url: "{{ route('validasi.vocer') }}",
                 type: "POST",
@@ -345,13 +345,16 @@
                     "_token": tokenCsrf,
                 },
                 success:function(data){
-                    if(data.success){
-                        hasilValidasi = data.discount_vover, function(){
-                            console.log('hasilValidasi')
-                        }
+                    // console.log(data.totalDiskon);
+                    if(data.totalDiskon){
+                        var hasilValidasi = data.totalDiskon;
+                           $('#totalVocer').text(hasilValidasi);
+                            // console.log(hasilValidasi);
+                    } else {
+                        alert('Vocer anda tidak valid');
                     }
                 }
-            })
+            });
         }
 
 

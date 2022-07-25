@@ -12,6 +12,9 @@ Use App\Models\UserAddress;
 use Faker\Provider\UserAgent;
 use Illuminate\Support\Facades\Auth;
 
+
+use function PHPUnit\Framework\isEmpty;
+
 class CartController extends Controller
 {
     public function index()
@@ -80,17 +83,25 @@ class CartController extends Controller
 
     public function validasiVocer(Request $request)
     {
-
         $kodeVocer = $request->kode;
 
         $getDataVocer = ShippingVoucher::where('code_voucher', $kodeVocer)->get();
 
-        // return ddd($getDataVocer);
-        $getDiscount = $getDataVocer[0]->discount_voucher;
-        if($getDiscount){
-            return ddd('anda mendapatkan vocer sebanyak : '. $getDiscount);
-        } else {
-            return ddd('Anda tidak mendapat vocer');
+       if($getDataVocer->isNotEmpty()){
+           $getDiscount = $getDataVocer[0]->discount_voucher;
+        //    return ddd('anda mendapatkan vocer sebanyak : '. $getDiscount);
+            return response()->json([
+                'respon' => 'valid',
+                'totalDiskon' => $getDiscount,
+                'success' => true
+            ], 200);
+       }
+        else {
+        // return ddd("anda tidak mendapatkan discount");
+            return response()->json([
+                'respon' => 'tidakValid',
+                'success' => true
+            ], 200);
         }
 
 
