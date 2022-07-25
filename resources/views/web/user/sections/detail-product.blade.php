@@ -93,7 +93,7 @@
                     <ul class="flex mt-2 mb-10">
                         <li class="relative mr-1">
                             <input class="sr-only peer" type="radio" value="red premium" name="color_premium"
-                                id="color_premium_1">
+                                id="color_premium_1" >
                             <label
                                 class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
                                 for="color_premium_1">
