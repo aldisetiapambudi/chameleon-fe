@@ -54,8 +54,8 @@
                                                     <div class="col">
 
                                                         <input type="text" id="prodc_qty-{{ $produk->id_cart }}" name="prodc_qty"
-                                                            class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg prodc_qty-{{ $produk->id_cart  }}" data-id="{{ $produk->id_cart }}"
-                                                            value="{{ $produk->DetailCartItem->quantity }}">
+                                                            class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg prodc_qty-class prodc_qty-{{ $produk->id_cart  }}" data-id="{{ $produk->id_cart }}"
+                                                            value="{{ $produk->DetailCartItem->quantity }}" onchange="cekAllOngkir()">
                                                     </div>
                                                     <div class="col">
                                                         <button id="prodc_add" for="prodc_qty-{{ $produk->id_cart  }}"
@@ -97,7 +97,7 @@
                             <span id="address_prov">{{ $address[0]->provinsi }}</span> |
                             <span id="address_kode_pos">{{ $address[0]->kode_pos }}</span>
                         </p>
-                        <input type="hidden" id="id_kec"  value="{{ $address[0]->kecamatan_id }}">
+                        <input type="hidden" id="id_kec" class="kec_ganti"  value="{{ $address[0]->kecamatan_id }}">
                         <input type="hidden" id="id_kab" value="{{ $address[0]->kabupaten_id }}">
                         <input type="hidden" id="id_prov" value="{{ $address[0]->provinsi_id }}">
                     </div>
@@ -126,7 +126,7 @@
                     </span>
                     <ul class="flex mt-2 mb-10">
                         <li class="relative mr-1">
-                            <input class="sr-only peer" type="radio" value="yes" name="shipping" id="shipping_jne">
+                            <input class="sr-only peer" type="radio" value="jne" name="shipping" id="shipping_jne" onclick="getOngkirJne()">
                             <label
                                 class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
                                 for="shipping_jne">
@@ -135,8 +135,8 @@
                                     <div class="row flex gap-2 mt-2">
                                         <div class="mx-auto flex">
                                             <div class="col mr-4  text-left">
-                                                <p class="text-xs md:text-sm">
-                                                    Rp.9.000,-
+                                                <p class="text-xs md:text-sm" id="ongkirJNE">
+                                                    Rp.0,-
                                                 </p>
                                             </div>
                                             <div class="col  w-full">
@@ -150,7 +150,7 @@
                             </label>
                         </li>
                         <li class="relative mr-1">
-                            <input class="sr-only peer" type="radio" value="yes" name="shipping" id="shipping_jnt">
+                            <input class="sr-only peer" type="radio" value="jnt" name="shipping" id="shipping_jnt" onclick="getOngkirJnt()" >
                             <label
                                 class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
                                 for="shipping_jnt">
@@ -159,8 +159,8 @@
                                     <div class="row flex gap-2  mt-2">
                                         <div class="mx-auto flex">
                                             <div class="col mr-4  text-left">
-                                                <p class="text-xs md:text-sm">
-                                                    Rp.9.000,-
+                                                <p class="text-xs md:text-sm" id="ongkirJNT">
+                                                    Rp.0,-
                                                 </p>
                                             </div>
                                             <div class="col w-full">
@@ -178,9 +178,15 @@
                 <div class="row mt-4">
                     <h3 class="text-lg md:text-2xl font-bold">Voucher</h3>
                     <div class="w-full h-16 rounded-xl mt-2">
-                        <input type="text"
+                        {{-- <form action="{{ route('validasi.vocer') }}" method="POST"> --}}
+                            {{-- @csrf --}}
+                            {{-- @method('POST') --}}
+                            <input type="text" id="inputVocer" name="kode"
                             class=" w-full h-full bg-yellow-100 text-slate-500 text-base md:text-lg py-3 px-4 rounded-xl border-[6px] border-yellow-500 border-dotted "
                             placeholder="Voucher code">
+                            {{-- <button type="submit">Cek vocer</button> --}}
+                        </form>
+
                     </div>
                 </div>
                 <div class="row mt-6">
@@ -200,7 +206,7 @@
                             <tr>
                                 <td>Shipping</td>
                                 <td class="text-xl flex justify-end">
-                                    <p class="">
+                                    <p class="" id="total_shipping">
                                         Free
                                     </p>
 
@@ -215,7 +221,7 @@
                             <tr>
                                 <td>Voucher</td>
                                 <td class="text-xl flex justify-end">
-                                    <p class="">
+                                    <p class="" id="totalVocer">
                                         0
                                     </p>
                             </tr>
@@ -226,7 +232,7 @@
                             <h1 class="text-2xl font-bold">Total</h1>
                         </div>
                         <div class="col w-full">
-                            <h1 class="flex justify-end text-2xl font-bold">Rp. 895.000</h1>
+                            <h1 class="flex justify-end text-2xl font-bold">Rp. 0</h1>
                         </div>
                     </div>
                     <div class="row">
@@ -246,144 +252,199 @@
 
     {{-- java script --}}
     <script type="text/javascript">
+
+
+        //onclick="getOngkir()"
+        function getOngkirJnt() {
+            cekAllOngkir();
+            var getHargaOngkir = $('#ongkirJNT').text();
+            var replaceShipping = $('#total_shipping').text(getHargaOngkir);
+        }
+        function getOngkirJne() {
+            cekAllOngkir();
+            var getHargaOngkir = $('#ongkirJNE').text();
+            var replaceShipping = $('#total_shipping').text(getHargaOngkir);
+        }
+
+        $('#inputVocer').on('change', function(){
+            validasiVocer();
+            // console.log('cek kolom vocer');
+
+
+        });
+
+
+
+          function cekAllOngkir(){
+            var tujuan = $('#id_kec').val();
+            var mode = "GET";
+            var total_ongkirJne = 0;
+            var total_ongkirJnt = 0;
+            var total_berat = $('#total_berat').val();
+            $('#vocer').val();
+            ongkirJne();
+            ongkirJnt();
+
+             function ongkirJne() {
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('cek.ongkir') }}",
+                    dataType: 'JSON',
+                    data: {
+                        kurir: 'jne',
+                        tujuan: tujuan,
+                        berat: total_berat,
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        var ongkir =0;
+                            ongkirJne = data.rajaongkir.results[0].costs[0].cost[0].value
+
+                        total_ongkirJne = total_ongkirJne + ongkirJne;
+                        console.log(total_ongkirJne);
+                        $('#ongkirJNE').text(total_ongkirJne)
+                    }
+                });
+            }
+
+            function ongkirJnt() {
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('cek.ongkir') }}",
+                    dataType: 'JSON',
+                    data: {
+                        kurir: 'jnt',
+                        tujuan: tujuan,
+                        berat: total_berat,
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        var ongkir =0;
+                            ongkirJnt = data.rajaongkir.results[0].costs[0].cost[0].value
+
+                        total_ongkirJnt = total_ongkirJnt + ongkirJnt;
+                        console.log(total_ongkirJnt);
+                        $('#ongkirJNT').text(total_ongkirJnt);
+                    }
+                });
+
+            }
+        }
+
+
+        function validasiVocer() {
+             var codeVoder = $('#inputVocer').val();
+             var tokenCsrf = $('#csrfToken').val();
+
+            $.ajax({
+                url: "{{ route('validasi.vocer') }}",
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    "kode" :codeVoder,
+                    "_token": tokenCsrf,
+                },
+                success:function(data){
+                    // console.log(data.totalDiskon);
+                    if(data.totalDiskon){
+                        var hasilValidasi = data.totalDiskon;
+                           $('#totalVocer').text(hasilValidasi);
+                            // console.log(hasilValidasi);
+                    } else {
+                        alert('Vocer anda tidak valid');
+                    }
+                }
+            });
+        }
+
+
+
+        // ------ document ready
        $(document).ready(function(){
-        //  -- On Dev
 
-        // kalkulasi berat
-
+           cekAllOngkir();
 
 
-        // end kalkulasi berat
-
-        // kalkulasi ongkir
-
-        // end kalkulasi ongkir
-
-
-
-
-                // cek ongkir
-
-
-
-                // cek ongkir
-
-
-        // -- End Of Dev
-        // kalkulasi berat
-
-
-         var totalBerat = $('#total_berat').val();
-
-    // add and minus product
         var totalHarga = $('#total_harga').attr('data-harga');
-
-
         $('.prodc_add').on('click', function(){
+             var totalBerat = $('#total_berat').val();
+            // add and minus product
             var id = $(this).attr('data-id');
             var getQtyColumn = $('#prodc_qty-'+id).val();
             var getHarga = $('#harga-'+id).val()
-
-
             getQtyColumn++;
             var updateQty = $('#prodc_qty-'+id).val(getQtyColumn);
-
             var getHargaPcs = $('#hargaPcs-'+id).val();
             console.log(getHargaPcs);
             var hitungProduk = getQtyColumn*getHargaPcs;
             $('#harga-'+id).val(hitungProduk);
-
             console.log(hitungProduk);
             // tambah berat
             var beratPcs = $('#berat_satuan_fix-'+id).val();
             console.log('Berat Pcs :', beratPcs);
             console.log('QTY column', getQtyColumn);
             var tambah_berat = beratPcs*getQtyColumn;
-
             var hasil = $('#berat_satuan-'+id).val(tambah_berat);
-
             console.log(tambah_berat);
-
             // berat total tambah
             totalBerat = (parseInt(totalBerat)+parseInt(beratPcs));
             // console.log('total berat' ,totalBerat);
             $('#total_berat').val(totalBerat);
-
-
             // tambah total harga
-            totalHarga = parseInt(totalHarga)+parseInt(getHargaPcs);
-            // console.log('Total harga',totalHarga);
+            totalHarga = parseInt($('#total_harga').attr('data-harga'))+parseInt(getHargaPcs);
+            console.log('Total harga add',totalHarga);
             $('#total_harga').text(totalHarga);
             $('#total_harga').attr('data-harga', totalHarga);
 
+            cekAllOngkir();
         });
 
 
         $('.prodc_min').on('click', function(){
+            var totalBerat = $('#total_berat').val();
+        // add and minus product
             var id = $(this).attr('data-id');
             var getQtyColumn = $('#prodc_qty-'+id).val();
             var getHarga = $('#harga-'+id).val()
-
-
             if(getQtyColumn > 1){
                 getQtyColumn--;
                 var updateQty = $('#prodc_qty-'+id).val(getQtyColumn);
-
                 var getHargaPcs = $('#hargaPcs-'+id).val();
                 console.log(getHargaPcs);
                 var hitungProduk = getQtyColumn*getHargaPcs;
                 $('#harga-'+id).val(hitungProduk);
-
                 console.log(hitungProduk);
                 $('#prodc_qty-'+id).val(getQtyColumn);
                 console.log(getQtyColumn);
-
                 // kurang berat
                 var beratPcs = $('#berat_satuan_fix-'+id).val();
                 console.log(beratPcs);
                 console.log(getQtyColumn);
-
                 var tambah_berat = beratPcs*getQtyColumn;
                 $('#berat_satuan-'+id).val(tambah_berat);
                 console.log(tambah_berat);
-
                 // berat total tambah
                 totalBerat = (parseInt(totalBerat)-parseInt(beratPcs));
                 console.log('total berat' ,totalBerat);
                 $('#total_berat').val(totalBerat);
-
                    // tambah total harga
-                totalHarga = parseInt(totalHarga)-parseInt(getHargaPcs);
-                // console.log('Total harga',totalHarga);
+                totalHarga = parseInt($('#total_harga').attr('data-harga'))-parseInt(getHargaPcs);
+                console.log('Total harga min ',totalHarga);
                 $('#total_harga').text(totalHarga);
                 $('#total_harga').attr('data-harga', totalHarga);
-
             }
 
-
-
-
-
-
-
+            cekAllOngkir();
         });
-
         // end
-
-
         // hapus action
-
             $('.HapusClass').on('click', function(){
                 var IdDetailCart = $(this).attr('data-id-detail');
                 var IdCart = $(this).attr('data-id-cart');
-
                 var tokenCsrf = $('#csrfToken').val()
-
                 var getBeratTotalProduct = $('#total_berat').val();
                 var getBeratProductRemove = $('#berat_satuan-'+IdCart).val();
-
                 var hargaHapus = $('#harga-'+IdCart).val();
-
                 if(confirm('Apakah anda yakin akan menghapus data?')){
 
                     $.ajax({
@@ -398,8 +459,6 @@
                         },
                         success:function(response){
                             // console.log(response)
-
-
                             var delKomponen = $('#komponen').attr('data-komponen');
                             if(delKomponen =  response[2]){
                                 $('.komponen-'+delKomponen).remove();
@@ -416,7 +475,9 @@
                                  var hapusHarga = parseInt(totalHarga)-parseInt(hargaHapus);
                                 console.log('harga pasca hapus', hapusHarga)
                                 $('#total_harga').text(hapusHarga);
+                                $('#total_harga').attr('data-harga', hapusHarga);
 
+                                cekAllOngkir();
 
                                 alert('Item berhasil dihapus');
 
@@ -426,20 +487,16 @@
                             }
                             console.log(response);
                         },
-
                     });
-
                 } else {
                    return
                 }
-
             });
-
             // end Hapus action
 
 
-        });
 
+        });
 
 
     </script>

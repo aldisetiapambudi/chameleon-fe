@@ -32,7 +32,17 @@
                             Mandiri 1800004486124 A/N NAUFAL HUNAIF
                         </p>
                     </div>
-                    <div class="mt-4 border-2 modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+
+                    <div class="flex justify-left mt-2">
+                        <div class="mb-3 w-96">
+                          <label for="konfirmTransfer" class="form-label inline-block mb-2 text-gray-700">Upload file konfirmasi tranfer</label>
+                          <input class="form-control
+                          block w-full px-2 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding
+                          border border-solid border-gray-300 rounded transition ease-in-out m-0
+                          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="konfirmTransfer" type="file">
+                        </div>
+                      </div>
+                    <div class="mt-4  modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
 
                         <form action="{{ route("user.order.konfirmasi") }}" method="post">
                             @csrf()

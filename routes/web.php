@@ -65,6 +65,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('user.cart_detail');
     Route::post('/product/remove', [CartController::class, 'removeProduk'])->name('user.product.remove');
 
+    Route::post('validasi/vocer', [CartController::class, 'validasiVocer'])->name('validasi.vocer');
 });
 
 
@@ -72,6 +73,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('user/rajaongkir/get_provinsi/', [RajaongkirController::class, 'get_provinsi'])->name('address.get.provinsi');
     Route::get('user/rajaongkir/get_kabupaten/{id}', [RajaongkirController::class, 'get_kabupaten'])->name('address.get.kabupaten');
     Route::get('user/rajaongkir/get_kecamatan/{id}', [RajaongkirController::class, 'get_kecamatan'])->name('address.get.kecamatan');
+    Route::get('user/rajaongkir/cek_ongkir', [RajaongkirController::class, 'hitung_ongkir'])->name('cek.ongkir');
 
 
 });
