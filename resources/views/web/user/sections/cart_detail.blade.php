@@ -75,11 +75,11 @@
                             </div>
                         </div>
                     </div>
-                    <input type="text" class="berat_satuan_class" id="berat_satuan-{{ $produk->id_cart }}" value="{{ $produk->DetailCartitem->Product->berat_produk  }}"></input>
+                    <input type="hidden" class="berat_satuan_class" id="berat_satuan-{{ $produk->id_cart }}" value="{{ $produk->DetailCartitem->Product->berat_produk  }}"></input>
                     <input type="hidden" id="berat_satuan_fix-{{ $produk->id_cart }}" value="{{ $produk->DetailCartitem->Product->berat_produk  }}"></input>
                     @endforeach
                 <!-- End Product -->
-                    <input type="text" id="total_berat" value="{{ $totalBerat }}" ></input>
+                    <input type="hidden" id="total_berat" value="{{ $totalBerat }}" ></input>
             </div>
             <div class="col md:ml-10 mt-4 md:mt-0 max-w-md ">
                 <div class="row">
@@ -114,7 +114,7 @@
                     </div>
                     @endif
                     <div class="card border-2 border-slate-400 p-4 rounded-2xl mt-3 bg-slate-50">
-                        <button class="flex mx-auto" data-bs-toggle="modal" data-bs-target="#modalAddressChangeCart">
+                        <button class="flex mx-auto" data-bs-toggle="modal" data-bs-target="#modalAddressChangeCart" id="alamatLain">
                             <p class="font-semibold text-base md:text-lg">
                                 Pilih alamat lainnya <i class="fas fa-plus-circle" aria-hidden="true"></i>
                             </p>
@@ -207,14 +207,14 @@
                                 <td>Shipping</td>
                                 <td class="text-xl flex justify-end">
                                     <p class="" id="total_shipping">
-                                        Free
+                                        0
                                     </p>
 
                             </tr>
                             <tr>
                                 <td class="text-red-500">Discount</td>
                                 <td class="text-xl flex justify-end">
-                                    <p class="text-red-500">
+                                    <p class="text-red-500" id="totalDiscount">
                                         0
                                     </p>
                             </tr>
@@ -232,7 +232,7 @@
                             <h1 class="text-2xl font-bold">Total</h1>
                         </div>
                         <div class="col w-full">
-                            <h1 class="flex justify-end text-2xl font-bold">Rp. 0</h1>
+                            <h1 class="flex justify-end text-2xl font-bold">Rp. <span id="totalAll">0</span></h1>
                         </div>
                     </div>
                     <div class="row">
@@ -256,22 +256,24 @@
 
         //onclick="getOngkir()"
         function getOngkirJnt() {
-            cekAllOngkir();
             var getHargaOngkir = $('#ongkirJNT').text();
             var replaceShipping = $('#total_shipping').text(getHargaOngkir);
+            hitungTotal();
         }
         function getOngkirJne() {
-            cekAllOngkir();
+            // cekAllOngkir();
             var getHargaOngkir = $('#ongkirJNE').text();
             var replaceShipping = $('#total_shipping').text(getHargaOngkir);
+            hitungTotal();
         }
 
         $('#inputVocer').on('change', function(){
             validasiVocer();
             // console.log('cek kolom vocer');
-
-
+            hitungTotal();
         });
+
+        //  hitungTotal();
 
 
 
@@ -350,6 +352,7 @@
                         var hasilValidasi = data.totalDiskon;
                            $('#totalVocer').text(hasilValidasi);
                             // console.log(hasilValidasi);
+                            hitungTotal();
                     } else {
                         alert('Vocer anda tidak valid');
                     }
@@ -357,13 +360,44 @@
             });
         }
 
+        function hitungTotal(){
+            var subTotal = $('#total_harga').text();
+            subTotal = parseInt(subTotal);
+            var totalShipping = $('#total_shipping').text();
+            totalShipping = parseInt(totalShipping);
+            var totalDiscount = $('#totalDiscount').text();
+            totalDiscount = parseInt(totalDiscount);
+            var totalVocer = $('#totalVocer').text();
+            totalVocer = parseInt(totalVocer);
+
+
+
+            hitung = subTotal+totalShipping+totalDiscount+totalVocer;
+
+            $('#totalAll').text(hitung);
+            console.log(subTotal);
+            console.log(totalDiscount);
+            console.log(totalShipping);
+            console.log(totalDiscount);
+            console.log(totalDiscount);
+            console.log(totalAll);
+            console.log('TOTAL');
+            console.log(hitung);
+
+        }
+
+        $('#alamatLain').on('click', function(){
+            $('#shipping_jnt').prop('checked', false);
+            $('#shipping_jne').prop('checked', false);
+        });
+
 
 
         // ------ document ready
        $(document).ready(function(){
 
            cekAllOngkir();
-
+           hitungTotal();
 
         var totalHarga = $('#total_harga').attr('data-harga');
         $('.prodc_add').on('click', function(){
@@ -397,6 +431,7 @@
             $('#total_harga').attr('data-harga', totalHarga);
 
             cekAllOngkir();
+            hitungTotal();
         });
 
 
@@ -435,6 +470,7 @@
             }
 
             cekAllOngkir();
+            hitungTotal();
         });
         // end
         // hapus action
@@ -478,7 +514,7 @@
                                 $('#total_harga').attr('data-harga', hapusHarga);
 
                                 cekAllOngkir();
-
+                                hitungTotal();
                                 alert('Item berhasil dihapus');
 
                             } else {
