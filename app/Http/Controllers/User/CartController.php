@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\DetailCartItem;
 use App\Models\CartItem;
 use App\Models\Product;
+use App\Models\ShippingVoucher;
 Use App\Models\UserAddress;
 use Faker\Provider\UserAgent;
 use Illuminate\Support\Facades\Auth;
@@ -76,5 +77,24 @@ class CartController extends Controller
 
 
     }
+
+    public function validasiVocer(Request $request)
+    {
+
+        $kodeVocer = $request->kode;
+
+        $getDataVocer = ShippingVoucher::where('code_voucher', $kodeVocer)->get();
+
+        // return ddd($getDataVocer);
+        $getDiscount = $getDataVocer[0]->discount_voucher;
+        if($getDiscount){
+            return ddd('anda mendapatkan vocer sebanyak : '. $getDiscount);
+        } else {
+            return ddd('Anda tidak mendapat vocer');
+        }
+
+
+    }
+
 
 }

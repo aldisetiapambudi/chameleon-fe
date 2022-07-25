@@ -65,6 +65,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('user.cart_detail');
     Route::post('/product/remove', [CartController::class, 'removeProduk'])->name('user.product.remove');
 
+    Route::post('validasi/vocer', [CartController::class, 'validasiVocer'])->name('validasi.vocer');
 });
 
 

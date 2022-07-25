@@ -119,10 +119,11 @@ $(document).ready(function() {
         $('#address_prov').text(getProv);
         $('#address_kode_pos').text(getPos);
         $('#id_kec').val(getIdKec);
+        $('#kec_text').text(getIdKec);
         $('#id_kab').val(getIdKab);
         $('#id_prov').val(getIdProv);
 
-
+        cekAllOngkir();
         $('#modalAddressChangeCart').modal("toggle");
 
 

@@ -97,7 +97,7 @@
                             <span id="address_prov">{{ $address[0]->provinsi }}</span> |
                             <span id="address_kode_pos">{{ $address[0]->kode_pos }}</span>
                         </p>
-                        <input type="text" id="id_kec"  value="{{ $address[0]->kecamatan_id }}" onchange="cekAllOngkir()">
+                        <input type="hidden" id="id_kec" class="kec_ganti"  value="{{ $address[0]->kecamatan_id }}">
                         <input type="hidden" id="id_kab" value="{{ $address[0]->kabupaten_id }}">
                         <input type="hidden" id="id_prov" value="{{ $address[0]->provinsi_id }}">
                     </div>
@@ -126,7 +126,7 @@
                     </span>
                     <ul class="flex mt-2 mb-10">
                         <li class="relative mr-1">
-                            <input class="sr-only peer" type="radio" value="jne" name="shipping" id="shipping_jne">
+                            <input class="sr-only peer" type="radio" value="jne" name="shipping" id="shipping_jne" onclick="getOngkirJne()">
                             <label
                                 class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
                                 for="shipping_jne">
@@ -150,7 +150,7 @@
                             </label>
                         </li>
                         <li class="relative mr-1">
-                            <input class="sr-only peer" type="radio" value="jnt" name="shipping" id="shipping_jnt">
+                            <input class="sr-only peer" type="radio" value="jnt" name="shipping" id="shipping_jnt" onclick="getOngkirJnt()" >
                             <label
                                 class="flex p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:ring-blue-500 peer-checked:ring-2 peer-checked:border-transparent"
                                 for="shipping_jnt">
@@ -178,9 +178,15 @@
                 <div class="row mt-4">
                     <h3 class="text-lg md:text-2xl font-bold">Voucher</h3>
                     <div class="w-full h-16 rounded-xl mt-2">
-                        <input type="text"
+                        <form action="{{ route('validasi.vocer') }}" method="POST">
+                            @csrf
+                            @method('POST')
+                            <input type="text" id="inputVocer" name="kode"
                             class=" w-full h-full bg-yellow-100 text-slate-500 text-base md:text-lg py-3 px-4 rounded-xl border-[6px] border-yellow-500 border-dotted "
                             placeholder="Voucher code">
+                            <button type="submit">Cek vocer</button>
+                        </form>
+
                     </div>
                 </div>
                 <div class="row mt-6">
@@ -200,7 +206,7 @@
                             <tr>
                                 <td>Shipping</td>
                                 <td class="text-xl flex justify-end">
-                                    <p class="">
+                                    <p class="" id="total_shipping">
                                         Free
                                     </p>
 
@@ -246,44 +252,40 @@
 
     {{-- java script --}}
     <script type="text/javascript">
-       $(document).ready(function(){
-        //  -- On Dev
-
-        // $('#prodc_qty-class').on('change', function(){
-        //     console.log('harga berubah');
-        // });
 
 
+        //onclick="getOngkir()"
+        function getOngkirJnt() {
+            cekAllOngkir();
+            var getHargaOngkir = $('#ongkirJNT').text();
+            var replaceShipping = $('#total_shipping').text(getHargaOngkir);
+        }
+        function getOngkirJne() {
+            cekAllOngkir();
+            var getHargaOngkir = $('#ongkirJNE').text();
+            var replaceShipping = $('#total_shipping').text(getHargaOngkir);
+        }
 
-        // kalkulasi ongkir
-
-        // end kalkulasi ongkir
-
-
-
-
-                // cek ongkir
-            $('#kec_id').on('change', function(){
-                console.log('Kec id change berfungsi');
-                cekAllOngkir();
-            })
+        $('#inputVocer').on('change', function(){
 
 
 
 
-            // var kurir = $(this).val();
+        });
+
+
+
+          function cekAllOngkir(){
             var tujuan = $('#id_kec').val();
             var mode = "GET";
             var total_ongkirJne = 0;
             var total_ongkirJnt = 0;
             var total_berat = $('#total_berat').val();
             $('#vocer').val();
-
-
-            ongkirJnt();
             ongkirJne();
+            ongkirJnt();
 
-            function ongkirJne() {
+             function ongkirJne() {
                 $.ajax({
                     type: 'GET',
                     url: "{{ route('cek.ongkir') }}",
@@ -304,6 +306,7 @@
                     }
                 });
             }
+
             function ongkirJnt() {
                 $.ajax({
                     type: 'GET',
@@ -326,23 +329,37 @@
                 });
 
             }
-
-           function cekAllOngkir()
-           {
-            console.log('mangil fungsi oke')
-            // ongkirJne();
-            // ongkirJnt();
-           }
+        }
 
 
+        function validasiVocer() {
+             var codeVoder = $('#inputVocer').val();
+             var tokenCsrf = $('#csrfToken').val();
+             var hasilValidasi = "";
+            $.ajax({
+                url: "{{ route('validasi.vocer') }}",
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    "kode" :codeVoder,
+                    "_token": tokenCsrf,
+                },
+                success:function(data){
+                    if(data.success){
+                        hasilValidasi = data.discount_vover, function(){
+                            console.log('hasilValidasi')
+                        }
+                    }
+                }
+            })
+        }
 
 
 
-                // cek ongkir
+        // ------ document ready
+       $(document).ready(function(){
 
-
-        // -- End Of Dev
-
+           cekAllOngkir();
 
 
         var totalHarga = $('#total_harga').attr('data-harga');
@@ -376,7 +393,7 @@
             $('#total_harga').text(totalHarga);
             $('#total_harga').attr('data-harga', totalHarga);
 
-
+            cekAllOngkir();
         });
 
 
@@ -414,7 +431,7 @@
                 $('#total_harga').attr('data-harga', totalHarga);
             }
 
-
+            cekAllOngkir();
         });
         // end
         // hapus action
@@ -457,7 +474,7 @@
                                 $('#total_harga').text(hapusHarga);
                                 $('#total_harga').attr('data-harga', hapusHarga);
 
-
+                                cekAllOngkir();
 
                                 alert('Item berhasil dihapus');
 
@@ -473,8 +490,10 @@
                 }
             });
             // end Hapus action
-        });
 
+
+
+        });
 
 
     </script>
