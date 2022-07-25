@@ -61,6 +61,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('user.orders');
     Route::get('/order-details/{kode_transaksi}', [OrderController::class, 'show'] )->name('user.order_details');
     Route::post('/konfirmasi-order', [OrderController::class, 'konfirmasiPembayaran'])->name('user.order.konfirmasi');
+    Route::post('/transaksi', [OrderController::class, 'transaksi'])->name('user.transaction.add');
 
     Route::get('/cart', [CartController::class, 'index'])->name('user.cart_detail');
     Route::post('/product/remove', [CartController::class, 'removeProduk'])->name('user.product.remove');

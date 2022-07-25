@@ -75,5 +75,11 @@ class OrderController extends Controller
         return ddd($request->kode_order);
     }
 
+    public function transaksi(Request $request)
+    {
+        return ddd($request);
+    }
+
+
 
 }

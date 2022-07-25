@@ -7,6 +7,9 @@
         <hr class="mt-2 mb-4 h-0.5 bg-blue-900">
         <div class="row mb-96 block md:flex">
             <div class="col">
+                <form action="{{ route('user.transaction.add') }}" method="POST">
+                    @csrf
+                    @method('POST')
                 <!-- product -->
                 @foreach ($cart as $produk)
                     <div class="row mt-3 komponen-{{ $produk->id_cart }}" id="komponen" data-komponen="{{ $produk->id_cart }}" >
@@ -237,7 +240,7 @@
                     </div>
                     <div class="row">
                         <div class="col w-full">
-                            <button type="submit"
+                            <button type="submit" id="chekoutBtn"
                                 class=" w-full py-3 px-5 mt-4 bg-blue-500 text-white font-semibold rounded-lg">
                                 Checkout
                             </button>
@@ -245,9 +248,10 @@
                     </div>
                 </div>
                 {{-- end address --}}
+            </form>
             </div>
-
         </div>
+
     </div>
 
     {{-- java script --}}
@@ -273,7 +277,15 @@
             hitungTotal();
         });
 
-        //  hitungTotal();
+        // $('#chekoutBtn').on('click', function(){
+        //     var cekShip1 =  $('#shipping_jnt').prop('checked', false);
+        //     var chekShip2 = $('#shipping_jne').prop('checked', false);
+        //     if( cekShip1 || chekShip2 ){
+        //         return alert('Anda belum memilih jasa pengiriman');
+        //     }
+
+
+        // });
 
 
 
