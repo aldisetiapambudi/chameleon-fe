@@ -1,15 +1,14 @@
 @extends('web.user.app')
 @section('section')
 @include('web.user.sections.partials.modalAddressCart')
-
+<form action="{{ route('user.transaction.add') }}" method="POST">
+    @csrf
+    @method('POST')
     <div class="container max-w-6xl w px-4 mx-auto">
         <h1 class="font-bold text-2xl lg:text-3xl">Bag</h1>
         <hr class="mt-2 mb-4 h-0.5 bg-blue-900">
         <div class="row mb-96 block md:flex">
             <div class="col">
-                <form action="{{ route('user.transaction.add') }}" method="POST">
-                    @csrf
-                    @method('POST')
                 <!-- product -->
                 @foreach ($cart as $produk)
                     <div class="row mt-3 komponen-{{ $produk->id_cart }}" id="komponen" data-komponen="{{ $produk->id_cart }}" >
@@ -46,7 +45,7 @@
                                             <div class="col mt-2">
                                                 <div class="row flex justify-center">
                                                     <div class="col">
-                                                        <button id="prodc_min"
+                                                        <button id="prodc_min" type="button"
                                                             class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white prodc_min" data-harga="{{ $produk->DetailCartitem->Product->harga_produk }}"
                                                             data-aty="{{ $produk->DetailCartitem->qty  }}"
                                                             data-id="{{ $produk->id_cart }}"  for="prodc_qty-{{ $produk->id_cart  }}"
@@ -56,12 +55,12 @@
                                                     </div>
                                                     <div class="col">
 
-                                                        <input type="text" id="prodc_qty-{{ $produk->id_cart }}" name="prodc_qty"
+                                                        <input type="text" id="prodc_qty-{{ $produk->id_cart }}" name="prodc_qty,{{ $produk->id_cart }}"
                                                             class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg prodc_qty-class prodc_qty-{{ $produk->id_cart  }}" data-id="{{ $produk->id_cart }}"
                                                             value="{{ $produk->DetailCartItem->quantity }}" onchange="cekAllOngkir()">
                                                     </div>
                                                     <div class="col">
-                                                        <button id="prodc_add" for="prodc_qty-{{ $produk->id_cart  }}"
+                                                        <button id="prodc_add" type="button" for="prodc_qty-{{ $produk->id_cart  }}"
                                                             class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white prodc_add"
                                                             data-harga="{{ $produk->DetailCartitem->Product->harga_produk }}"
                                                             data-ty="{{ $produk->DetailCartitem->qty  }}"
@@ -83,8 +82,8 @@
                     @endforeach
                 <!-- End Product -->
                     <input type="hidden" id="total_berat" value="{{ $totalBerat }}" ></input>
-            </div>
-            <div class="col md:ml-10 mt-4 md:mt-0 max-w-md ">
+                </div>
+                <div class="col md:ml-10 mt-4 md:mt-0 max-w-md ">
                 <div class="row">
                     @if(isset($address[0]))
                     <h3 class="text-lg md:text-2xl font-bold">Address</h3>
@@ -95,14 +94,14 @@
                            <span id="no_telp">{{ $address[0]->no_telp }}</span>
                         </p>
                         <p class="text-xs md:text-sm ">
-                            <span id="address_kec">{{ $address[0]->kecamatan }}</span>,
-                            <span id="address_kab">{{ $address[0]->kabupaten }}</span>,
-                            <span id="address_prov">{{ $address[0]->provinsi }}</span> |
-                            <span id="address_kode_pos">{{ $address[0]->kode_pos }}</span>
+                            <span id="address_kec" name="address_kec">{{ $address[0]->kecamatan }}</span>,
+                            <span id="address_kab" name="address_kab">{{ $address[0]->kabupaten }}</span>,
+                            <span id="address_prov" name="address_prov">{{ $address[0]->provinsi }}</span> |
+                            <span id="address_kode_pos" name="address_kode_pos">{{ $address[0]->kode_pos }}</span>
                         </p>
-                        <input type="hidden" id="id_kec" class="kec_ganti"  value="{{ $address[0]->kecamatan_id }}">
-                        <input type="hidden" id="id_kab" value="{{ $address[0]->kabupaten_id }}">
-                        <input type="hidden" id="id_prov" value="{{ $address[0]->provinsi_id }}">
+                        <input type="hidden" name="id_kec" id="id_kec" class="kec_ganti"  value="{{ $address[0]->kecamatan_id }}">
+                        <input type="hidden" name="id_kab" id="id_kab" value="{{ $address[0]->kabupaten_id }}">
+                        <input type="hidden" name="id_prov" id="id_prov" value="{{ $address[0]->provinsi_id }}">
                     </div>
                     @else
                     <div class="col max-w-full hover:bg-slate-100 border-2 border-blue-800 rounded-xl ">
@@ -117,7 +116,7 @@
                     </div>
                     @endif
                     <div class="card border-2 border-slate-400 p-4 rounded-2xl mt-3 bg-slate-50">
-                        <button class="flex mx-auto" data-bs-toggle="modal" data-bs-target="#modalAddressChangeCart" id="alamatLain">
+                        <button type="button"  class="flex mx-auto" data-bs-toggle="modal" data-bs-target="#modalAddressChangeCart" id="alamatLain">
                             <p class="font-semibold text-base md:text-lg">
                                 Pilih alamat lainnya <i class="fas fa-plus-circle" aria-hidden="true"></i>
                             </p>
@@ -246,14 +245,29 @@
                             </button>
                         </div>
                     </div>
+
                 </div>
                 {{-- end address --}}
-            </form>
             </div>
         </div>
+        <input type="hidden" name="sub_total" id="sendSub">
+        <input type="hidden" name="shipping_total" id="sendShipping">
+        <input type="hidden" name="vocer_total" id="sendVocer">
+        <input type="hidden" name="totalAll" id="sendTotalAll">
 
-    </div>
+        <input type="text" id="sendNama" name="sendNama" value="">
+        <input type="text" id="sendAlamat" name="sendAlamat" value="">
+        <input type="text" id="sendKec" name="sendKec" value="{{ $address[0]->kecamatan }}">
+        <input type="text" id="sendKab" name="sendKab" value="{{ $address[0]->kabupaten }}">
+        <input type="text" id="sendProv" name="sendProv" value="{{ $address[0]->provinsi }}">
+        <input type="text" id="sendKodePos" name="sendKodePos" value="{{ $address[0]->kode_pos }}">
+        <input type="text" id="SendAlamat" value="{{ $address[0]->alamat_1 }}">
+        <input type="text" id="sendTelp" value="{{ $address[0]->no_telp }}">
 
+
+
+        </div>
+    </form>
     {{-- java script --}}
     <script type="text/javascript">
 
@@ -382,11 +396,21 @@
             var totalVocer = $('#totalVocer').text();
             totalVocer = parseInt(totalVocer);
 
+            $('#sendSub').val(subTotal);
+            $('#sendShipping').val(totalShipping);
+            $('#sendVocer').val(totalDiscount);
+
+
+
+
 
 
             hitung = subTotal+totalShipping+totalDiscount+totalVocer;
 
             $('#totalAll').text(hitung);
+
+            $('#sendTotalAll').val(hitung);
+
             console.log(subTotal);
             console.log(totalDiscount);
             console.log(totalShipping);

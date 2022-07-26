@@ -77,7 +77,7 @@ class OrderController extends Controller
 
     public function transaksi(Request $request)
     {
-        return ddd($request);
+
     }
 
 
