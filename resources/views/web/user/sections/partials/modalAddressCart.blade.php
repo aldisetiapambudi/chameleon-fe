@@ -124,6 +124,7 @@ $(document).ready(function() {
         $('#id_prov').val(getIdProv);
 
        $('#sendNama').val(getNama)
+       $('#sendIDAlamat').val(getIdAlamat)
        $('#sendAlamat').val(getAlamat1)
        $('#sendKec').val(getKec)
        $('#sendKab').val(getKab)

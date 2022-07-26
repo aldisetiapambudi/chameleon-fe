@@ -55,7 +55,7 @@
                                                     </div>
                                                     <div class="col">
 
-                                                        <input type="text" id="prodc_qty-{{ $produk->id_cart }}" name="prodc_qty,{{ $produk->id_cart }}"
+                                                        <input type="text" id="prodc_qty-{{ $produk->id_cart }}" name="{{ $produk->id_cart }}"
                                                             class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg prodc_qty-class prodc_qty-{{ $produk->id_cart  }}" data-id="{{ $produk->id_cart }}"
                                                             value="{{ $produk->DetailCartItem->quantity }}" onchange="cekAllOngkir()">
                                                     </div>
@@ -138,7 +138,7 @@
                                         <div class="mx-auto flex">
                                             <div class="col mr-4  text-left">
                                                 <p class="text-xs md:text-sm" id="ongkirJNE">
-                                                    Rp.0,-
+                                                    0
                                                 </p>
                                             </div>
                                             <div class="col  w-full">
@@ -162,7 +162,7 @@
                                         <div class="mx-auto flex">
                                             <div class="col mr-4  text-left">
                                                 <p class="text-xs md:text-sm" id="ongkirJNT">
-                                                    Rp.0,-
+                                                    0
                                                 </p>
                                             </div>
                                             <div class="col w-full">
@@ -255,14 +255,14 @@
         <input type="hidden" name="vocer_total" id="sendVocer">
         <input type="hidden" name="totalAll" id="sendTotalAll">
 
-        <input type="text" id="sendNama" name="sendNama" value="">
-        <input type="text" id="sendAlamat" name="sendAlamat" value="">
+        <input type="text" id="sendNama" name="sendNama" value="{{ $address[0]->nama_lengkap }}">
+        <input type="text" id="sendIDAlamat" name="sendIDAlamat" value="{{ $address[0]->id_alamat }}">
         <input type="text" id="sendKec" name="sendKec" value="{{ $address[0]->kecamatan }}">
         <input type="text" id="sendKab" name="sendKab" value="{{ $address[0]->kabupaten }}">
         <input type="text" id="sendProv" name="sendProv" value="{{ $address[0]->provinsi }}">
         <input type="text" id="sendKodePos" name="sendKodePos" value="{{ $address[0]->kode_pos }}">
-        <input type="text" id="SendAlamat" value="{{ $address[0]->alamat_1 }}">
-        <input type="text" id="sendTelp" value="{{ $address[0]->no_telp }}">
+        <input type="text" id="sendAlamat" name="sendAlamat" value="{{ $address[0]->alamat_1 }}">
+        <input type="text" id="sendTelp" name="sendTelp" value="{{ $address[0]->no_telp }}">
 
 
 
@@ -405,7 +405,7 @@
 
 
 
-            hitung = subTotal+totalShipping+totalDiscount+totalVocer;
+            hitung = subTotal+totalShipping-totalDiscount-totalVocer;
 
             $('#totalAll').text(hitung);
 
