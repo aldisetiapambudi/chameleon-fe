@@ -16,12 +16,12 @@ class TransactionDetail extends Model
 
     public function Transaction()
     {
-        return $this->belongsTo(Transaction::class, 'id_transaksi');
+        return $this->belongsTo(Transaction::class, 'id_transaksi','id_transaksi');
     }
 
     public function Product()
     {
-        return $this->belongsTo(Product::class, 'id_produk');
+        return $this->belongsTo(Product::class, 'id_produk', 'id_produk');
     }
 
 

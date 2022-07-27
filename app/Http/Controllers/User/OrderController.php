@@ -130,28 +130,53 @@ class OrderController extends Controller
 
         $getCartData = CartItem::where('id_pengguna', $idUser)->get();
 
+        // $hitung = count($getCartData);
 
+        // for($a = 0; $a < $hitung; $a++){
+        //     $data = array(
+        //         $idcart = $getCartData[0]->id_cart,
+        //         $getQty = $request->$idcart,
+        //         $detail['id_transaksi'] = $getIDTransaksi,
+        //         $detail['kode_transaksi'] = $getKodeTransaksi,
+        //         // $totalProduk = $getQty,
+        //         $detail['jumlah_produk']  = $getQty,
+        //         $detail['id_produk'] = $getCartData[0]->DetailCartItem->id_produk,
+        //         $detail['total'] = $getCartData[0]->DetailCartItem->Product->harga_produk*$getQty,
+        //         $detail['ukuran'] = $getCartData[0]->DetailCartItem->size,
+        //         $detail['warna'] = $getCartData[0]->DetailCartItem->color,
+        //         $detail['discount'] = 0,
+        //     );
+        // }
+        // return json_encode($data);
+        // TransactionDetail::create($detail);
+
+        // $idCart = $getCartData[1]->id_cart;
+        // $getQty = $request->$idCart;
+        // return ddd($getQty);
 
         foreach ($getCartData as $cart) {
             $idCart = $cart->id_cart;
             $getQty = $request->$idCart;
             // return ddd($getQty);
+
             $detail['id_transaksi'] = $getIDTransaksi;
             $detail['kode_transaksi'] = $getKodeTransaksi;
-            $totalProduk = $request->$idCart;
-            if($request->$getQty = $cart->id_cart){
-                $detail['jumlah_produk']  = $totalProduk;
-            }
+            // if($request->$idCart== $idCart ){
+             $detail['jumlah_produk']  = $getQty;
+            // }
+            // return ddd($detail['jumlah_produk']);
             $detail['id_produk'] = $cart->DetailCartItem->id_produk;
-                $detail['total'] = $cart->DetailCartItem->Product->harga_produk*$totalProduk;
-                $detail['ukuran'] = $cart->DetailCartItem->size;
-                $detail['warna'] = $cart->DetailCartItem->color;
-                $detail['discount'] = 0;
-                // return json_encode($detail);
+            $detail['total'] = $cart->DetailCartItem->Product->harga_produk*$getQty;
+            $detail['ukuran'] = $cart->DetailCartItem->size;
+            $detail['warna'] = $cart->DetailCartItem->color;
+            $detail['discount'] = 0;
 
             // return json_encode($cart);
-            TransactionDetail::create($detail);
+            // return json_encode($detail);
+            // return ddd($detail);
         }
+        TransactionDetail::create($detail);
+
 
     }
 
