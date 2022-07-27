@@ -10,6 +10,7 @@ use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Pharaonic\LaravelHijri\LaravelHijri;
 
 class OrderController extends Controller
@@ -137,12 +138,31 @@ class OrderController extends Controller
         $getCart = CartItem::where('id_pengguna', $idUser)->get();
         // return ddd($getCart);
         $getCartData = DetailCartItem::where('id_cart', $getCart[0]->id_cart)->get();
-        // return ddd($getCartData);
+        // return ddd($getCartData[0]->id_detail_item_cart);
 
 
-        // return ddd($getDetailCart);
 
-        // $hitung = count($getCartData);
+
+        $hitung = count($getCartData);
+
+
+
+        for($a = 0; $a < $hitung; $a++){
+            $getIdDetailCart =$getCartData[$a]->id_detail_item_cart;
+            $detail['kode_transaksi'] = $getKodeTransaksi;
+                DB::table('detail_transaksi')->insert([
+                'id_transaksi' => $getIDTransaksi,
+                'kode_transaksi' => $getKodeTransaksi,
+                'id_produk' => $getCartData[$a]->id_produk,
+                'jumlah_produk' =>  $request->$getIdDetailCart,
+                'total' =>$getCartData[$a]->Product->harga_produk*$request->$getIdDetailCart,
+                'discount' =>$getCartData[$a]->Product->diskon_produk,
+                'ukuran' =>$getCartData[$a]->size,
+                'warna' =>$getCartData[$a]->color
+            ]);
+        }
+
+        // return ddd($request);
 
         // for($a = 0; $a < $hitung; $a++){
         //     $data = array(
@@ -167,31 +187,20 @@ class OrderController extends Controller
         // return ddd($getCartData[0]);
 
 
-
-
-// $a = $getCartData[1]->id_produk;
-// return ddd($a);
-
-        foreach ($getCartData as $detail) {
-
-            $data['id_transaksi'] = $getIDTransaksi;
-            $data['kode_transaksi'] = $getKodeTransaksi;
-            $data['id_produk'] = $detail->id_produk;
-            $idDetail = $detail->id_detail_item_cart;
-            $getQty = $request->$idDetail;
-            $data['jumlah_produk']  = $getQty;
-            $data['total'] = $detail->Product->harga_produk*$getQty;
-            $data['ukuran'] = $detail->size;
-            $data['warna'] = $detail->color;
-            $data['discount'] = 0;
-        // );
-        // return ddd($getIDTransaksi);
-        return ddd($data);
-        TransactionDetail::create($data);
-            // return json_encode($cart);
-            // return json_encode($detail);
-        }
-        // return json_encode($data);
+        // foreach($getCartData as $data){
+        //     $getIdDetailCart = $data->id_detail_item_cart;
+        //     $detail['id_transaksi'] = $getIDTransaksi;
+        //     $detail['kode_transaksi'] = $getKodeTransaksi;
+        //     $detail['id_produk'] = $data->id_produk;
+        //     // if($data->id_detail_item_cart == $request->$getIdDetailCart){
+        //         $detail['jumlah_produk'] = $request->$getIdDetailCart;
+        //         $detail['total'] = $data->Product->harga_produk*$request->$getIdDetailCart;
+        //     // }
+        //     $detail['discount'] = $data->Product->diskon_produk;
+        //     $detail['ukuran'] = $data->size;
+        //     $detail['warna'] = $data->color;
+        //     TransactionDetail::create($detail);
+        // }
 
 
     }
