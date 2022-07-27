@@ -13,7 +13,7 @@ class CartItem extends Model
     protected $primaryKey = 'id_cart';
     public $incrementing = false;
     protected $fillable = [
-        'id_pengguna'
+        'id_pengguna',
     ];
 
     /**
@@ -40,6 +40,6 @@ class CartItem extends Model
 
     public function DetailCartItem()
     {
-        return  $this->hasOne(DetailCartItem::class, 'id_cart');
+        return  $this->hasMany(DetailCartItem::class, 'id_cart', 'id_cart');
     }
 }

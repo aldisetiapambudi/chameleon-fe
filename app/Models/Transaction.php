@@ -14,10 +14,13 @@ class Transaction extends Model
     protected $table = "transaksi";
     protected $primaryKey = 'id_transaksi';
     public $timestamps = false;
-    protected $fillable = [
-        "kode_transaksi","id_pengguna","id_alamat","waktu_transaksi","waktu_exipired","total_harga","total_ongkir","status_transaksi","bukti_transfer","no_resi","kurir","catatan","system_note",
-    ];
-
+    // protected $fillable = [
+    //     "kode_transaksi","id_pengguna","id_alamat","waktu_transaksi","waktu_exipired","total_harga","total_ongkir","status_transaksi","bukti_transfer","no_resi","kurir","catatan","system_note",
+    // ];
+        protected $guarded = [
+            'id_transaksi',
+             'kode_transaksi'
+            ];
     /**
      * Boot function from Laravel.
      */

@@ -72,12 +72,12 @@
                     <div class="container mt-2">
 
                         @auth
-                        <hr class="w-full h-0.5 bg-slate-400">
+                        <!-- <hr class="w-full h-0.5 bg-slate-400"> -->
 
 
-                        <div class="ml-3 p-4">
+                        <!-- <div class="ml-3 p-4">
                             <h3 class="text-slate-300 my-4 text-center">Your Bag is empty</h3>
-                        </div>
+                        </div> -->
                         <!-- {{-- Product Elemet Show --}}
                         {{-- @if ($shareCartItem == null) --}}
                         <div class="ml-3 p-4">

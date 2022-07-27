@@ -123,6 +123,17 @@ $(document).ready(function() {
         $('#id_kab').val(getIdKab);
         $('#id_prov').val(getIdProv);
 
+       $('#sendNama').val(getNama)
+       $('#sendIDAlamat').val(getIdAlamat)
+       $('#sendAlamat').val(getAlamat1)
+       $('#sendKec').val(getKec)
+       $('#sendKab').val(getKab)
+       $('#sendProv').val(getProv)
+       $('#sendKodePos').val(getPos)
+       $('#sendTelp').val(getTelp)
+
+
+
         cekAllOngkir();
         $('#modalAddressChangeCart').modal("toggle");
 

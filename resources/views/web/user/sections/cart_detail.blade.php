@@ -1,18 +1,35 @@
 @extends('web.user.app')
 @section('section')
 @include('web.user.sections.partials.modalAddressCart')
+@if(count($detail) == 0)
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+        <div class="mx-auto max-w-screen-sm text-center">
 
+            <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">Data Tidak Ditemukan</p>
+            <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">Mohon maaf, sepertinya ada belum menambahkan barang ke keranjang anda</p>
+            <a href="{{ route('user.home') }}" class="inline-flex text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900 my-4">Back to Homepage</a>
+        </div>
+    </div>
+</section>
+
+
+@else
+
+
+
+
+<form action="{{ route('user.transaction.add') }}" method="POST">
+    @csrf
+    @method('POST')
     <div class="container max-w-6xl w px-4 mx-auto">
         <h1 class="font-bold text-2xl lg:text-3xl">Bag</h1>
         <hr class="mt-2 mb-4 h-0.5 bg-blue-900">
         <div class="row mb-96 block md:flex">
             <div class="col">
-                <form action="{{ route('user.transaction.add') }}" method="POST">
-                    @csrf
-                    @method('POST')
                 <!-- product -->
-                @foreach ($cart as $produk)
-                    <div class="row mt-3 komponen-{{ $produk->id_cart }}" id="komponen" data-komponen="{{ $produk->id_cart }}" >
+                @foreach ($detail as $produk)
+                    <div class="row mt-3 komponen-{{ $produk->id_detail_item_cart }}" id="komponen" data-komponen="{{ $produk->id_detail_item_cart }}" >
                         <div class="card flex md:block lg:flex shadow-lg border-2 p-1">
                             <div class="col flex justify-center">
                                 <img src="{{ asset('images/product_3.jpeg') }}" alt="product image" class="w-40">
@@ -21,13 +38,13 @@
                                 <div class="row block lg:flex">
                                     <div class="col">
                                         <h3 class="text-base md:text-xl font-semibold">
-                                            {{ $produk->DetailCartItem->Product->nama_produk }}</h3>
+                                            {{ $produk->Product->nama_produk }}</h3>
                                         <h4 class="font-semibold text-sm md:text-base flex">
                                             Rp.
-                                            <input type="text" id="harga-{{ $produk->id_cart  }}" readonly
-                                                value=" @currency($produk->DetailCartitem->Product->harga_produk)"
+                                            <input type="text" id="harga-{{ $produk->id_detail_item_cart  }}" readonly
+                                                value=" @currency($produk->Product->harga_produk)"
                                                 class="font-semibold text-sm md:text-base">
-                                            <input type="hidden" id="hargaPcs-{{ $produk->id_cart }}" value="{{ $produk->DetailCartitem->Product->harga_produk }}">
+                                            <input type="hidden" id="hargaPcs-{{ $produk->id_detail_item_cart }}" value="{{ $produk->Product->harga_produk }}">
                                         </h4>
                                     </div>
                                     <div class="col md:ml-10 mt-4 md:mt-2">
@@ -40,32 +57,32 @@
 
                                                     <input type="hidden" name="_token" id="csrfToken" value="{{ csrf_token() }}" />
                                                     <button type="button"
-                                                        class="w-full max-w-md h-auto p-2 bg-black text-white rounded-md HapusClass" data-id-detail="{{ $produk->DetailCartItem->id_detail_item_cart }}" data-id-cart="{{ $produk->id_cart }}" id="btnHapus" >Hapus</button>
+                                                        class="w-full max-w-md h-auto p-2 bg-black text-white rounded-md HapusClass" data-id-detail="{{ $produk->id_detail_item_cart }}" data-id-cart="{{ $produk->id_detail_item_cart }}" id="btnHapus" >Hapus</button>
                                                  {{-- </form> --}}
                                             </div>
                                             <div class="col mt-2">
                                                 <div class="row flex justify-center">
                                                     <div class="col">
-                                                        <button id="prodc_min"
-                                                            class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white prodc_min" data-harga="{{ $produk->DetailCartitem->Product->harga_produk }}"
-                                                            data-aty="{{ $produk->DetailCartitem->qty  }}"
-                                                            data-id="{{ $produk->id_cart }}"  for="prodc_qty-{{ $produk->id_cart  }}"
+                                                        <button id="prodc_min" type="button"
+                                                            class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white prodc_min" data-harga="{{ $produk->Product->harga_produk }}"
+                                                            data-aty="{{ $produk->qty  }}"
+                                                            data-id="{{ $produk->id_detail_item_cart }}"  for="prodc_qty-{{ $produk->id_detail_item_cart  }}"
                                                             >
                                                             <i class="fa fa-minus" aria-hidden="true"></i>
                                                         </button>
                                                     </div>
                                                     <div class="col">
 
-                                                        <input type="text" id="prodc_qty-{{ $produk->id_cart }}" name="prodc_qty"
-                                                            class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg prodc_qty-class prodc_qty-{{ $produk->id_cart  }}" data-id="{{ $produk->id_cart }}"
-                                                            value="{{ $produk->DetailCartItem->quantity }}" onchange="cekAllOngkir()">
+                                                        <input type="text" id="prodc_qty-{{ $produk->id_detail_item_cart }}" name="{{ $produk->id_detail_item_cart }}"
+                                                            class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg prodc_qty-class prodc_qty-{{ $produk->id_detail_item_cart  }}" data-id="{{ $produk->id_detail_item_cart }}"
+                                                            value="{{ $produk->quantity }}" >
                                                     </div>
                                                     <div class="col">
-                                                        <button id="prodc_add" for="prodc_qty-{{ $produk->id_cart  }}"
+                                                        <button id="prodc_add" type="button" for="prodc_qty-{{ $produk->id_detail_item_cart  }}"
                                                             class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white prodc_add"
-                                                            data-harga="{{ $produk->DetailCartitem->Product->harga_produk }}"
-                                                            data-ty="{{ $produk->DetailCartitem->qty  }}"
-                                                            data-id="{{ $produk->id_cart }}"
+                                                            data-harga="{{ $produk->Product->harga_produk }}"
+                                                            data-ty="{{ $produk->qty  }}"
+                                                            data-id="{{ $produk->id_detail_item_cart }}"
                                                             >
                                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                                         </button>
@@ -78,13 +95,13 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" class="berat_satuan_class" id="berat_satuan-{{ $produk->id_cart }}" value="{{ $produk->DetailCartitem->Product->berat_produk  }}"></input>
-                    <input type="hidden" id="berat_satuan_fix-{{ $produk->id_cart }}" value="{{ $produk->DetailCartitem->Product->berat_produk  }}"></input>
+                    <input type="hidden" class="berat_satuan_class" id="berat_satuan-{{ $produk->id_detail_item_cart }}" value="{{ $produk->Product->berat_produk  }}"></input>
+                    <input type="hidden" id="berat_satuan_fix-{{ $produk->id_detail_item_cart }}" value="{{ $produk->Product->berat_produk  }}"></input>
                     @endforeach
                 <!-- End Product -->
                     <input type="hidden" id="total_berat" value="{{ $totalBerat }}" ></input>
-            </div>
-            <div class="col md:ml-10 mt-4 md:mt-0 max-w-md ">
+                </div>
+                <div class="col md:ml-10 mt-4 md:mt-0 max-w-md ">
                 <div class="row">
                     @if(isset($address[0]))
                     <h3 class="text-lg md:text-2xl font-bold">Address</h3>
@@ -95,14 +112,14 @@
                            <span id="no_telp">{{ $address[0]->no_telp }}</span>
                         </p>
                         <p class="text-xs md:text-sm ">
-                            <span id="address_kec">{{ $address[0]->kecamatan }}</span>,
-                            <span id="address_kab">{{ $address[0]->kabupaten }}</span>,
-                            <span id="address_prov">{{ $address[0]->provinsi }}</span> |
-                            <span id="address_kode_pos">{{ $address[0]->kode_pos }}</span>
+                            <span id="address_kec" name="address_kec">{{ $address[0]->kecamatan }}</span>,
+                            <span id="address_kab" name="address_kab">{{ $address[0]->kabupaten }}</span>,
+                            <span id="address_prov" name="address_prov">{{ $address[0]->provinsi }}</span> |
+                            <span id="address_kode_pos" name="address_kode_pos">{{ $address[0]->kode_pos }}</span>
                         </p>
-                        <input type="hidden" id="id_kec" class="kec_ganti"  value="{{ $address[0]->kecamatan_id }}">
-                        <input type="hidden" id="id_kab" value="{{ $address[0]->kabupaten_id }}">
-                        <input type="hidden" id="id_prov" value="{{ $address[0]->provinsi_id }}">
+                        <input type="hidden" name="id_kec" id="id_kec" class="kec_ganti"  value="{{ $address[0]->kecamatan_id }}">
+                        <input type="hidden" name="id_kab" id="id_kab" value="{{ $address[0]->kabupaten_id }}">
+                        <input type="hidden" name="id_prov" id="id_prov" value="{{ $address[0]->provinsi_id }}">
                     </div>
                     @else
                     <div class="col max-w-full hover:bg-slate-100 border-2 border-blue-800 rounded-xl ">
@@ -117,7 +134,7 @@
                     </div>
                     @endif
                     <div class="card border-2 border-slate-400 p-4 rounded-2xl mt-3 bg-slate-50">
-                        <button class="flex mx-auto" data-bs-toggle="modal" data-bs-target="#modalAddressChangeCart" id="alamatLain">
+                        <button type="button"  class="flex mx-auto" data-bs-toggle="modal" data-bs-target="#modalAddressChangeCart" id="alamatLain">
                             <p class="font-semibold text-base md:text-lg">
                                 Pilih alamat lainnya <i class="fas fa-plus-circle" aria-hidden="true"></i>
                             </p>
@@ -139,7 +156,7 @@
                                         <div class="mx-auto flex">
                                             <div class="col mr-4  text-left">
                                                 <p class="text-xs md:text-sm" id="ongkirJNE">
-                                                    Rp.0,-
+                                                    0
                                                 </p>
                                             </div>
                                             <div class="col  w-full">
@@ -163,7 +180,7 @@
                                         <div class="mx-auto flex">
                                             <div class="col mr-4  text-left">
                                                 <p class="text-xs md:text-sm" id="ongkirJNT">
-                                                    Rp.0,-
+                                                    0
                                                 </p>
                                             </div>
                                             <div class="col w-full">
@@ -218,7 +235,7 @@
                                 <td class="text-red-500">Discount</td>
                                 <td class="text-xl flex justify-end">
                                     <p class="text-red-500" id="totalDiscount">
-                                        0
+                                        {{ $diskon }}
                                     </p>
                             </tr>
                             <tr>
@@ -246,14 +263,31 @@
                             </button>
                         </div>
                     </div>
+
                 </div>
                 {{-- end address --}}
-            </form>
             </div>
         </div>
+        <input type="hidden" name="sub_total" id="sendSub">
+        <input type="hidden" name="shipping_total" id="sendShipping">
+        <input type="hidden" name="vocer_total" id="sendVocer">
+        <input type="hidden" name="totalAll" id="sendTotalAll">
+        <input type="hidden" name="dicount" id="discount" value="{{ $diskon }}">
 
-    </div>
+        <input type="hidden" id="sendNama" name="sendNama" value="{{ $address[0]->nama_lengkap }}">
+        <input type="hidden" id="sendIDAlamat" name="sendIDAlamat" value="{{ $address[0]->id_alamat }}">
+        <input type="hidden" id="sendKec" name="sendKec" value="{{ $address[0]->kecamatan }}">
+        <input type="hidden" id="sendKab" name="sendKab" value="{{ $address[0]->kabupaten }}">
+        <input type="hidden" id="sendProv" name="sendProv" value="{{ $address[0]->provinsi }}">
+        <input type="hidden" id="sendKodePos" name="sendKodePos" value="{{ $address[0]->kode_pos }}">
+        <input type="hidden" id="sendAlamat" name="sendAlamat" value="{{ $address[0]->alamat_1 }}">
+        <input type="hidden" id="sendTelp" name="sendTelp" value="{{ $address[0]->no_telp }}">
 
+
+
+        </div>
+    </form>
+@endif
     {{-- java script --}}
     <script type="text/javascript">
 
@@ -382,11 +416,21 @@
             var totalVocer = $('#totalVocer').text();
             totalVocer = parseInt(totalVocer);
 
+            $('#sendSub').val(subTotal);
+            $('#sendShipping').val(totalShipping);
+            $('#sendVocer').val(totalDiscount);
 
 
-            hitung = subTotal+totalShipping+totalDiscount+totalVocer;
+
+
+
+
+            hitung = subTotal+totalShipping-totalDiscount-totalVocer;
 
             $('#totalAll').text(hitung);
+
+            $('#sendTotalAll').val(hitung);
+
             console.log(subTotal);
             console.log(totalDiscount);
             console.log(totalShipping);

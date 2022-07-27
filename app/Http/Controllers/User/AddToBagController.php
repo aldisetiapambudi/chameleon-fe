@@ -17,22 +17,36 @@ class AddToBagController extends Controller
             return redirect()->route('user.login');
         }
 
-        $idPengguna = Auth::user()->id_pengguna;
-        $cartItem =  CartItem::create([
-            'id_pengguna' => $idPengguna,
-        ]);
-        $getIdCart = $cartItem['id_cart'];
-        // return ddd($getIdCart);
 
-
-        $validasi = $request->validate([
-            'id_produk' => 'required',
+        $validate = $request->validate([
             'color' => 'required',
-            'size' => 'required'
+            'size' => 'required',
         ]);
-        $validasi['id_cart'] = $getIdCart;
-        $validasi['quantity'] = 1;
-        DetailCartItem::create($validasi);
+        // return ddd($request);
+
+
+        $idPengguna = Auth::user()->id_pengguna;
+        $getDataId = CartItem::where('id_pengguna', $idPengguna)->get();
+        // return ddd(count($getDataId));
+        if(count($getDataId) == 0){
+            CartItem::create([
+                'id_pengguna' => $idPengguna,
+            ]);
+            $idPengguna = Auth::user()->id_pengguna;
+            $getDataId = CartItem::where('id_pengguna', $idPengguna)->get();
+            $getIdCart = $getDataId[0]->id_cart;
+        }
+            else{
+            $getIdCart = $getDataId[0]->id_cart;
+        }
+
+        $data['id_cart'] = $getIdCart;
+        $data['id_produk'] = $request->id_produk;
+        $data['color'] = $request->color;
+        $data['size'] = $request->size;
+
+        $data['quantity'] = 1;
+        DetailCartItem::create($data);
 
         return back()->with('successAddToCart', 'sukes');
     }
