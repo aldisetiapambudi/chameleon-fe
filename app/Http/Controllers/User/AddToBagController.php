@@ -22,19 +22,18 @@ class AddToBagController extends Controller
         $idPengguna = Auth::user()->id_pengguna;
         $getDataId = CartItem::where('id_pengguna', $idPengguna)->get();
         // return ddd(count($getDataId));
-        if(count($getDataId) == 0)
-        CartItem::create([
-            'id_pengguna' => $idPengguna,
-        ]);
-        else{
+        if(count($getDataId) == 0){
+            CartItem::create([
+                'id_pengguna' => $idPengguna,
+            ]);
+            $idPengguna = Auth::user()->id_pengguna;
+            $getDataId = CartItem::where('id_pengguna', $idPengguna)->get();
+            $getIdCart = $getDataId[0]->id_cart;
+        }
+            else{
             $getIdCart = $getDataId[0]->id_cart;
         }
 
-
-// return ddd($getIdCart);
-
-
-            // 'id_cart' => $getIdCart,
         $data['id_cart'] = $getIdCart;
         $data['id_produk'] = $request->id_produk;
         $data['color'] = $request->color;

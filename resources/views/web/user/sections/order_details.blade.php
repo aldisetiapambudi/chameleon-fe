@@ -35,9 +35,9 @@
                     <h3 class="text-lg md:text-2xl font-bold">Order Details</h3>
                     <div class="card mt-3">
                         <h5>Order Date : <span class="font-semibold">{{ $orderDateHijriah }} </span> / {{ $orderDateMasehi }}</h5>
-                        <h5>Order Number : <span class="font-semibold">#{{ $detail->kode_transaksi }}</span></h5>
-                        <h5>Receipt Number : <span class="font-semibold">{{ $detail->kode_transaksi }}</span></h5>
-                        <h5>Status : <span class="font-semibold">{{ $detail->status_transaksi }}</span></h5>
+                        <h5>Order Number : <span class="font-semibold">#{{ $detail->Transaction->kode_transaksi }}</span></h5>
+                        <h5>Receipt Number : <span class="font-semibold">{{ $detail->Transaction->kode_transaksi }}</span></h5>
+                        <h5>Status : <span class="font-semibold">{{ $detail->Transaction->status_transaksi }}</span></h5>
                         <h5>Make a payment before : <span class="font-semibold text-red-600">{{ $expHijriah }} / {{ $expMasehi }} </span></h5>
                     </div>
                     <h3 class="text-lg md:text-2xl font-bold mt-3">Address</h3>
@@ -67,7 +67,7 @@
                                 <td>Shipping</td>
                                 <td class="text-xl flex justify-end">
                                     <p class="">
-                                        Rp. @currency($detail->total_ongkir)
+                                        Rp. @currency($detail->Transaction->total_ongkir)
                                     </p>
 
                             </tr>
@@ -75,16 +75,16 @@
                                 <td class="text-red-500">Discount</td>
                                 <td class="text-xl flex justify-end">
                                     <p class="text-red-500">
-                                       {{ $detail->discount }}
+                                      Rp. {{ $detail->discount }}
                                     </p>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>Voucher</td>
                                 <td class="text-xl flex justify-end">
                                     <p class="">
-                                        0 (belum database)
+                                       Rp. {{ $detail->discount }}
                                     </p>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                     <div class="row flex gap-2 mt-8">
