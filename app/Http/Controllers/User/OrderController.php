@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\CartItem;
+use App\Models\DetailCartItem;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
@@ -119,16 +120,17 @@ class OrderController extends Controller
         $transaksi['catatan'] = 0;
         $transaksi['system_note'] = 'on_input';
 
-        Transaction::create($transaksi);
+        $getTransaksi =  Transaction::create($transaksi);
 
-        $getTransaksi = Transaction::where('id_pengguna', $idUser)->where('system_note','on_input')->get();
-        $getIDTransaksi = $getTransaksi[0]->id_transaksi;
-        $getKodeTransaksi = $getTransaksi[0]->kode_transaksi;
+        $getIDTransaksi = $getTransaksi->id_transaksi;
+        $getKodeTransaksi = $getTransaksi->kode_transaksi;
 
         // return ddd($getIDTransaksi, $getKodeTransaksi);
 
 
-        $getCartData = CartItem::where('id_pengguna', $idUser)->get();
+        $getCart = CartItem::where('id_pengguna', $idUser)->get();
+        // return ddd($getCartData);
+        $getCartData = DetailCartItem::where('id_cart', $getCart->id_cart);
 
         // $hitung = count($getCartData);
 
@@ -145,10 +147,10 @@ class OrderController extends Controller
         //         $detail['ukuran'] = $getCartData[0]->DetailCartItem->size,
         //         $detail['warna'] = $getCartData[0]->DetailCartItem->color,
         //         $detail['discount'] = 0,
+        //         TransactionDetail::create($detail),
         //     );
         // }
         // return json_encode($data);
-        // TransactionDetail::create($detail);
 
         // $idCart = $getCartData[1]->id_cart;
         // $getQty = $request->$idCart;
@@ -161,9 +163,9 @@ class OrderController extends Controller
 
             $detail['id_transaksi'] = $getIDTransaksi;
             $detail['kode_transaksi'] = $getKodeTransaksi;
-            // if($request->$idCart== $idCart ){
+            if($request->$idCart== $idCart ){
              $detail['jumlah_produk']  = $getQty;
-            // }
+            }
             // return ddd($detail['jumlah_produk']);
             $detail['id_produk'] = $cart->DetailCartItem->id_produk;
             $detail['total'] = $cart->DetailCartItem->Product->harga_produk*$getQty;
@@ -174,8 +176,8 @@ class OrderController extends Controller
             // return json_encode($cart);
             // return json_encode($detail);
             // return ddd($detail);
+            TransactionDetail::create($detail);
         }
-        TransactionDetail::create($detail);
 
 
     }

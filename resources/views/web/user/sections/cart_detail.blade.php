@@ -10,8 +10,8 @@
         <div class="row mb-96 block md:flex">
             <div class="col">
                 <!-- product -->
-                @foreach ($cart as $produk)
-                    <div class="row mt-3 komponen-{{ $produk->id_cart }}" id="komponen" data-komponen="{{ $produk->id_cart }}" >
+                @foreach ($detail as $produk)
+                    <div class="row mt-3 komponen-{{ $produk->id_detail_item_cart }}" id="komponen" data-komponen="{{ $produk->id_detail_item_cart }}" >
                         <div class="card flex md:block lg:flex shadow-lg border-2 p-1">
                             <div class="col flex justify-center">
                                 <img src="{{ asset('images/product_3.jpeg') }}" alt="product image" class="w-40">
@@ -20,13 +20,13 @@
                                 <div class="row block lg:flex">
                                     <div class="col">
                                         <h3 class="text-base md:text-xl font-semibold">
-                                            {{ $produk->DetailCartItem->Product->nama_produk }}</h3>
+                                            {{ $produk->Product->nama_produk }}</h3>
                                         <h4 class="font-semibold text-sm md:text-base flex">
                                             Rp.
                                             <input type="text" id="harga-{{ $produk->id_cart  }}" readonly
-                                                value=" @currency($produk->DetailCartitem->Product->harga_produk)"
+                                                value=" @currency($produk->Product->harga_produk)"
                                                 class="font-semibold text-sm md:text-base">
-                                            <input type="hidden" id="hargaPcs-{{ $produk->id_cart }}" value="{{ $produk->DetailCartitem->Product->harga_produk }}">
+                                            <input type="hidden" id="hargaPcs-{{ $produk->id_cart }}" value="{{ $produk->Product->harga_produk }}">
                                         </h4>
                                     </div>
                                     <div class="col md:ml-10 mt-4 md:mt-2">
@@ -39,15 +39,15 @@
 
                                                     <input type="hidden" name="_token" id="csrfToken" value="{{ csrf_token() }}" />
                                                     <button type="button"
-                                                        class="w-full max-w-md h-auto p-2 bg-black text-white rounded-md HapusClass" data-id-detail="{{ $produk->DetailCartItem->id_detail_item_cart }}" data-id-cart="{{ $produk->id_cart }}" id="btnHapus" >Hapus</button>
+                                                        class="w-full max-w-md h-auto p-2 bg-black text-white rounded-md HapusClass" data-id-detail="{{ $produk->id_detail_item_cart }}" data-id-cart="{{ $produk->id_cart }}" id="btnHapus" >Hapus</button>
                                                  {{-- </form> --}}
                                             </div>
                                             <div class="col mt-2">
                                                 <div class="row flex justify-center">
                                                     <div class="col">
                                                         <button id="prodc_min" type="button"
-                                                            class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white prodc_min" data-harga="{{ $produk->DetailCartitem->Product->harga_produk }}"
-                                                            data-aty="{{ $produk->DetailCartitem->qty  }}"
+                                                            class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white prodc_min" data-harga="{{ $produk->Product->harga_produk }}"
+                                                            data-aty="{{ $produk->qty  }}"
                                                             data-id="{{ $produk->id_cart }}"  for="prodc_qty-{{ $produk->id_cart  }}"
                                                             >
                                                             <i class="fa fa-minus" aria-hidden="true"></i>
@@ -57,13 +57,13 @@
 
                                                         <input type="text" id="prodc_qty-{{ $produk->id_cart }}" name="{{ $produk->id_cart }}"
                                                             class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg prodc_qty-class prodc_qty-{{ $produk->id_cart  }}" data-id="{{ $produk->id_cart }}"
-                                                            value="{{ $produk->DetailCartItem->quantity }}" onchange="cekAllOngkir()">
+                                                            value="{{ $produk->quantity }}" onchange="cekAllOngkir()">
                                                     </div>
                                                     <div class="col">
                                                         <button id="prodc_add" type="button" for="prodc_qty-{{ $produk->id_cart  }}"
                                                             class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white prodc_add"
-                                                            data-harga="{{ $produk->DetailCartitem->Product->harga_produk }}"
-                                                            data-ty="{{ $produk->DetailCartitem->qty  }}"
+                                                            data-harga="{{ $produk->Product->harga_produk }}"
+                                                            data-ty="{{ $produk->qty  }}"
                                                             data-id="{{ $produk->id_cart }}"
                                                             >
                                                             <i class="fa fa-plus" aria-hidden="true"></i>
@@ -77,8 +77,8 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" class="berat_satuan_class" id="berat_satuan-{{ $produk->id_cart }}" value="{{ $produk->DetailCartitem->Product->berat_produk  }}"></input>
-                    <input type="hidden" id="berat_satuan_fix-{{ $produk->id_cart }}" value="{{ $produk->DetailCartitem->Product->berat_produk  }}"></input>
+                    <input type="hidden" class="berat_satuan_class" id="berat_satuan-{{ $produk->id_cart }}" value="{{ $produk->Product->berat_produk  }}"></input>
+                    <input type="hidden" id="berat_satuan_fix-{{ $produk->id_cart }}" value="{{ $produk->Product->berat_produk  }}"></input>
                     @endforeach
                 <!-- End Product -->
                     <input type="hidden" id="total_berat" value="{{ $totalBerat }}" ></input>
