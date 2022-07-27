@@ -85,6 +85,14 @@ class OrderController extends Controller
 
     public function transaksi(Request $request)
     {
+
+        // return ddd($request);
+        $validasi = $request->validate([
+            'shipping' => 'required'
+        ]);
+
+
+
         // return ddd($request);
         $idUser = Auth::user()->id_pengguna;
 
@@ -161,21 +169,21 @@ class OrderController extends Controller
             ]);
 
         }
-        // delete data cart belum jadi
-        for($a = 0; $a < $hitung; $a++){
-             $getCartData = DetailCartItem::where('id_cart', $getCart)->delete();
-        }
-         CartItem::where('id_cart', $getCart)->delete();
+
+        // delete data cart dan detail cart
+            $getCartData = DetailCartItem::where('id_cart', $getCart[0]->id_cart)->delete();
+            $getCart = CartItem::where('id_cart', $getCart[0]->id_cart)->delete();
 
 
-        // return ddd($getCart, $getCartData);
+
+
 
         return redirect()->route("user.orders");
 
 
 
 
-        // return ddd($request);
+
 
 
 

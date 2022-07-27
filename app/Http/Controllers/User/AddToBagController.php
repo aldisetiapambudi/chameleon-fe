@@ -18,6 +18,12 @@ class AddToBagController extends Controller
         }
 
 
+        $validate = $request->validate([
+            'color' => 'required',
+            'size' => 'required',
+        ]);
+        // return ddd($request);
+
 
         $idPengguna = Auth::user()->id_pengguna;
         $getDataId = CartItem::where('id_pengguna', $idPengguna)->get();

@@ -274,14 +274,14 @@
         <input type="hidden" name="totalAll" id="sendTotalAll">
         <input type="hidden" name="dicount" id="discount" value="{{ $diskon }}">
 
-        <input type="text" id="sendNama" name="sendNama" value="{{ $address[0]->nama_lengkap }}">
-        <input type="text" id="sendIDAlamat" name="sendIDAlamat" value="{{ $address[0]->id_alamat }}">
-        <input type="text" id="sendKec" name="sendKec" value="{{ $address[0]->kecamatan }}">
-        <input type="text" id="sendKab" name="sendKab" value="{{ $address[0]->kabupaten }}">
-        <input type="text" id="sendProv" name="sendProv" value="{{ $address[0]->provinsi }}">
-        <input type="text" id="sendKodePos" name="sendKodePos" value="{{ $address[0]->kode_pos }}">
-        <input type="text" id="sendAlamat" name="sendAlamat" value="{{ $address[0]->alamat_1 }}">
-        <input type="text" id="sendTelp" name="sendTelp" value="{{ $address[0]->no_telp }}">
+        <input type="hidden" id="sendNama" name="sendNama" value="{{ $address[0]->nama_lengkap }}">
+        <input type="hidden" id="sendIDAlamat" name="sendIDAlamat" value="{{ $address[0]->id_alamat }}">
+        <input type="hidden" id="sendKec" name="sendKec" value="{{ $address[0]->kecamatan }}">
+        <input type="hidden" id="sendKab" name="sendKab" value="{{ $address[0]->kabupaten }}">
+        <input type="hidden" id="sendProv" name="sendProv" value="{{ $address[0]->provinsi }}">
+        <input type="hidden" id="sendKodePos" name="sendKodePos" value="{{ $address[0]->kode_pos }}">
+        <input type="hidden" id="sendAlamat" name="sendAlamat" value="{{ $address[0]->alamat_1 }}">
+        <input type="hidden" id="sendTelp" name="sendTelp" value="{{ $address[0]->no_telp }}">
 
 
 
