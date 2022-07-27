@@ -131,43 +131,67 @@ class OrderController extends Controller
         $getIDTransaksi = $getTransaksi->id_transaksi;
         $getKodeTransaksi = $getTransaksi->kode_transaksi;
 
-        return ddd($getIDTransaksi, $getKodeTransaksi);
+        // return ddd($getIDTransaksi, $getKodeTransaksi);
 
 
         $getCart = CartItem::where('id_pengguna', $idUser)->get();
         // return ddd($getCart);
         $getCartData = DetailCartItem::where('id_cart', $getCart[0]->id_cart)->get();
+        // return ddd($getCartData);
+
+
+        // return ddd($getDetailCart);
 
         // $hitung = count($getCartData);
 
-        // return json_encode($data);
+        // for($a = 0; $a < $hitung; $a++){
+        //     $data = array(
+        //         // $detail['id_'] = $getCartData[$a]->id_cart,
+        //         $getDetailCart = $getCartData[$a]->id_detail_item_cart,
+        //         $getQty = $request->$getDetailCart,
+        //         $detail['id_transaksi'] = $getIDTransaksi,
+        //         $detail['kode_transaksi'] = $getKodeTransaksi,
+        //         // $totalProduk = $getQty,
+        //         $detail['jumlah_produk']  = $getQty,
+        //         $detail['id_produk'] = $getCartData[$a]->id_produk,
+        //         $detail['total'] = $getCartData[$a]->Product->harga_produk*$getQty,
+        //         $detail['ukuran'] = $getCartData[$a]->size,
+        //         $detail['warna'] = $getCartData[$a]->color,
+        //         $detail['discount'] = $getCartData[$a]->Product->diskon_produk,
+        //     );
+        //     return ddd($data);
+        //     // TransactionDetail::create($data);
+        // }
 
-        // $idCart = $getCartData[1]->id_cart;
-        // $getQty = $request->$idCart;
-        // return ddd($getQty);
+
+        // return ddd($getCartData[0]);
+
+
+
+
+// $a = $getCartData[1]->id_produk;
+// return ddd($a);
 
         foreach ($getCartData as $detail) {
-            $data = array(
-            $detail['id_transaksi'] = $getIDTransaksi,
-            $detail['kode_transaksi'] = $getKodeTransaksi,
-            $idDetail = $detail->id_detail_item_cart,
-            $getQty = $request->$idDetail,
 
-            // if($idDetail)
-            $detail['jumlah_produk']  = $getQty,
-            $detail['id_produk'] = $detail->id_produk,
-            $detail['total'] = $detail->Product->harga_produk*$getQty,
-            $detail['ukuran'] = $detail->size,
-            $detail['warna'] = $detail->color,
-            $detail['discount'] = 0,
-        );
-        // return ddd($getQty);
+            $data['id_transaksi'] = $getIDTransaksi;
+            $data['kode_transaksi'] = $getKodeTransaksi;
+            $data['id_produk'] = $detail->id_produk;
+            $idDetail = $detail->id_detail_item_cart;
+            $getQty = $request->$idDetail;
+            $data['jumlah_produk']  = $getQty;
+            $data['total'] = $detail->Product->harga_produk*$getQty;
+            $data['ukuran'] = $detail->size;
+            $data['warna'] = $detail->color;
+            $data['discount'] = 0;
+        // );
+        // return ddd($getIDTransaksi);
+        return ddd($data);
+        TransactionDetail::create($data);
             // return json_encode($cart);
             // return json_encode($detail);
-            // return ddd($detail);
-            TransactionDetail::create($data);
         }
-        return json_encode($data);
+        // return json_encode($data);
 
 
     }
