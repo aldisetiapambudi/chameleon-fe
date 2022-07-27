@@ -1,6 +1,24 @@
 @extends('web.user.app')
 @section('section')
 @include('web.user.sections.partials.modalAddressCart')
+@if(count($detail) == 0)
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+        <div class="mx-auto max-w-screen-sm text-center">
+            <h1 class="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-primary-600 dark:text-primary-500">404</h1>
+            <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">Something's missing.</p>
+            <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">Sorry, we can't find that page. You'll find lots to explore on the home page. </p>
+            <a href="#" class="inline-flex text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900 my-4">Back to Homepage</a>
+        </div>
+    </div>
+</section>
+
+
+@else
+
+
+
+
 <form action="{{ route('user.transaction.add') }}" method="POST">
     @csrf
     @method('POST')
@@ -23,10 +41,10 @@
                                             {{ $produk->Product->nama_produk }}</h3>
                                         <h4 class="font-semibold text-sm md:text-base flex">
                                             Rp.
-                                            <input type="text" id="harga-{{ $produk->id_cart  }}" readonly
+                                            <input type="text" id="harga-{{ $produk->id_detail_item_cart  }}" readonly
                                                 value=" @currency($produk->Product->harga_produk)"
                                                 class="font-semibold text-sm md:text-base">
-                                            <input type="hidden" id="hargaPcs-{{ $produk->id_cart }}" value="{{ $produk->Product->harga_produk }}">
+                                            <input type="hidden" id="hargaPcs-{{ $produk->id_detail_item_cart }}" value="{{ $produk->Product->harga_produk }}">
                                         </h4>
                                     </div>
                                     <div class="col md:ml-10 mt-4 md:mt-2">
@@ -39,7 +57,7 @@
 
                                                     <input type="hidden" name="_token" id="csrfToken" value="{{ csrf_token() }}" />
                                                     <button type="button"
-                                                        class="w-full max-w-md h-auto p-2 bg-black text-white rounded-md HapusClass" data-id-detail="{{ $produk->id_detail_item_cart }}" data-id-cart="{{ $produk->id_cart }}" id="btnHapus" >Hapus</button>
+                                                        class="w-full max-w-md h-auto p-2 bg-black text-white rounded-md HapusClass" data-id-detail="{{ $produk->id_detail_item_cart }}" data-id-cart="{{ $produk->id_detail_item_cart }}" id="btnHapus" >Hapus</button>
                                                  {{-- </form> --}}
                                             </div>
                                             <div class="col mt-2">
@@ -48,23 +66,23 @@
                                                         <button id="prodc_min" type="button"
                                                             class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white prodc_min" data-harga="{{ $produk->Product->harga_produk }}"
                                                             data-aty="{{ $produk->qty  }}"
-                                                            data-id="{{ $produk->id_cart }}"  for="prodc_qty-{{ $produk->id_cart  }}"
+                                                            data-id="{{ $produk->id_detail_item_cart }}"  for="prodc_qty-{{ $produk->id_detail_item_cart  }}"
                                                             >
                                                             <i class="fa fa-minus" aria-hidden="true"></i>
                                                         </button>
                                                     </div>
                                                     <div class="col">
 
-                                                        <input type="text" id="prodc_qty-{{ $produk->id_cart }}" name="{{ $produk->id_cart }}"
-                                                            class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg prodc_qty-class prodc_qty-{{ $produk->id_cart  }}" data-id="{{ $produk->id_cart }}"
+                                                        <input type="text" id="prodc_qty-{{ $produk->id_detail_item_cart }}" name="{{ $produk->id_detail_item_cart }}"
+                                                            class="w-12 h-auto mx-2 border-2 text-center shadow-md border-yellow-300 border-offset-2 rounded-lg prodc_qty-class prodc_qty-{{ $produk->id_detail_item_cart  }}" data-id="{{ $produk->id_detail_item_cart }}"
                                                             value="{{ $produk->quantity }}" onchange="cekAllOngkir()">
                                                     </div>
                                                     <div class="col">
-                                                        <button id="prodc_add" type="button" for="prodc_qty-{{ $produk->id_cart  }}"
+                                                        <button id="prodc_add" type="button" for="prodc_qty-{{ $produk->id_detail_item_cart  }}"
                                                             class="w-12 bg-slate-300 h-auto rounded-md p-1 hover:bg-slate-500 hover:text-white prodc_add"
                                                             data-harga="{{ $produk->Product->harga_produk }}"
                                                             data-ty="{{ $produk->qty  }}"
-                                                            data-id="{{ $produk->id_cart }}"
+                                                            data-id="{{ $produk->id_detail_item_cart }}"
                                                             >
                                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                                         </button>
@@ -77,8 +95,8 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" class="berat_satuan_class" id="berat_satuan-{{ $produk->id_cart }}" value="{{ $produk->Product->berat_produk  }}"></input>
-                    <input type="hidden" id="berat_satuan_fix-{{ $produk->id_cart }}" value="{{ $produk->Product->berat_produk  }}"></input>
+                    <input type="hidden" class="berat_satuan_class" id="berat_satuan-{{ $produk->id_detail_item_cart }}" value="{{ $produk->Product->berat_produk  }}"></input>
+                    <input type="hidden" id="berat_satuan_fix-{{ $produk->id_detail_item_cart }}" value="{{ $produk->Product->berat_produk  }}"></input>
                     @endforeach
                 <!-- End Product -->
                     <input type="hidden" id="total_berat" value="{{ $totalBerat }}" ></input>
@@ -217,7 +235,7 @@
                                 <td class="text-red-500">Discount</td>
                                 <td class="text-xl flex justify-end">
                                     <p class="text-red-500" id="totalDiscount">
-                                        0
+                                        {{ $diskon }}
                                     </p>
                             </tr>
                             <tr>
@@ -254,6 +272,7 @@
         <input type="hidden" name="shipping_total" id="sendShipping">
         <input type="hidden" name="vocer_total" id="sendVocer">
         <input type="hidden" name="totalAll" id="sendTotalAll">
+        <input type="hidden" name="dicount" id="discount" value="{{ $diskon }}">
 
         <input type="text" id="sendNama" name="sendNama" value="{{ $address[0]->nama_lengkap }}">
         <input type="text" id="sendIDAlamat" name="sendIDAlamat" value="{{ $address[0]->id_alamat }}">
@@ -268,6 +287,7 @@
 
         </div>
     </form>
+@endif
     {{-- java script --}}
     <script type="text/javascript">
 

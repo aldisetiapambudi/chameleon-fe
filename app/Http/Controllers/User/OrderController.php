@@ -20,6 +20,11 @@ class OrderController extends Controller
 
         $dataOrder =  Transaction::where('id_pengguna', $idUser)->orderBy('waktu_transaksi', 'desc')->get();
 
+        $cekOrder = count($dataOrder);
+        if($cekOrder == 0){
+            return back();
+        }
+
         foreach( $dataOrder as $date ){
             $date = $date->waktu_transaksi;
             $TransaksiHijriah = Carbon::parse($date)->toHijri()->isoFormat('dddd, D MMMM Y');
@@ -94,7 +99,8 @@ class OrderController extends Controller
         $getVocer = $request->vocer_total;
         $getShippingTotal = $request->shipping_total;
         $getSubTotal = $request->sub_total;
-        $kodeDiskon = $request->kode;
+        $kodVocer = $request->kode;
+        $diskon = $request->dicount;
         $getShipping = $request->shipping;
 
 
@@ -125,59 +131,43 @@ class OrderController extends Controller
         $getIDTransaksi = $getTransaksi->id_transaksi;
         $getKodeTransaksi = $getTransaksi->kode_transaksi;
 
-        // return ddd($getIDTransaksi, $getKodeTransaksi);
+        return ddd($getIDTransaksi, $getKodeTransaksi);
 
 
         $getCart = CartItem::where('id_pengguna', $idUser)->get();
-        // return ddd($getCartData);
-        $getCartData = DetailCartItem::where('id_cart', $getCart->id_cart);
+        // return ddd($getCart);
+        $getCartData = DetailCartItem::where('id_cart', $getCart[0]->id_cart)->get();
 
         // $hitung = count($getCartData);
 
-        // for($a = 0; $a < $hitung; $a++){
-        //     $data = array(
-        //         $idcart = $getCartData[0]->id_cart,
-        //         $getQty = $request->$idcart,
-        //         $detail['id_transaksi'] = $getIDTransaksi,
-        //         $detail['kode_transaksi'] = $getKodeTransaksi,
-        //         // $totalProduk = $getQty,
-        //         $detail['jumlah_produk']  = $getQty,
-        //         $detail['id_produk'] = $getCartData[0]->DetailCartItem->id_produk,
-        //         $detail['total'] = $getCartData[0]->DetailCartItem->Product->harga_produk*$getQty,
-        //         $detail['ukuran'] = $getCartData[0]->DetailCartItem->size,
-        //         $detail['warna'] = $getCartData[0]->DetailCartItem->color,
-        //         $detail['discount'] = 0,
-        //         TransactionDetail::create($detail),
-        //     );
-        // }
         // return json_encode($data);
 
         // $idCart = $getCartData[1]->id_cart;
         // $getQty = $request->$idCart;
         // return ddd($getQty);
 
-        foreach ($getCartData as $cart) {
-            $idCart = $cart->id_cart;
-            $getQty = $request->$idCart;
-            // return ddd($getQty);
+        foreach ($getCartData as $detail) {
+            $data = array(
+            $detail['id_transaksi'] = $getIDTransaksi,
+            $detail['kode_transaksi'] = $getKodeTransaksi,
+            $idDetail = $detail->id_detail_item_cart,
+            $getQty = $request->$idDetail,
 
-            $detail['id_transaksi'] = $getIDTransaksi;
-            $detail['kode_transaksi'] = $getKodeTransaksi;
-            if($request->$idCart== $idCart ){
-             $detail['jumlah_produk']  = $getQty;
-            }
-            // return ddd($detail['jumlah_produk']);
-            $detail['id_produk'] = $cart->DetailCartItem->id_produk;
-            $detail['total'] = $cart->DetailCartItem->Product->harga_produk*$getQty;
-            $detail['ukuran'] = $cart->DetailCartItem->size;
-            $detail['warna'] = $cart->DetailCartItem->color;
-            $detail['discount'] = 0;
-
+            // if($idDetail)
+            $detail['jumlah_produk']  = $getQty,
+            $detail['id_produk'] = $detail->id_produk,
+            $detail['total'] = $detail->Product->harga_produk*$getQty,
+            $detail['ukuran'] = $detail->size,
+            $detail['warna'] = $detail->color,
+            $detail['discount'] = 0,
+        );
+        // return ddd($getQty);
             // return json_encode($cart);
             // return json_encode($detail);
             // return ddd($detail);
-            TransactionDetail::create($detail);
+            TransactionDetail::create($data);
         }
+        return json_encode($data);
 
 
     }

@@ -21,12 +21,18 @@ class CartController extends Controller
     {
         $getIdUser = Auth::user()->id_pengguna;
         $getCart = CartItem::where('id_pengguna', $getIdUser)->get();
+
+        $counCart = count($getCart);
+        if($counCart ==  0){
+            return back();
+        }
+
         $addressUser = UserAddress::where('id_pengguna', $getIdUser)->where('main', 1)->get();
 
         // success query
         // return ddd($getCart[0]->DetailCartItem[0]->Product->harga_produk);
         // end success query
-    $getDetail = DetailCartItem::where('id_cart', $getCart[0]->id_cart)->get();
+        $getDetail = DetailCartItem::where('id_cart', $getCart[0]->id_cart)->get();
 
         // -- dev
 
@@ -34,23 +40,19 @@ class CartController extends Controller
         // return ddd($count);
         $totalBerat = 0;
         $totalHarga = 0;
+        $diskon = 0;
         for($a = 0; $a < $count; $a++){
             $harga = $getDetail[$a]->Product->harga_produk;
             $berat = $getDetail[$a]->Product->berat_produk;
-
+            $diskonProduk = $getDetail[$a]->Product->diskon_produk;
             $totalHarga += $harga;
             $totalBerat += $berat;
+            $diskon += $diskonProduk;
         }
         $beratTotal = $totalBerat;
         $totalHarga = $totalHarga;
+        $produkDiskon = $diskon;
 
-        // return ddd($totalBerat);
-        // $getProduk = $getDetail->Product;
-        // $getQuantity = $getDetail->quantity;
-
-        // return json_decode($totalHarga );
-
-        // return ddd($getDetail[0]->id_detail_item_cart);
 
 
 
@@ -59,6 +61,7 @@ class CartController extends Controller
             'address' => $addressUser,
             'totalBerat' => $beratTotal,
             'totalHarga' => $totalHarga,
+            'diskon' => $produkDiskon
 
         ]);
     }
