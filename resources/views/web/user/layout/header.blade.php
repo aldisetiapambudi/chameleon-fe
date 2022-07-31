@@ -100,13 +100,8 @@
                         <hr>
                         <a href="{{ route('user.account') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2 w-full" role="menuitem" tabindex="-1" id="user-menu-item-2"><i class="fas fa-cogs mr-3"></i>Setting</a>
                         <hr>
-                        <form action="{{ route('user.logout') }}" method="post">
-                            @csrf
-                            @method('POST')
-                            <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2 w-full" role="menuitem" tabindex="-1" id="user-menu-item-2"><i class="fas fa-user-circle mr-3"></i>Sign out
-                            </button>
-                        </form>
-
+                        <a href="{{ route('user.logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2 w-full" role="menuitem" tabindex="-1" id="user-menu-item-2"><i class="fas fa-user-circle mr-3"></i>Sign out
+                        </a>
                     </div>
                     @else
                     <a href="{{ route('user.login') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 duration-300 transform transition hover:translate-x-2" role="menuitem" tabindex="-1" id="user-menu-item-2"><i class="fas fa-user-circle mr-3"></i>Sign in</a>

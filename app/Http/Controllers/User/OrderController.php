@@ -134,6 +134,7 @@ class OrderController extends Controller
         $transaksi['kurir'] = $getShipping;
         $transaksi['catatan'] = 0;
         $transaksi['system_note'] = 'on_input';
+        $transaksi['payment_status'] = 1;
 
         $getTransaksi =  Transaction::create($transaksi);
 

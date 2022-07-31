@@ -43,7 +43,7 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('/logout', [LoginController::class, 'logout'])->name('user.logout');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('user.logout');
 });
 
 
@@ -67,6 +67,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/product/remove', [CartController::class, 'removeProduk'])->name('user.product.remove');
 
     Route::post('validasi/vocer', [CartController::class, 'validasiVocer'])->name('validasi.vocer');
+
+    Route::post('payments/midtrans-notification', [PaymentCallbackController::class, 'receive']);
 });
 
 

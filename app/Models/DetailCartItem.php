@@ -12,6 +12,8 @@ class DetailCartItem extends Model
     protected $table = "detail_cart_item";
     protected $primaryKey = 'id_detail_item_cart';
     protected $guarded = ['id_detail_item_cart'];
+
+    public $timestamps = false;
     // protected $fillable = ['id_produk', 'id_cart', 'quantity', 'size', 'color'];
 
     public function CartItem()
