@@ -11,7 +11,7 @@ use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\RajaongkirController;
 use App\Http\Controllers\User\OrderController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\PaymentCallbackController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,9 +68,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('validasi/vocer', [CartController::class, 'validasiVocer'])->name('validasi.vocer');
 
-    Route::post('payments/midtrans-notification', [PaymentCallbackController::class, 'receive']);
 });
 
+Route::post('payments/midtrans-notification', [PaymentCallbackController::class, 'receive']);
 
 Route::middleware(['auth'])->group(function(){
     Route::get('user/rajaongkir/get_provinsi/', [RajaongkirController::class, 'get_provinsi'])->name('address.get.provinsi');

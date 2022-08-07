@@ -23,6 +23,8 @@ class CallbackService extends Midtrans
  
     public function isSignatureKeyVerified()
     {
+        // var_dump($this->_createLocalSignatureKey(), $this->notification->signature_key);
+        // die();
         return ($this->_createLocalSignatureKey() == $this->notification->signature_key);
     }
  
@@ -57,13 +59,12 @@ class CallbackService extends Midtrans
  
     protected function _createLocalSignatureKey()
     {
-        $orderId = $this->order->number;
+        $orderId = $this->order->kode_transaksi;
         $statusCode = $this->notification->status_code;
-        $grossAmount = $this->order->total_price;
+        $grossAmount = $this->order->total_harga.".00";
         $serverKey = $this->serverKey;
         $input = $orderId . $statusCode . $grossAmount . $serverKey;
         $signature = openssl_digest($input, 'sha512');
- 
         return $signature;
     }
  

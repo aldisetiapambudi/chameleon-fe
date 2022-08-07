@@ -8,6 +8,7 @@ use App\Models\DetailCartItem;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use App\Services\Midtrans\CreateTokenSnapService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -26,17 +27,40 @@ class OrderController extends Controller
             return back();
         }
 
-        foreach( $dataOrder as $date ){
-            $date = $date->waktu_transaksi;
-            $TransaksiHijriah = Carbon::parse($date)->toHijri()->isoFormat('dddd, D MMMM Y');
-            $TransaksiMasehi =  Carbon::parse($date)->isoFormat('dddd, D MMMM Y, H:m:s');
-
+        foreach($dataOrder as $order){
+            $snapToken = $order->snap_token;
+            if(empty($snapToken)){
+                $itemDetails = [];
+                $indexId = 1;
+                foreach($order->TransactionDetail as $index => $item){
+                    $itemDetails[] = [
+                        "id" => $indexId,
+                        "price" => $item->total,
+                        "quantity" => $item->jumlah_produk,
+                        "name" => $item->Product->nama_produk
+                    ];
+                    $indexId++;
+                }
+                $itemDetails[] = [
+                    "id" => $indexId++,
+                    "price" => $order->total_ongkir,
+                    "quantity" => 1,
+                    "name" => 'Ongkos Kirim',
+                ];
+                $customerDetail = [
+                "first_name" => $order->UserAddress->nama_lengkap,
+                    "email" => $order->user->email,
+                    "phone" => $order->UserAddress->no_telp,
+                ];
+                $midtrans = new CreateTokenSnapService($order);
+                $snapToken = $midtrans->getSnapToken($itemDetails, $customerDetail);
+                $order->snap_token = $snapToken;
+                $order->save();
+            }
         }
-        // return ddd($dateConverted);
+
         return view('web.user.sections.orders', [
             'orders' => $dataOrder,
-            'orderDate' => $TransaksiMasehi,
-            'orderDateHijriah' => $TransaksiHijriah
         ]);
     }
 

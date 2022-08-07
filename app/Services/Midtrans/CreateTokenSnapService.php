@@ -4,7 +4,7 @@ namespace App\Services\Midtrans;
  
 use Midtrans\Snap;
  
-class CreateSnapTokenService extends Midtrans
+class CreateTokenSnapService extends Midtrans
 {
     protected $order;
  
@@ -15,34 +15,17 @@ class CreateSnapTokenService extends Midtrans
         $this->order = $order;
     }
  
-    public function getSnapToken()
+    public function getSnapToken($item_details, $customer_details)
     {
         $params = [
             'transaction_details' => [
                 'order_id' => $this->order->kode_transaksi,
                 'gross_amount' => $this->order->total_harga,
             ],
-            'item_details' => [
-                [
-                    'id' => 1,
-                    'price' => '150000',
-                    'quantity' => 1,
-                    'name' => 'Flashdisk Toshiba 32GB',
-                ],
-                [
-                    'id' => 2,
-                    'price' => '60000',
-                    'quantity' => 2,
-                    'name' => 'Memory Card VGEN 4GB',
-                ],
-            ],
-            'customer_details' => [
-                'first_name' => 'Martin Mulyo Syahidin',
-                'email' => 'mulyosyahidin95@gmail.com',
-                'phone' => '081234567890',
-            ]
+            'item_details' => $item_details,
+            'customer_details' => $customer_details
         ];
- 
+        // dd($params);
         $snapToken = Snap::getSnapToken($params);
  
         return $snapToken;

@@ -33,9 +33,9 @@
                                                 <span class="block md:inline">{{ $order->status_transaksi }}</span>
                                             </h3>
                                             <h6 class="text-xs mt-2 md:mt-0 md:text-sm">
-                                                <span>{{ $orderDateHijriah }}</span>
+                                                <span>{{ \Carbon\Carbon::parse($order->waktu_transaksi)->toHijri()->isoFormat('dddd, D MMMM Y') }}</span>
                                                 <span>/</span>
-                                                <span>{{ $orderDate }}</span>
+                                                <span>{{ \Carbon\Carbon::parse($order->waktu_transaksi)->isoFormat('dddd, D MMMM Y, H:m:s') }}</span>
                                             </h6>
                                             <h2 class="text-base lg:text-xl mt-10 font-bold">
                                                 Rp.@currency($order->total_harga)
@@ -49,17 +49,16 @@
                                                 class="bg-green-500 hover:bg-green-600 text-white  w-full py-2 text-center px-auto rounded-xl text-end  text-sm  xl:text-base block mb-3">Lihat
                                                 Pesanan</a>
                                             @if ($order->payment_status == 1)
-                                                <button class="btn btn-primary" id="pay-button" data-snaptoken="{{ $order->snap_token }}">Bayar Sekarang</button>
+                                                <button
+                                                    class="bg-blue-500 hover:bg-blue-600 text-white  w-full py-2 text-center px-2 rounded-xl text-end  text-sm  xl:text-base block mb-3 pay_button"
+                                                    id="pay-button"
+                                                    data-snaptoken="{{ $order->snap_token }}">{{ 'Konfirmasi Pembayaran' }}</button>
                                             @else
-                                                Pembayaran berhasil
+                                                <button
+                                                    class="bg-blue-500 hover:bg-blue-600 text-white  w-full py-2 text-center px-2 rounded-xl text-end  text-sm  xl:text-base block mb-3 pay_button"
+                                                    id="pay-button"
+                                                    data-snaptoken="{{ $order->snap_token }}">{{ 'Sudah Terbayar' }}</button>
                                             @endif
-                                            <a href="#" id="konfirmasiBtn" data-bs-toggle="modal"
-                                                data-bs-target="#modalKonfirmasi"
-                                                class="bg-blue-500 hover:bg-blue-600 text-white  w-full py-2 text-center px-2 rounded-xl text-end  text-sm  xl:text-base block mb-3 konfirm_pesan"
-                                                data-kode-transaksi="{{ $order->kode_transaksi }}"
-                                                data-date-kadaluarsa="{{ $orderDate }}"
-                                                data-harga-total="Rp. @currency($order->total_harga) ">
-                                                Konfirmasi Pesanan</a>
                                         </div>
                                     </div>
                                 </div>
@@ -96,10 +95,11 @@
 
         });
     </script>
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}">
+    </script>
     <script>
-        const payButton = document.querySelector('#pay-button');
-        payButton.addEventListener('click', function(e) {
+        const payButton = document.querySelectorAll('.pay-button');
+        $('.pay_button').on('click', function(e) {
             e.preventDefault();
             const snapToken = $(this).data('snaptoken');
             snap.pay(snapToken, {
@@ -123,5 +123,8 @@
                 }
             });
         });
+        // payButton.addEventListener('click', function(e) {
+
+        // });
     </script>
 @endsection
